@@ -16,13 +16,13 @@ ConTime's API makes it possible for the backend and frontend technologies to com
         - POST -> Creates a new employer user - from json body
                   -> required: ["first_name", "last_name", "email"]
 
-    <b>/api/employer/`<id>`</b>:
+    <b>/api/employer/<id>id</id>></b>:
         - GET  -> Get employer by id
 
-    <b>/api/employer/`<id>`/employee</b>
+    <b>/api/employer/<i>id</i>/employee</b>
         - GET  -> Get all employees given employer id
 
-    <b>/employer/`<id>`/employee/`<employee_id>`</b>:
+    <b>/employer/<i>id</i>/employee/<i>employee_id</i></b>:
         - GET    -> Get employee by id giver employer id
         - DELETE -> Delete employee by id given employer id
 </pre>
