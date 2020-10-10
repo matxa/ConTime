@@ -10,6 +10,8 @@ from flask import (
     url_for)
 import pymongo
 import json
+import os
+import sys
 from bson.objectid import ObjectId
 from models.employer import Employer
 
@@ -30,9 +32,12 @@ api = Blueprint('api', __name__, url_prefix='/api')
 
 @api.route('/', methods=["GET"], strict_slashes=False)
 def api_home():
-    """API Totality or summary
+    """API Totality or summary,
+    API description
     """
-    return jsonify({"message": "Welcome to ConTime's API"})
+    with open(os.path.join(sys.path[0], 'api/api_doc.json')) as doc:
+        documentation = json.load(doc)
+    return jsonify(documentation)
 
 
 @api.route('/employer', methods=["GET"], strict_slashes=False)

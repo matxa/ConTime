@@ -1,0 +1,22 @@
+{
+    "/api": [
+        {"GET": "API documentation"}
+    ],
+    "/api/employer": [
+        {"GET": "List of all employers in the database"},
+        {"POST": [
+            {"description": "Creates a new employer user - from json body"},
+            {"required": ["first_name", "last_name", "email"]}
+        ]}
+    ],
+    "/api/employer/<id>": [
+        {"GET": "get employer by id"}
+    ],
+    "/api/employer/<id>/employee": [
+        {"GET": "get all employees given employer id"}
+    ],
+    "/employer/<id>/employee/<employee_id>": [
+        {"GET": "get employee by id giver employer id"},
+        {"DELETE": "delete employee by id given employer id"}
+    ]
+}

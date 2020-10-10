@@ -10,7 +10,6 @@ from flask import (
     make_response,
     session)
 
-from api.employer_routes import api
 from flask_pymongo import PyMongo
 from models.employer import Employer
 from models.employee import Employee
@@ -29,7 +28,8 @@ app.config["MONGO_URI"] = configuration["MONGO_URI"]
 mongo = PyMongo(app)
 
 
-"""Register Blueprints to app"""
+"""IMPORT and register Blueprints to app"""
+from api.employer_routes import api
 app.register_blueprint(api)
 
 if __name__ == "__main__":
