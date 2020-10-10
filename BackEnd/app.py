@@ -10,14 +10,17 @@ from flask import (
     make_response,
     session)
 
+from api.employer_routes import api
+from api.employee_routes import api
 from flask_pymongo import PyMongo
 from models.employer import Employer
 from models.employee import Employee
 import os
+import sys
 import json
 
 """read from config file"""
-with open('config.json') as conf:
+with open(os.path.join(sys.path[0], 'config.json')) as conf:
     configuration = json.load(conf)
 
 
@@ -28,8 +31,7 @@ app.config["MONGO_URI"] = configuration["MONGO_URI"]
 mongo = PyMongo(app)
 
 
-"""IMPORT and register Blueprints to app"""
-from api.employer_routes import api
+"""register Blueprints to app"""
 app.register_blueprint(api)
 
 if __name__ == "__main__":

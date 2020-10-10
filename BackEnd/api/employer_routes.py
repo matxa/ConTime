@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""APi
+"""Employer API
 """
 from flask import (
     Blueprint,
@@ -17,7 +17,7 @@ from models.employer import Employer
 
 
 """read from config file"""
-with open('config.json') as conf:
+with open(os.path.join(sys.path[0], 'config.json')) as conf:
     configuration = json.load(conf)
 
 """MongoDB setup"""
@@ -44,14 +44,14 @@ def api_home():
 def get_all_employers():
     """Get all employers
     """
-    dictionary_of_employees = []
+    dictionary_of_employers = []
     employers = col_employer.find()
 
     for document in employers:
         del document['_id']
-        dictionary_of_employees.append(document)
+        dictionary_of_employers.append(document)
 
-    return jsonify(dictionary_of_employees)
+    return jsonify(dictionary_of_employers)
 
 
 @api.route('/employer', methods=["POST"], strict_slashes=False)
