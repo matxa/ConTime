@@ -75,7 +75,7 @@ def add_employer():
                     return redirect(
                         url_for('api.get_employer_by_id', id=generated_id))
                 except Exception:
-                    return jsonify({"error": "email already in user"})
+                    return jsonify({"error": "email already in use"})
             else:
                 return jsonify({"error": "missing params to initialize user"})
         else:

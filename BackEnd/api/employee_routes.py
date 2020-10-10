@@ -66,13 +66,22 @@ def add_employee():
                         try:
                             em = new_employee.object()
                             em["employer_id"] = credentials["employer_id"]
-                            col_employee.create_index("email", unique=True)
-                            gen_id = col_employee.insert_one(
-                                em).inserted_id
-                            return redirect(
-                                url_for('api.get_employee_by_id', id=gen_id))
-                        except Exception:
-                            return jsonify({"error": "email already in user"})
+                            check_em = col_employee.find_one({"email": em["email"]})
+                            if check_em is not None:
+                                if check_em["employer_id"] == em["employer_id"]:
+                                    return jsonify({"error": "employee {} is already working for {}".format(em["email"], employer["email"])})
+                                else:
+                                    gen_id = col_employee.insert_one(
+                                    em).inserted_id
+                                return redirect(
+                                    url_for('api.get_employee_by_id', id=gen_id))
+                            else:
+                                gen_id = col_employee.insert_one(
+                                    em).inserted_id
+                                return redirect(
+                                    url_for('api.get_employee_by_id', id=gen_id))
+                        except Exception as e:
+                            return jsonify({"error": "email already in use"})
                 except Exception as e:
                     return jsonify({"error": str(e)})
             else:
