@@ -44,7 +44,7 @@ def get_employees():
 
 @api.route('/employee', methods=["POST"], strict_slashes=False)
 def add_employee():
-    """add one employer
+    """add one employee
     """
     try:
         credentials = request.json
