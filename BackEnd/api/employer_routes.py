@@ -14,6 +14,7 @@ import os
 import sys
 from bson.objectid import ObjectId
 from models.employer import Employer
+from api.api_errors import api_error
 
 
 """read from config file"""
@@ -75,13 +76,13 @@ def add_employer():
                     return redirect(
                         url_for('api.get_employer_by_id', id=generated_id))
                 except Exception:
-                    return jsonify({"error": "email already in use"})
+                    return jsonify(api_error["EMAIL_IN_USE"])
             else:
-                return jsonify({"error": "missing params to initialize user"})
+                return jsonify(api_error["MISSING_PARAMS"])
         else:
-            return jsonify({"error": "invalid JSON"})
+            return jsonify(api_error["INVALID_JSON"])
     except Exception:
-        return jsonify({"error": "invalid JSON"})
+        return jsonify(api_error["INVALID_JSON"])
 
 
 @api.route('/employer/<id>', methods=["GET"], strict_slashes=False)
@@ -92,13 +93,13 @@ def get_employer_by_id(id):
     try:
         employer = col_employer.find_one({"_id": ObjectId(id)})
         if employer is None:
-            return jsonify({"error": "Invalid Employer User ID"})
+            return jsonify(api_error["INVALID_BOSS_ID"])
         else:
             employer = dict(employer)
             del employer['_id']
             return jsonify(employer)
     except Exception as e:
-        return jsonify({"error": str(e)})
+        return jsonify(eval(api_error["EXCEPT_ERR"]))
 
 
 @api.route(
@@ -112,7 +113,7 @@ def get_all_employees(id):
     try:
         employer = col_employer.find_one({"_id": ObjectId(id)})
         if employer is None:
-            return jsonify({"error": "Invalid Employer User ID"})
+            return jsonify(api_error["INVALID_BOSS_ID"])
         else:
             list_of_employees = []
             employees = col_employee.find({"employer_id": id})
@@ -121,7 +122,7 @@ def get_all_employees(id):
                 list_of_employees.append(document)
             return jsonify({len(list_of_employees): list_of_employees})
     except Exception as e:
-        return jsonify({"error": str(e)})
+        return jsonify(eval(api_error["EXCEPT_ERR"]))
 
 
 @api.route(
@@ -134,18 +135,18 @@ def get_employee(id, employee_id):
     try:
         employer = col_employer.find_one({"_id": ObjectId(id)})
         if employer is None:
-            return jsonify({"error": "Invalid Employer User ID"})
+            return jsonify(api_error["INVALID_BOSS_ID"])
         else:
             get_employee = col_employee.find_one(
                 {"_id": ObjectId(employee_id)})
             if get_employee is None:
-                return jsonify({"error": "employee doesn't exist"})
+                return jsonify(api_error["INVALID_WORKER"])
             else:
                 get_employee = dict(get_employee)
                 del get_employee['_id']
                 return jsonify(get_employee)
     except Exception as e:
-        return jsonify({"error": str(e)})
+        return jsonify(eval(api_error["EXCEPT_ERR"]))
 
 
 @api.route(
@@ -158,12 +159,12 @@ def delete_employee(id, employee_id):
     try:
         employer = col_employer.find_one({"_id": ObjectId(id)})
         if employer is None:
-            return jsonify({"error": "Invalid Employer User ID"})
+            return jsonify(api_error["INVALID_BOSS_ID"])
         else:
             get_employee = col_employee.find_one(
                 {"_id": ObjectId(employee_id)})
             if get_employee is None:
-                return jsonify({"error": "employee doesn't exist"})
+                return jsonify(api_error["INVALID_WORKER"])
             else:
                 employees = col_employee.delete_one(
                     {"_id": ObjectId(employee_id)})
@@ -171,4 +172,4 @@ def delete_employee(id, employee_id):
                     {"message": "Employee {} has been deleted".format(
                         employee_id)})
     except Exception as e:
-        return jsonify({"error": str(e)})
+        return jsonify(eval(api_error["EXCEPT_ERR"]))

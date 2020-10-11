@@ -15,6 +15,7 @@ import sys
 from bson.objectid import ObjectId
 from models.employee import Employee
 from api.employer_routes import api
+from api.api_errors import api_error
 
 
 """read from config file"""
@@ -61,35 +62,38 @@ def add_employee():
                     employer = col_employer.find_one({"_id": ObjectId(
                         credentials["employer_id"])})
                     if employer is None:
-                        return jsonify({"error": "Invalid Employer User ID"})
+                        return jsonify(api_error["INVALID_BOSS_ID"])
                     else:
                         try:
                             em = new_employee.object()
                             em["employer_id"] = credentials["employer_id"]
-                            check_em = col_employee.find_one({"email": em["email"]})
+                            check_em = col_employee.find_one({
+                                "email": em["email"],
+                                "employer_id": em["employer_id"]})
                             if check_em is not None:
-                                if check_em["employer_id"] == em["employer_id"]:
-                                    return jsonify({"error": "employee {} is already working for {}".format(em["email"], employer["email"])})
+                                if check_em is not None:
+                                    error = eval(api_error["WORK_ALREADY"])
+                                    return jsonify(error)
                                 else:
-                                    gen_id = col_employee.insert_one(
-                                    em).inserted_id
+                                    g_id = col_employee.insert_one(
+                                        em).inserted_id
                                 return redirect(
-                                    url_for('api.get_employee_by_id', id=gen_id))
+                                    url_for('api.get_employee_by_id', id=g_id))
                             else:
-                                gen_id = col_employee.insert_one(
+                                g_id = col_employee.insert_one(
                                     em).inserted_id
                                 return redirect(
-                                    url_for('api.get_employee_by_id', id=gen_id))
+                                    url_for('api.get_employee_by_id', id=g_id))
                         except Exception as e:
-                            return jsonify({"error": "email already in use"})
+                            return jsonify(api_error["EMAIL_IN_USE"])
                 except Exception as e:
-                    return jsonify({"error": str(e)})
+                    return jsonify(eval(api_error["EXCEPT_ERR"]))
             else:
-                return jsonify({"error": "missing params to initialize user"})
+                return jsonify(api_error["MISSING_PARAMS"])
         else:
-            return jsonify({"error": "invalid JSON"})
+            return jsonify(api_error["INVALID_JSON"])
     except Exception:
-        return jsonify({"error": "invalid JSON"})
+        return jsonify(api_error["INVALID_JSON"])
 
 
 @api.route('/employee/<id>', methods=["GET"], strict_slashes=False)
@@ -100,10 +104,29 @@ def get_employee_by_id(id):
     try:
         employee = col_employee.find_one({"_id": ObjectId(id)})
         if employee is None:
-            return jsonify({"error": "Invalid Employee User ID"})
+            return jsonify(api_error["INVALID_WORKER"])
         else:
             employee = dict(employee)
             del employee['_id']
             return jsonify(employee)
     except Exception as e:
-        return jsonify({"error": str(e)})
+        return jsonify(eval(api_error['EXCEPT_ERR']))
+
+
+@api.route('/employee/<id>/employer', methods=["GET"], strict_slashes=False)
+def get_employee_employer(id):
+    """get the employer of
+    given employee by employee id
+    """
+    try:
+        employee = col_employee.find_one({"_id": ObjectId(id)})
+        if employee is None:
+            return jsonify(api_error["INVALID_WORKER"])
+        else:
+            employer = col_employer.find_one(
+                {"_id": ObjectId(employee["employer_id"])})
+            employer = dict(employer)
+            del employer["_id"]
+            return jsonify(employer)
+    except Exception as e:
+        return jsonify(eval(api_error['EXCEPT_ERR']))

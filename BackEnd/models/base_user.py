@@ -19,7 +19,7 @@ class BaseUser():
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
-        self.date_created = datetime.utcnow()
+        self.date_created = datetime.now()
 
     def object(self):
         """Object used to dump
