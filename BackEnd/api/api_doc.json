@@ -31,6 +31,9 @@
         ],
         "/api/employee/<id>": [
             {"GET": "get employee by id"}
+        ],
+        "/employee/<id>/employer": [
+            {"GET": "get employer of given employee"}
         ]
     }
 ]
