@@ -22,7 +22,7 @@ ConTime's API makes it possible for the backend and frontend technologies to com
     <b>/api/employer/<i>id</i>/employee</b>
         - GET  -> Get all employees given employer id
 
-    <b>/employer/<i>id</i>/employee/<i>employee_id</i></b>:
+    <b>/api/employer/<i>id</i>/employee/<i>employee_id</i></b>:
         - GET    -> Get employee by id giver employer id
         - DELETE -> Delete employee by id given employer id
 </pre>
@@ -37,6 +37,6 @@ ConTime's API makes it possible for the backend and frontend technologies to com
     <b>/api/employee/<i>id</i></b>:
         - GET  -> Get employee by id
 
-    <b>/employee/<i>id</i>/employer</b>:
+    <b>/api/employee/<i>id</i>/employer</b>:
         - GET  -> Get employer of given employee
 </pre>
