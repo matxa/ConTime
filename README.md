@@ -36,4 +36,7 @@ ConTime's API makes it possible for the backend and frontend technologies to com
 
     <b>/api/employee/<i>id</i></b>:
         - GET  -> Get employee by id
+
+    <b>/employee/<i>id</i>/employer</b>:
+        - GET  -> Get employer of given employee
 </pre>
