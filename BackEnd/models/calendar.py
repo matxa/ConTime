@@ -53,10 +53,11 @@ class WeekCalendar():
     """creating a weekly calendar
     """
 
-    def __init__(self, start_date):
+    def __init__(self, start_date, employee_id="", employer_id=""):
         """init class
         """
-        self.employee_id = ""
+        self.employee_id = employee_id
+        self.employer_id = employer_id
         self.is_week_over = False
         self.start_date = start_date
         self.week_info = start_end_week(self.start_date)
@@ -75,8 +76,6 @@ class WeekCalendar():
         """weekly template
         """
         template = {
-            "employee_id": self.employee_id,
-            "is_week_over": self.is_week_over,
             "start_date": str(self.start_date),
             "end_date": str(self.end_date),
             self.week[0]: self.SUN.object(),
@@ -115,11 +114,28 @@ class WeekCalendar():
         else:
             return print("day must be the following {}".format(week_days)), -1
 
+    def calendar_id(self):
+        """calendar id to make sure
+        an employer can only fill a form once
+        """
+        return "{}|{}|{}".format(
+            self.week_id,
+            self.employee_id,
+            self.employer_id
+        )
+
     def object(self):
         """dictionary repr of class
         """
         object = {
-            self.week_id: self.template()
+            "week_start_end": self.week_id,
+            "calendar_id": self.calendar_id(),
+            "is_week_over": self.is_week_over,
+            "employee_id": self.employee_id,
+            "employer_id": self.employer_id,
+            "week": {
+                self.week_id: self.template()
+                }
         }
         return object
 
