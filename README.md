@@ -61,7 +61,7 @@ ConTime's API makes it possible for the backend and frontend technologies to com
 
 
 ### class WeekCalendar()
-<b>WeekCalendar is a class that generates a weekly calender for employee, given a SUNDAY - week start day</b>
+<b>WeekCalendar is a class that generates a weekly calendar for employee, given a SUNDAY - week start day</b>
 <pre>
 <b>__init__()</b>
     - employee_id
@@ -94,8 +94,8 @@ ConTime's API makes it possible for the backend and frontend technologies to com
     - updates the given job descriptions for given day (date)
         -> instance.set_work_description("SUN", 8, "New York", "painted room 21 on 2nd-fl")
 
-<b>calender_id()</b>
-    - generates a unique calender id
+<b>calendar_id()</b>
+    - generates a unique calendar id
         -> this is crutial because its makes it possible for one employee to work for multiple employees
 
 <b>object()</b>
