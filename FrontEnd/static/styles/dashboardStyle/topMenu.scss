@@ -1,0 +1,65 @@
+@import "../loginStyle/variablesMixin";
+
+.topMenu {
+    height: 47px;
+    width: 100%;
+    background: white;
+    position: fixed;
+    right: 0;
+    top: 0;
+    @include flexCenter(row);
+    justify-content: space-between;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);
+
+    .logo-container {
+        height: 45px;
+        width: 170px;
+        margin-top: 2px;
+        @include flexCenter(row);
+    
+        .con {
+            // @include conTime();
+            background: $conFormLogin;
+            color: $conBtn;
+            width: 180px;
+            text-align: right;
+            font-size: 30px;
+            font-weight: 900;
+            height: 45px;
+        }
+    
+        .time {
+            // @include conTime();
+            color: $timeLogin;
+            text-align: left;
+            font-size: 30px;
+            font-weight: 900;
+            height: 45px;
+        }
+    }
+
+    .date {
+        font-size: 15px;
+        font-weight: 500;
+        width: 200px;
+        height: 30px;
+        @include flexCenter(row);
+    }
+
+    .utils {
+        width: 100px;
+        @include flexCenter(row);
+        justify-content: space-between;
+        margin-right: 2%;
+        
+        span {
+            width: 20px;
+            height: 20px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+}

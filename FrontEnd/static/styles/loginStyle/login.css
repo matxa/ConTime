@@ -1,0 +1,274 @@
+/* main container */
+/* conBtn is the color used for the span (box) holding the word Con
+ * in the logo (ConTime)
+ * and it's also used in the login (submit) button
+ */
+/* timeLogin is the color used in the word Time in the logo (ConTime)
+ * and it's also used in teh login (h1) heading in forms
+ */
+/* conFormLogin is the color used in the word con in the logo (ConTime)
+ * and its also used as a background color for the form 
+ */
+/* input box border color shadow on click */
+/* color for error */
+/* Mixin font-size and weight for ConTime Logo */
+/* input box background and border */
+/* Flex Center Mixin */
+/* Place for the logo and the website description */
+/* conBtn is the color used for the span (box) holding the word Con
+ * in the logo (ConTime)
+ * and it's also used in the login (submit) button
+ */
+/* timeLogin is the color used in the word Time in the logo (ConTime)
+ * and it's also used in teh login (h1) heading in forms
+ */
+/* conFormLogin is the color used in the word con in the logo (ConTime)
+ * and its also used as a background color for the form 
+ */
+/* input box border color shadow on click */
+/* color for error */
+/* Mixin font-size and weight for ConTime Logo */
+/* input box background and border */
+/* Flex Center Mixin */
+.web-description {
+  width: 40%;
+  height: 720px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.web-description .logo-container {
+  height: 100px;
+  width: 367px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.web-description .logo-container .con {
+  font-size: 70px;
+  font-weight: 900;
+  height: 100px;
+  background: #cc4100;
+  color: white;
+  width: 180px;
+  text-align: right;
+}
+
+.web-description .logo-container .time {
+  font-size: 70px;
+  font-weight: 900;
+  height: 100px;
+  color: #4F4F4F;
+  text-align: left;
+}
+
+.web-description .description {
+  width: 367px;
+  color: #4F4F4F;
+  font-size: 30px;
+  font-weight: 600;
+  padding-top: 25px;
+}
+
+.web-description .description .about {
+  color: #4F4F4F;
+  font-size: 15px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .web-description {
+    height: 100px;
+    width: 100%;
+  }
+  .web-description .logo-container {
+    height: 80px;
+    width: 300px;
+  }
+  .web-description .logo-container .con {
+    height: 80px;
+    width: 140px;
+    font-size: 55px;
+  }
+  .web-description .logo-container .time {
+    height: 80px;
+    color: #4F4F4F;
+    font-size: 55px;
+  }
+  .web-description .description {
+    display: none;
+  }
+}
+
+/* Place for the form */
+/* conBtn is the color used for the span (box) holding the word Con
+ * in the logo (ConTime)
+ * and it's also used in the login (submit) button
+ */
+/* timeLogin is the color used in the word Time in the logo (ConTime)
+ * and it's also used in teh login (h1) heading in forms
+ */
+/* conFormLogin is the color used in the word con in the logo (ConTime)
+ * and its also used as a background color for the form 
+ */
+/* input box border color shadow on click */
+/* color for error */
+/* Mixin font-size and weight for ConTime Logo */
+/* input box background and border */
+/* Flex Center Mixin */
+.form-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 60%;
+  height: 720px;
+}
+
+.form-container .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 400px;
+  width: 300px;
+  border-radius: 10px;
+  background: white;
+}
+
+.form-container .form h1 {
+  color: #4F4F4F;
+  font-size: 40px;
+  margin-bottom: 50px;
+}
+
+.form-container .form .input {
+  background: rgba(196, 196, 196, 0.2);
+  border: 0.5px solid rgba(196, 196, 196, 0.2);
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.form-container .form .input:focus {
+  outline: none !important;
+  border: 1px solid #cc4100;
+  -webkit-box-shadow: 0 0 5px #719ECE;
+          box-shadow: 0 0 5px #719ECE;
+}
+
+.form-container .form .login-btn {
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+  background: #cc4100;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 20px;
+  -webkit-appearance: none;
+}
+
+.form-container .form .login-btn:focus {
+  outline: none !important;
+}
+
+.form-container .form .login-btn:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.form-container .signup {
+  color: #4F4F4F;
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .form-container {
+    width: 100%;
+  }
+}
+
+.container {
+  width: 100%;
+  height: 720px;
+  margin: 0 5% 0 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+@media only screen and (max-width: 1000px) {
+  /* main container */
+  .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 100vh;
+    margin-top: 50px;
+  }
+}
+/*# sourceMappingURL=login.css.map */

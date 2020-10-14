@@ -1,0 +1,96 @@
+/* Place for the form */
+@import "./../loginStyle/variablesMixin";
+
+.form-container {
+    @include flexCenter(column);
+    width: 60%;
+    height: 720px;
+
+    .form-register {
+        @include flexCenter(column);
+        height: 600px;
+        width: 300px;
+        border-radius: 10px;
+        background: $conFormLogin;
+        margin-top: 40px;
+
+        .flash {
+            width: 60%;
+            height: 25px;
+            border-radius: 5px;
+            @include flexCenter(row);
+            background: #d9534f;
+            font-size: 12.5px;
+            color: white;
+        }
+
+        h1 {
+            color: $timeLogin;
+            font-size: 40px;
+            margin-bottom: 50px;
+        }
+
+        .input {
+            @include inputBox(rgba(196, 196, 196, 0.2));
+            width: 200px;
+            height: 40px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding-left: 20px;
+
+            &:focus {
+                outline: none !important;
+                border:1px solid $conBtn;
+                box-shadow: 0 0 5px $inputBorderShadow;
+            }
+        }
+
+        .errors {
+            list-style: square;
+        }
+
+        .error:first-child {
+            margin-top: -20px;
+        }
+
+        .error {
+            font-size: 12px;
+            color: $errorColor;
+            margin-left: 20px;
+        }
+
+        .login-btn {
+            width: 100px;
+            height: 40px;
+            border-radius: 20px;
+            background: $conBtn;
+            border: none;
+            color: $conFormLogin;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 20px;
+            -webkit-appearance: none;
+
+            &:focus {
+                outline: none !important;
+            }
+
+            &:hover {
+                cursor: pointer;
+                opacity: 70%;
+            }
+        }
+    }
+
+    .signup {
+        color: $timeLogin;
+        font-size: 15px;
+        margin-top: 15px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .form-container {
+        width: 100%;
+    }
+}

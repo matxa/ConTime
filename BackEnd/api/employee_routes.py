@@ -71,14 +71,8 @@ def add_employee():
                                 "email": em["email"],
                                 "employer_id": em["employer_id"]})
                             if check_em is not None:
-                                if check_em is not None:
                                     error = eval(api_error["WORK_ALREADY"])
                                     return jsonify(error)
-                                else:
-                                    g_id = col_employee.insert_one(
-                                        em).inserted_id
-                                return redirect(
-                                    url_for('api.get_employee_by_id', id=g_id))
                             else:
                                 g_id = col_employee.insert_one(
                                     em).inserted_id

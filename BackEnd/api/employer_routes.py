@@ -63,11 +63,13 @@ def add_employer():
         credentials = request.json
         if credentials is not None:
             if "first_name" in credentials.keys() and "last_name" in\
-             credentials.keys() and "email" in credentials.keys():
+             credentials.keys() and "email" in credentials.keys() and\
+             "password" in credentials.keys():
                 new_employer = Employer(
                     credentials["first_name"],
                     credentials['last_name'],
-                    credentials['email']
+                    credentials['email'],
+                    credentials["password"]
                 )
                 try:
                     col_employer.create_index("email", unique=True)
@@ -76,13 +78,13 @@ def add_employer():
                     return redirect(
                         url_for('api.get_employer_by_id', id=generated_id))
                 except Exception:
-                    return jsonify(api_error["EMAIL_IN_USE"])
+                    return jsonify(api_error["EMAIL_IN_USE"]), 303
             else:
-                return jsonify(api_error["MISSING_PARAMS"])
+                return jsonify(api_error["MISSING_PARAMS"]), 400
         else:
-            return jsonify(api_error["INVALID_JSON"])
+            return jsonify(api_error["INVALID_JSON"]), 400
     except Exception:
-        return jsonify(api_error["INVALID_JSON"])
+        return jsonify(api_error["INVALID_JSON"]), 400
 
 
 @api.route('/employer/<id>', methods=["GET"], strict_slashes=False)
