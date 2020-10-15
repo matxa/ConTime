@@ -71,8 +71,8 @@ def add_employee():
                                 "email": em["email"],
                                 "employer_id": em["employer_id"]})
                             if check_em is not None:
-                                    error = eval(api_error["WORK_ALREADY"])
-                                    return jsonify(error)
+                                error = eval(api_error["WORK_ALREADY"])
+                                return jsonify(error)
                             else:
                                 g_id = col_employee.insert_one(
                                     em).inserted_id

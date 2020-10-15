@@ -1,17 +1,8 @@
 <div class="dashboard">
-    <!-- Profile picture container -->
-    <div id="pic_frame">
-        <div id="pic">
-            <img src="/static/images/marcelo.jpeg" alt="profile_picture" id=picture>
-        </div>
-    </div>
-    <div class="name">
-        <p id='name'>Marcelo</p>
-    </div>
     <div class="choices">
-        <div class='choice'><a href="#"><span><img src="{{ url_for('static', filename='images/home-solid.svg') }}" alt="house" class='iconImg'>Dashboard</span></a></div>
-        <div class='choice'><a href="#"><span><img src="{{ url_for('static', filename='images/user-friends-solid.svg') }}" alt="house" class='iconImg'>Employees</span></a></div>
-        <div class='choice'><a href="#"><span><img src="{{ url_for('static', filename='images/user-circle-solid.svg') }}" alt="profile" class='iconImg'>Profile</span></a></div>
+        <div class='choice'><a href="#"><span><img src="{{ url_for('static', filename='images/home-solid.svg') }}" alt="house" class='iconImg'></span></a></div>
+        <div class='choice'><a href="#"><span><img src="{{ url_for('static', filename='images/user-friends-solid.svg') }}" alt="house" class='iconImg'></span></a></div>
+        <div class='choice'><a href="#"><span><img src="{{ url_for('static', filename='images/user-circle-solid.svg') }}" alt="profile" class='iconImg'></span></a></div>
+        <div class="choice" id="logout"><a href="{{ url_for('auth.logout') }}"><span><img src="{{ url_for('static', filename='images/sign-out-alt-solid.svg') }}" alt="signout" class="iconImg"></span></a></div>
     </div>
-    <button class="logout">Logout</button>
 </div>

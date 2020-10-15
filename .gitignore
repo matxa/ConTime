@@ -1,0 +1,14 @@
+/BackEnd/config.json
+*.pyc
+*.pyo
+__pycache__
+/contime_app_venv
+
+# Visual studio code
+.vscode/*
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
+!.vscode/extensions.json 
+.history
+.DS_Store

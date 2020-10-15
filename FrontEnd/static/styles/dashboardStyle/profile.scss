@@ -1,0 +1,40 @@
+@import "../loginStyle/variablesMixin";
+
+.profile-container {
+    width: calc(100% - 240px);
+    height: 50px;
+    position: fixed;
+    top: 57px;
+    left: 200px;
+    // border: 1px solid green;
+    @include flexCenter(row);
+
+    .info {
+        font-size: 13.5px;
+        box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.15);
+        width: 33%;
+        height: 30px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        border-radius: 2.5px;
+
+        @include flexCenter(row);
+        justify-content: space-around;
+
+        .n_em {
+            @include flexCenter(row);
+            justify-content: space-between;
+            width: 125px;
+        }
+        
+        .employee_amount {
+            width: 40px;
+            height: 20px;
+            font-size: 12.5px;
+            color: white;
+            background: orange;
+            border-radius: 2px;
+            @include flexCenter(row);
+        }
+    }
+}

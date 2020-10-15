@@ -2,7 +2,7 @@
 
 .dashboard {
     background: #CC4100;
-    width: 200px;
+    width: 100px;
     height: calc(100vh - 47px);
     position: fixed;
     left: 0;
@@ -11,11 +11,12 @@
     flex-direction: column;
     align-items: center;
     // justify-content: center;
+
 }
 
 #pic_frame {
-    width: 134px;
-    height: 134px;
+    width: 100px;
+    height: 100px;
     background: white;
     border-radius: 50%;
     margin-top: 70px;
@@ -41,10 +42,14 @@
 }
 
 .choices {
-    margin-top: 60px;
+    position: fixed;
+    top: 30%;
+    height: 220px;
+    @include flexCenter(column);
+    justify-content: space-between;
 
     .choice {
-        width: 200px;
+        width: 100px;
         height: 45px;
         @include flexCenter(row);
 
@@ -58,45 +63,13 @@
         text-decoration: none;
     }
 
-    span {
-        @include flexCenter(row);
-        font-size: 17px;
-        font-weight: 500;
-        color: white;
-        width: 130px;
-        height: 45px;
-        transition: 0.3s;
-        justify-content: left;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
     .iconImg {
-        height: 17px;
-        width: 17px;
-        margin-right: 5px;
+        height: 35px;
+        width: 35px;
     }
 }
 
-.logout {
-    font-size: 15px;
-    height: 40px;
-    width: 100px;
+#logout {
     position: fixed;
     bottom: 30px;
-    border: 1px solid white;
-    color: white;
-    border-radius: 5px;
-    background: none;
-
-    &:hover {
-        cursor: pointer;
-        background: #AD1E15;
-        opacity: 70%;
-    }
-    &:focus {
-        outline:0;
-    }
 }

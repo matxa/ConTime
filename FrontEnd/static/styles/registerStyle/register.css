@@ -11,6 +11,7 @@
  */
 /* input box border color shadow on click */
 /* color for error */
+/* flash message colors */
 /* Mixin font-size and weight for ConTime Logo */
 /* input box background and border */
 /* Flex Center Mixin */
@@ -27,6 +28,7 @@
  */
 /* input box border color shadow on click */
 /* color for error */
+/* flash message colors */
 /* Mixin font-size and weight for ConTime Logo */
 /* input box background and border */
 /* Flex Center Mixin */
@@ -134,6 +136,7 @@
  */
 /* input box border color shadow on click */
 /* color for error */
+/* flash message colors */
 /* Mixin font-size and weight for ConTime Logo */
 /* input box background and border */
 /* Flex Center Mixin */
@@ -176,7 +179,7 @@
   margin-top: 40px;
 }
 
-.form-container .form-register .flash {
+.form-container .form-register .flash-error {
   width: 60%;
   height: 25px;
   border-radius: 5px;
@@ -194,6 +197,28 @@
       -ms-flex-direction: row;
           flex-direction: row;
   background: #d9534f;
+  font-size: 12.5px;
+  color: white;
+}
+
+.form-container .form-register .flash-success {
+  width: 60%;
+  height: 25px;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background: #28A845;
   font-size: 12.5px;
   color: white;
 }

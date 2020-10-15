@@ -13,6 +13,16 @@
         border-radius: 10px;
         background: $conFormLogin;
 
+        .flash-error {
+            @include flash_msg($flash_error);
+        }
+
+        .flash-success {
+            @include flash_msg($flash_success);
+            width: 80%;
+            opacity: 70%;
+        }
+
         h1 {
             color: $timeLogin;
             font-size: 40px;

@@ -14,14 +14,12 @@
         background: $conFormLogin;
         margin-top: 40px;
 
-        .flash {
-            width: 60%;
-            height: 25px;
-            border-radius: 5px;
-            @include flexCenter(row);
-            background: #d9534f;
-            font-size: 12.5px;
-            color: white;
+        .flash-error {
+            @include flash_msg($flash_error);
+        }
+
+        .flash-success {
+            @include flash_msg($flash_success);
         }
 
         h1 {

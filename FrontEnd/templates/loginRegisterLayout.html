@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/loginStyle/login.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/registerStyle/register.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <SCRIPT src="https://code.jquery.com/jquery-3.2.1.min.js"></SCRIPT>
 
     {% if title %}
         <title>{{ title }}</title>
@@ -38,6 +39,7 @@
         {% endblock form %}
     </div>
 
-    <script src="./login.js"></script>
+    <script src="{{ url_for('static', filename='JS/login.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/register.js') }}"></script>
 </body>
 </html>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboardStyle/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboardStyle/dashMenu.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboardStyle/topMenu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboardStyle/profile.css') }}">
 
     {% if title %}
         <title>{{ title }}</title>
@@ -21,5 +22,6 @@
 <body>
     {% include 'dashMenu.html' %}
     {% include 'topMenu.html' %}
+    {% include 'profile.html' %}
 </body>
 </html>
