@@ -62,3 +62,25 @@ class RegisterForm(FlaskForm):
         'Repeat Password',
         render_kw={"placeholder": "Confirm Password"},
         validators=[])
+
+
+# Add employees Form
+class AddEmployee(FlaskForm):
+    """Add employees to api
+    """
+    first_name = StringField(
+        "first_name",
+        render_kw={"placeholder": "First Name"},
+        validators=[InputRequired()])\
+
+    last_name = StringField(
+        "last_name",
+        render_kw={"placeholder": "Last Name"},
+        validators=[InputRequired()])
+
+    email = StringField(
+        "email",
+        render_kw={"placeholder": "Email"},
+        validators=[
+            DataRequired(message="Enter Email"),
+            Email()])

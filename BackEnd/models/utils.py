@@ -31,3 +31,12 @@ def today_date():
     month = dt.strftime("%B")
     day_n = dt.strftime("%d")
     return "{}, {} {}".format(day, month, day_n)
+
+
+def strip_date(date):
+    """strip date from string
+    """
+    day = date.strftime("%A")
+    month = date.strftime("%B")
+    day_n = date.strftime("%d")
+    return "{}, {} {}".format(day, month, day_n)

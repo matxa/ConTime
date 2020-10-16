@@ -1,0 +1,60 @@
+{% extends 'appLayout.html' %}
+{% from 'addMacro.html' import render_field %}
+{% block employees %}
+    <form action="{{ url_for('dash.employers_employee') }}" method="POST" class="add_employees">
+        {{ form.hidden_tag() }}
+        {{ render_field(form.first_name) }}
+        {{ render_field(form.last_name) }}
+        {{ render_field(form.email) }}
+        <input class="add_employee" type="submit" value="ADD">
+    </form>
+    <div class="employees">
+        {% for worker in workers %}
+            <div class="employee">
+                <img src="{{ url_for('static', filename='images/worker.png') }}" alt="worker">
+                <div class="full_name">
+                    {{ worker.first_name }} {{ worker.last_name }}
+                </div>
+                <div class="email">
+                    {{ worker.email }}
+                </div>
+                <div class="id">
+                    <div class="i_d">
+                        ID
+                    </div>
+                    {{ worker._id }}
+                </div>
+                <div class="date_added">
+                    <div class="i_a">
+                        ADDED
+                    </div>
+                    {{ worker.date_created }}
+                </div>
+                <div class="on_employee">
+                    <div class="cardBtn">
+                        <button class="del">Delete</button>
+                        <button class="view">View</button>
+                    </div>
+                    <div class="check_for_del">
+                        Are you sure?
+                        <div class="confirm_con">
+                            <button class="no">NO</button>
+                            
+                            <form action="{{ url_for('dash.delete_worker', id=worker._id) }}" method="POST">
+                                <input class="yes" type="submit" value="YES">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock employees %}
+
+<!-- <div class="check_for_del">
+    Are you sure?
+    <div class="confirm_con">
+        <button class="no">NO</button>
+        <button class="yes">YES</button>
+    </div>
+</div> -->

@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboardStyle/dashMenu.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboardStyle/topMenu.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboardStyle/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboardStyle/employees.css') }}">
+    <SCRIPT src="https://code.jquery.com/jquery-3.2.1.min.js"></SCRIPT>
 
     {% if title %}
         <title>{{ title }}</title>
@@ -22,6 +24,13 @@
 <body>
     {% include 'dashMenu.html' %}
     {% include 'topMenu.html' %}
-    {% include 'profile.html' %}
+    <div class="main">
+        {% include 'profile.html' %}
+        {% block dashboard %}{% endblock dashboard %}
+        {% block employees %}{% endblock employees %}
+        {% block profile_info %}{% endblock profile_info %}
+    </div>
+
+    <script src="{{ url_for('static', filename='JS/dashboard.js') }}"></script>
 </body>
 </html>

@@ -68,12 +68,12 @@ def register():
                 form.email.data,
                 hash_pwd(form.password.data))
             req = requests.post(
-                'http://192.168.1.8:5050/api/employer',
+                'http://{}/api/employer'.format(configuration["TEST_HOST"]),
                 json=new_employer.object()
             )
             if req.status_code == 303 or req.status_code == 400:
                 flash("User already exists")
-                return redirect('auth.register')
+                return redirect(url_for('auth.register'))
             else:
                 flash("Account successfully created. Login!", 'flash-success')
                 return redirect(url_for('auth.login'))
@@ -100,7 +100,7 @@ def login():
 
     if request.method == "GET":
         if current_user.is_authenticated:
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('dash.dashboard'))
         return render_template('login.html', title='Login', form=form)
 
     if form.validate_on_submit():
@@ -112,7 +112,7 @@ def login():
             employer_user = User(user_check)
             # log user in
             login_user(employer_user)
-            redirect(url_for('dashboard'))
+            redirect(url_for('dash.dashboard'))
 
     return redirect(url_for('auth.login'))
 

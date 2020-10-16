@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Employer class
 """
-from datetime import datetime
+from datetime import datetime, date
 import os
 import json
 from flask import jsonify
@@ -18,7 +18,7 @@ class Employee():
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
-        self.date_created = datetime.now()
+        self.date_created = date.today()
 
     def object(self):
         """Object used to dump

@@ -6,5 +6,3 @@ $(document).ready(() => {
         $('.flash-success').fadeOut('slow');
     }, 10000);
 });
-
-console.log("HEY")

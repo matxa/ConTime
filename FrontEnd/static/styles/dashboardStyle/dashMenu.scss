@@ -1,75 +1,142 @@
 @import "../loginStyle/variablesMixin";
 
-.dashboard {
-    background: #CC4100;
-    width: 100px;
-    height: calc(100vh - 47px);
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    // justify-content: center;
-
-}
-
-#pic_frame {
-    width: 100px;
-    height: 100px;
-    background: white;
-    border-radius: 50%;
-    margin-top: 70px;
-    @include flexCenter(row);
-
-
-    #pic {
-        width: 130px;
-        height: 130px;
-        border-radius: 50%;
+@media only screen and (min-width: 850px) {
+    .dashboard {
+        background: #CC4100;
+        min-width: 100px;
+        height: calc(100vh - 47px);
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // justify-content: center;
+    
     }
-    #picture {
-        width: 130px;
-        height: 130px;
-        border-radius: 50%;
-    }
-}
-
-#name {
-    font-size: 20px;
-    font-weight: 500;
-    color: white;
-}
-
-.choices {
-    position: fixed;
-    top: 30%;
-    height: 220px;
-    @include flexCenter(column);
-    justify-content: space-between;
-
-    .choice {
+    
+    #pic_frame {
         width: 100px;
-        height: 45px;
+        height: 100px;
+        background: white;
+        border-radius: 50%;
+        margin-top: 70px;
         @include flexCenter(row);
-
-        &:hover {
+    
+    
+        #pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+        }
+        #picture {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+        }
+    }
+    
+    #name {
+        font-size: 20px;
+        font-weight: 500;
+        color: white;
+    }
+    
+    .choices {
+        position: fixed;
+        top: 30%;
+        height: 220px;
+        @include flexCenter(column);
+        justify-content: space-between;
+    
+        .choice {
+            width: 100px;
+            height: 45px;
+            @include flexCenter(row);
+    
+            &:hover {
+                background: #AD1E15;
+                opacity: 70%;
+            }
+        }
+    
+        .cor {
             background: #AD1E15;
             opacity: 70%;
         }
+    
+        a {
+            text-decoration: none;
+        }
+    
+        .iconImg {
+            height: 35px;
+            width: 35px;
+        }
     }
-
-    a {
-        text-decoration: none;
+    
+    #logout {
+        position: fixed;
+        bottom: 15px;
     }
-
-    .iconImg {
-        height: 35px;
-        width: 35px;
-    }
+    
 }
 
-#logout {
-    position: fixed;
-    bottom: 30px;
+@media only screen and (max-width: 849px) {
+    .dashboard {
+        background: #CC4100;
+        min-width: 100%;
+        height: 45px;
+        position: fixed;
+        left: 0;
+        top: 47px;
+        @include flexCenter(row);
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);
+        
+            .choices {
+                position: absolute;
+                top: 0;
+                height: 45px;
+                width: 100%;
+                @include flexCenter(row);
+                justify-content: flex-start;
+            
+                .choice {
+                    width: 80px;
+                    height: 45px;
+                    @include flexCenter(row);
+            
+                    &:hover {
+                        background: #AD1E15;
+                        opacity: 70%;
+                    }
+                }
+            
+                .cor {
+                    background: #AD1E15;
+                    opacity: 70%;
+                }
+            
+                a {
+                    text-decoration: none;
+                }
+            
+                .iconImg {
+                    height: 35px;
+                    width: 35px;
+                }
+            
+                .iconImg {
+                    height: 25px;
+                    width: 25px;
+                }
+        
+                #logout {
+                    position: fixed;
+                    right: 0;
+                }
+            }
+        
+        }
+        
 }

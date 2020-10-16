@@ -98,7 +98,7 @@ def get_employer_by_id(id):
             return jsonify(api_error["INVALID_BOSS_ID"])
         else:
             employer = dict(employer)
-            del employer['_id']
+            employer['_id'] = str(employer['_id'])
             return jsonify(employer)
     except Exception as e:
         return jsonify(eval(api_error["EXCEPT_ERR"]))
@@ -120,7 +120,7 @@ def get_all_employees(id):
             list_of_employees = []
             employees = col_employee.find({"employer_id": id})
             for document in employees:
-                del document['_id']
+                document['_id'] = str(document['_id'])
                 list_of_employees.append(document)
             return jsonify({len(list_of_employees): list_of_employees})
     except Exception as e:

@@ -13,3 +13,23 @@ body {
     align-items: center;
     justify-content: center;
 }
+.main {
+    height: 100vh;
+    width: calc(100% - 105px);
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: fixed;
+    top: 47px;
+    left: 100px;
+}
+
+@media only screen and (max-width: 849px) {
+    .main {
+        top: 90px;
+        left: 0;
+        width: 100%;
+    }
+}

@@ -93,7 +93,7 @@ def landin_page():
 
 if __name__ == "__main__":
     app.run(
-        host='192.168.1.8',
-        port='5050',
+        host=configuration["HOST"],
+        port=configuration["PORT"],
         debug=True
     )
