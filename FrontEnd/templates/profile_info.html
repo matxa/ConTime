@@ -1,6 +1,45 @@
 {% extends 'appLayout.html' %}
+{% from 'pwdMacro.html' import render_field %}
 {% block profile_info %}
-<div style="height: 300px; width: 300px; background: green; position: absolute; bottom: 10px;">
-    profile
-</div>
+    <div class="wrapper">
+        <div class="boss">
+            <img src="{{ url_for('static', filename='images/boss_profile.png') }}" alt="icon_boss">
+            <div class="boss_info">
+                <p class="f_n">{{ user.first_name }} {{ user.last_name }}</p>
+                <p class="email_boss">{{ user.email }}</p>
+                <div class="d_c">
+                    <div class="i_a">Since</div>
+                    {{ user.date_created }}
+                </div>
+            </div>
+        </div>
+        <div class="change_pwd_w">
+            <form action="{{ url_for('dash.profile') }}" method="POST" class="change_pwd">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                {{ form.hidden_tag() }}
+                {{ render_field(form.password) }}
+                {{ render_field(form.confirm_pwd) }}
+                <input class="change_pwd_btn" type="submit" value="CHANGE password">
+            </form>
+            <div class="opt">
+                <button class="del_account">DELETE Account</button>
+                <div class="boss_for_del">
+                    Are you sure?
+                    <div class="boss_confirm">
+                        <button class="b_no">NO</button>
+                        
+                        <form action="{{ url_for('dash.delete_boss') }}" method="POST">
+                            <input class="b_yes" type="submit" value="YES">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock profile_info %}

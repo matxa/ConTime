@@ -84,3 +84,21 @@ class AddEmployee(FlaskForm):
         validators=[
             DataRequired(message="Enter Email"),
             Email()])
+
+
+# Change password
+class ChangepwdForm(FlaskForm):
+    """Form to change password
+    """
+    password = PasswordField(
+        "password",
+        render_kw={"placeholder": "Password"},
+        validators=[
+            InputRequired(),
+            Length(min=8, max=80),
+            EqualTo('confirm_pwd', message='Passwords must match')])
+
+    confirm_pwd = PasswordField(
+        'Repeat Password',
+        render_kw={"placeholder": "Confirm Password"},
+        validators=[])

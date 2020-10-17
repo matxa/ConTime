@@ -14,179 +14,7 @@
 /* Mixin font-size and weight for ConTime Logo */
 /* input box background and border */
 /* Flex Center Mixin */
-is_off {
-  display: none;
-}
-
-@media only screen and (min-width: 650px) {
-  .add_employees {
-    width: calc(100% - 200px);
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    height: 100px;
-    width: 90%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  }
-  .add_employees .add_employee {
-    width: 20%;
-    height: 40px;
-    border-radius: 5px;
-    background: #cc4100;
-    border: none;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    -webkit-appearance: none;
-  }
-  .add_employees .add_employee:focus {
-    outline: none !important;
-  }
-  .add_employees .add_employee:hover {
-    cursor: pointer;
-    opacity: 70%;
-  }
-}
-
-.form_add {
-  -webkit-appearance: none;
-  background: #67d380;
-  border: none;
-  border-radius: 2.5px;
-  min-height: 40px;
-  width: 65%;
-  margin: 20px 0 20px 0;
-  font-size: 15px;
-  font-weight: 600;
-  color: white;
-}
-
-.form_add:focus {
-  outline: none !important;
-}
-
-.form_add:hover {
-  cursor: pointer;
-  opacity: 80%;
-}
-
-.form_hide {
-  -webkit-appearance: none;
-  background: orange;
-  border: none;
-  border-radius: 2.5px;
-  min-height: 40px;
-  width: 65%;
-  margin: 20px 0 20px 0;
-  font-size: 15px;
-  font-weight: 600;
-  color: white;
-}
-
-.form_hide:focus {
-  outline: none !important;
-}
-
-.form_hide:hover {
-  cursor: pointer;
-  opacity: 80%;
-}
-
-.em_input {
-  background: rgba(196, 196, 196, 0.2);
-  border: 0.5px solid rgba(196, 196, 196, 0.2);
-  width: 20%;
-  max-width: 200px;
-  min-height: 40px;
-  border-radius: 5px;
-  padding-left: 20px;
-  margin-right: 20px;
-}
-
-.em_input:focus {
-  outline: none !important;
-  border: 1px solid #cc4100;
-  -webkit-box-shadow: 0 0 5px #719ECE;
-          box-shadow: 0 0 5px #719ECE;
-}
-
-.employees {
-  width: 80%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.cardBtn {
-  width: 100%;
-  height: 40px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.cardBtn button {
-  width: 45%;
-  height: 100%;
-  background: #67d380;
-  border-radius: 2.5px;
-  border: 2px solid #28A845;
-  color: white;
-}
-
-.cardBtn button:focus {
-  outline: 0;
-}
-
-.cardBtn button:hover {
-  cursor: pointer;
-  opacity: 78%;
-}
-
-.cardBtn .del {
-  border: 2px solid #DD3544;
-  background: #e65763;
-}
-
-.employee {
-  width: 200px;
-  min-height: 350px;
-  max-height: 350px;
-  margin: 20px;
-  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
-          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
-  border-radius: 2.5px;
+.wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -200,14 +28,32 @@ is_off {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  margin-top: 50px;
 }
 
-.employee .full_name {
-  width: 80%;
+.wrapper button:focus {
+  outline: none !important;
+}
+
+.wrapper button:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.error:first-child {
+  margin-top: -20px;
+}
+
+.error {
+  font-size: 12px;
+  color: #f54242;
+  margin-left: 20px;
+}
+
+.flash-success {
+  width: 60%;
   height: 25px;
+  border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -221,39 +67,17 @@ is_off {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  border-radius: 2.5px;
-  overflow: scroll;
-  font-size: 12.5;
-}
-
-.employee .email {
-  width: 80%;
-  height: 25px;
-  background: orange;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  border-radius: 2.5px;
+  background: #28A845;
   font-size: 12.5px;
   color: white;
-  overflow: scroll;
+  width: 80%;
+  opacity: 70%;
 }
 
-.employee .i_d {
-  width: 20px;
-  height: 15px;
-  background: #f8b437;
-  border-radius: 2.5px;
+.flash-error {
+  width: 60%;
+  height: 25px;
+  border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -267,12 +91,35 @@ is_off {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  margin-right: 5px;
-  font-size: 8px;
-  overflow: scroll;
+  background: #d9534f;
+  font-size: 12.5px;
+  color: white;
 }
 
-.employee .i_a {
+.boss {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 300px;
+  width: 500px;
+  border-radius: 2.5px;
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.boss .i_a {
   width: 40px;
   height: 15px;
   background: #f8b437;
@@ -295,10 +142,13 @@ is_off {
   overflow: scroll;
 }
 
-.employee .id {
-  width: 80%;
+.boss .boss_info {
+  width: 200px;
+}
+
+.boss .f_n {
+  width: 100%;
   height: 25px;
-  background: #de7631;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -313,19 +163,35 @@ is_off {
       -ms-flex-direction: row;
           flex-direction: row;
   border-radius: 2.5px;
-  font-size: 8px;
+  overflow: scroll;
+  font-size: 12.5;
+}
+
+.boss .email_boss {
+  width: 100%;
+  height: 25px;
+  background: orange;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  border-radius: 2.5px;
+  font-size: 12.5px;
   color: white;
   overflow: scroll;
 }
 
-.employee .id input {
-  background: none;
-  border: none;
-  color: white;
-}
-
-.employee .date_added {
-  width: 80%;
+.boss .d_c {
+  width: 100%;
   height: 25px;
   background: #cc4100;
   display: -webkit-box;
@@ -344,12 +210,36 @@ is_off {
   border-radius: 2.5px;
   font-size: 11px;
   color: white;
-  overflow: scroll;
 }
 
-.employee .on_employee {
-  width: 80%;
-  height: 40px;
+.boss img {
+  width: 200px;
+  height: 150px;
+  opacity: 70%;
+}
+
+.change_pwd_w {
+  width: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 20px;
+}
+
+.change_pwd {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -363,14 +253,55 @@ is_off {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  min-height: 200px;
+  max-height: 200px;
+  width: 300px;
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
 }
 
-.employee .check_for_del {
-  width: 100%;
-  height: 50px;
+.pwd_input {
+  background: rgba(196, 196, 196, 0.2);
+  border: 0.5px solid rgba(196, 196, 196, 0.2);
+  width: 80%;
+  max-width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  padding-left: 20px;
+}
+
+.pwd_input:focus {
+  outline: none !important;
+  border: 1px solid #cc4100;
+  -webkit-box-shadow: 0 0 5px #719ECE;
+          box-shadow: 0 0 5px #719ECE;
+}
+
+.change_pwd_btn {
+  border: 2px solid #cc5917;
+  background: orange;
+  border-radius: 2.5px;
+  width: 60%;
+  height: 40px;
+  color: white;
+  -webkit-appearance: none;
+}
+
+.change_pwd_btn:focus {
+  outline: none !important;
+}
+
+.change_pwd_btn:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.boss_for_del {
+  width: 80%;
+  height: 45px;
+  margin-top: 12px;
   border: 2px solid #DD3544;
   background: #e65763;
   border-radius: 2.5px;
@@ -394,7 +325,7 @@ is_off {
   font-size: 12.5px;
 }
 
-.employee .check_for_del .confirm_con {
+.boss_for_del .boss_confirm {
   width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -413,13 +344,13 @@ is_off {
       justify-content: space-around;
 }
 
-.employee .check_for_del .confirm_con .no {
+.boss_for_del .boss_confirm .b_no {
   background: #f8b437;
   border: 1px solid white;
   border-radius: 2.5px;
   color: white;
-  height: 100%;
-  width: 30%;
+  height: 20px;
+  width: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -435,23 +366,23 @@ is_off {
           flex-direction: row;
 }
 
-.employee .check_for_del .confirm_con .no:focus {
+.boss_for_del .boss_confirm .b_no:focus {
   outline: 0;
 }
 
-.employee .check_for_del .confirm_con .no:hover {
+.boss_for_del .boss_confirm .b_no:hover {
   cursor: pointer;
   opacity: 78%;
 }
 
-.employee .check_for_del .confirm_con .yes {
+.boss_for_del .boss_confirm .b_yes {
   -webkit-appearance: none;
   background: #67d380;
   border: 1px solid white;
   border-radius: 2.5px;
   color: white;
-  height: 100%;
-  width: 100%;
+  height: 20px;
+  width: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -467,25 +398,50 @@ is_off {
           flex-direction: row;
 }
 
-.employee .check_for_del .confirm_con .yes:focus {
+.boss_for_del .boss_confirm .b_yes:focus {
   outline: 0;
 }
 
-.employee .check_for_del .confirm_con .yes:hover {
+.boss_for_del .boss_confirm .b_yes:hover {
   cursor: pointer;
   opacity: 78%;
 }
 
-.employee img {
-  width: 100px;
-  height: 100px;
-  opacity: 70%;
+.opt {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: 200px;
+  width: calc(100% - 300px);
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
 }
 
-@media only screen and (max-width: 650px) {
-  .add_employees {
-    min-height: 250px;
-    width: 80%;
+.opt .del_account {
+  border: 2px solid #DD3544;
+  background: #e65763;
+  width: 80%;
+  border-radius: 2.5px;
+  height: 45px;
+  color: white;
+  margin-top: 12px;
+}
+
+@media only screen and (max-width: 750px) {
+  .boss {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -499,62 +455,30 @@ is_off {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    width: 80%;
   }
-  .add_employees .add_employee {
-    margin-top: 10px;
-    min-width: 224px;
-    min-height: 40px;
-    border-radius: 5px;
-    background: #cc4100;
-    border: none;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    -webkit-appearance: none;
-  }
-  .add_employees .add_employee:focus {
-    outline: none !important;
-  }
-  .add_employees .add_employee:hover {
-    cursor: pointer;
-    opacity: 90%;
-  }
-  .em_input {
-    background: rgba(196, 196, 196, 0.2);
-    border: 0.5px solid rgba(196, 196, 196, 0.2);
+  .opt {
+    margin-top: 20px;
     width: 100%;
-    max-width: 200px;
-    height: 35px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    padding-left: 20px;
-    margin-right: 0;
   }
-  .em_input:focus {
-    outline: none !important;
-    border: 1px solid #cc4100;
-    -webkit-box-shadow: 0 0 5px #719ECE;
-            box-shadow: 0 0 5px #719ECE;
-  }
-  .employees {
-    width: 100%;
-    height: 70%;
+  .change_pwd_w {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    width: 80%;
   }
 }
-/*# sourceMappingURL=employees.css.map */
+/*# sourceMappingURL=profileInfo.css.map */

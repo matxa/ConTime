@@ -107,12 +107,18 @@ def login():
         # look for email in database
         user_check = col_employer.find_one({"email": form.email.data})
         # check if user exists if so check pwd to database hash pwd
+        if user_check is None:
+            flash("Account doesn't exist", 'flash-error')
+            return redirect(url_for('landing_page'))
+
         if user_check is not None and check_pwd(
          form.password.data, user_check["password"]):
             employer_user = User(user_check)
             # log user in
             login_user(employer_user)
             redirect(url_for('dash.dashboard'))
+        else:
+            flash('Wrong password', 'flash-error')
 
     return redirect(url_for('auth.login'))
 

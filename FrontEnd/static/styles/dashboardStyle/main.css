@@ -13,6 +13,8 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+
 .main {
     height: 100%;
     width: calc(100% - 105px);
@@ -21,9 +23,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    position: fixed;
+    position: absolute;
     top: 47px;
     left: 100px;
+    z-index: -5;
 }
 
 @media only screen and (max-width: 849px) {

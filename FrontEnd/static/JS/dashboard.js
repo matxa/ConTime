@@ -20,6 +20,8 @@ else {
 }
 
 $(".form_hide").hide();
+$(".check_for_del").hide();
+$(".boss_for_del").hide();
 
 
 /* Run script only after page is done loading */
@@ -66,10 +68,22 @@ $(document).ready(() => {
 
 
     $(".check_for_del").hide();
+    $(".boss_for_del").hide()
+
 
     $(".del").click(function() {
         $(this).closest(".on_employee").find(".cardBtn").hide();
         $(this).closest(".on_employee").find(".check_for_del").show();
+    });
+
+    $(".del_account").click(function() {
+        $(this).hide();
+        $(".boss_for_del").show()
+    });
+
+    $(".b_no").click(function() {
+        $(".del_account").show()
+        $(".boss_for_del").hide()
     });
 
     $(".no").click(function() {

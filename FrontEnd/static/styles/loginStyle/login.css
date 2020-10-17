@@ -224,6 +224,28 @@
   opacity: 70%;
 }
 
+.form-container .form .flash-bye {
+  width: 60%;
+  height: 25px;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background: orange;
+  font-size: 12.5px;
+  color: white;
+}
+
 .form-container .form h1 {
   color: #4F4F4F;
   font-size: 40px;

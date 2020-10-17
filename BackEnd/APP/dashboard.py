@@ -18,9 +18,10 @@ from flask_login import (
     login_required,
     login_manager)
 from flask_pymongo import PyMongo
-from models.utils import today_date, strip_date
-from models.forms import AddEmployee
+from models.utils import today_date, strip_date, hash_pwd, check_pwd
+from models.forms import AddEmployee, ChangepwdForm
 import requests
+import pymongo
 import os
 import sys
 import json
@@ -29,6 +30,12 @@ import json
 """read from config file"""
 with open(os.path.join(sys.path[0], 'config.json')) as conf:
     configuration = json.load(conf)
+
+
+"""MongoDB setup"""
+client = pymongo.MongoClient(configuration["MONGO_URI"])
+db = client["ConTime"]
+col_employer = db["Employers"]
 
 
 dash = Blueprint('dash', __name__)
@@ -44,7 +51,6 @@ def app_layout():
             configuration["TEST_HOST"], current_user.get_id())
     )
     req_data = req.json()
-    del req_data["password"]
 
     """employee count"""
     employee_count = requests.get(
@@ -124,15 +130,43 @@ def delete_worker(id):
     return redirect(url_for('dash.employers_employee'))
 
 
+@dash.route('/deleteboss', strict_slashes=False, methods=["POST"])
+@login_required
+def delete_boss():
+    """Detete worker
+    """
+
+    col_employer.delete_one({"email": app_layout()[0]["email"]})
+
+    flash("Sorry to see you Go!", 'flash-bye')
+    return redirect(url_for('auth.logout'))
+
+
 @dash.route('/profile', strict_slashes=False, methods=['GET', "POST"])
 @login_required
 def profile():
     """Get all the employees for employe
     add and remove employees
     """
-    
+
+    form = ChangepwdForm()
+
+    if request.method == "POST":
+        if form.validate_on_submit():
+
+            if check_pwd(form.password.data, app_layout()[0]["password"]):
+                flash('Password used already', 'flash-error')
+                return redirect(url_for('dash.profile'))
+
+            req = col_employer.update_one(
+                {"email": app_layout()[0]["email"]},
+                {"$set": {"password": hash_pwd(form.password.data)}})
+            flash('Password successfully Changed!', 'flash-success')
+            return redirect(url_for('dash.profile'))
+
     return render_template(
         'profile_info.html',
         current_date=today_date(),
         user=app_layout()[0],
-        count=app_layout()[1])
+        count=app_layout()[1],
+        form=form)

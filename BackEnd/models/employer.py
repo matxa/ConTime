@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 import json
 from flask import jsonify
-from datetime import datetime
+from datetime import datetime, date
 
 
 class Employer():
@@ -19,7 +19,7 @@ class Employer():
         self.last_name = last_name
         self.email = email
         self.password = password
-        self.date_created = datetime.now()
+        self.date_created = date.today()
 
     def object(self):
         """Object used to dump

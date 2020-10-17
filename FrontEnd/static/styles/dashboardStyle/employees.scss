@@ -36,10 +36,11 @@ is_off {
 }
 
 .form_add {
+    -webkit-appearance: none;
     background: #67d380;
     border: none;
     border-radius: 2.5px;
-    height: 40px;
+    min-height: 40px;
     width: 65%;
     margin: 20px 0 20px 0;
     font-size: 15px;
@@ -56,10 +57,11 @@ is_off {
 }
 
 .form_hide {
+    -webkit-appearance: none;
     background: orange;
     border: none;
     border-radius: 2.5px;
-    height: 50px;
+    min-height: 40px;
     width: 65%;
     margin: 20px 0 20px 0;
     font-size: 15px;
@@ -79,7 +81,7 @@ is_off {
     @include inputBox(rgba(196, 196, 196, 0.2));
     width: 20%;
     max-width: 200px;
-    height: 40px;
+    min-height: 40px;
     border-radius: 5px;
     padding-left: 20px;
     margin-right: 20px;
@@ -93,193 +95,200 @@ is_off {
 
 .employees {
     width: 80%;
-    height: 60%;
-    z-index: -5;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     box-sizing: border-box;
+}
 
-    .cardBtn {
-        width: 100%;
-        height: 40px;
-        @include flexCenter(row);
-        justify-content: space-between;
+.cardBtn {
+    width: 100%;
+    height: 40px;
+    @include flexCenter(row);
+    justify-content: space-between;
 
-        button {
-            width: 45%;
-            height: 100%;
-            background: #67d380;
-            border-radius: 2.5px;
-            border: 2px solid $flash_success;
-            color: white;
+    button {
+        width: 45%;
+        height: 100%;
+        background: #67d380;
+        border-radius: 2.5px;
+        border: 2px solid $flash_success;
+        color: white;
 
-            &:focus {outline: 0;}
-            &:hover {cursor: pointer; opacity: 78%;}
-        }
-
-        .del {
-            border: 2px solid #DD3544;
-            background: #e65763;
-        }
+        &:focus {outline: 0;}
+        &:hover {cursor: pointer; opacity: 78%;}
     }
 
-    .employee {
-        width: 200px;
-        height: 350px;
-        margin: 20px;
-        box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.15);
-        border-radius: 2.5px;
+    .del {
+        border: 2px solid #DD3544;
+        background: #e65763;
+    }
+}
 
+.employee {
+    width: 200px;
+    min-height: 350px;
+    max-height: 350px;
+    margin: 20px;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.15);
+    border-radius: 2.5px;
+
+    @include flexCenter(column);
+    justify-content: space-evenly;
+
+    .full_name {
+        width: 80%;
+        height: 25px;
+        @include flexCenter(row);
+        border-radius: 2.5px;
+        overflow: scroll;
+        font-size: 12.5;
+
+    }
+    .email {
+        width: 80%;
+        height: 25px;
+        background: orange;
+        @include flexCenter(row);
+        border-radius: 2.5px;
+        font-size: 12.5px;
+        color: white;
+        overflow: scroll;
+    }
+
+    .i_d {
+        width: 20px;
+        height: 15px;
+        background: rgb(248, 180, 55);
+        border-radius: 2.5px;
+        @include flexCenter(row);
+        margin-right: 5px;
+        font-size: 8px;
+        overflow: scroll;
+
+    }
+
+    .i_a {
+        width: 40px;
+        height: 15px;
+        background: rgb(248, 180, 55);
+        border-radius: 2.5px;
+        @include flexCenter(row);
+        margin-right: 5px;
+        font-size: 8px;
+        overflow: scroll;
+
+    }
+
+    .id {
+        width: 80%;
+        height: 25px;
+        background: #de7631;
+        @include flexCenter(row);
+        border-radius: 2.5px;
+        font-size: 8px;
+        color: white;
+        overflow: scroll;
+
+        input {
+            background: none;
+            border: none;
+            color: white;
+        }
+
+    }
+
+    .date_added {
+        width: 80%;
+        height: 25px;
+        background: $conBtn;
+        @include flexCenter(row);
+        border-radius: 2.5px;
+        font-size: 11px;
+        color: white;
+        overflow: scroll;
+
+    }
+
+    .on_employee {
+        width: 80%;
+        height: 40px;
+        @include flexCenter(column);
+        justify-content: space-between;
+    }
+
+    .check_for_del {
+
+        width: 100%;
+        height: 50px;
+        border: 2px solid #DD3544;
+        background: #e65763;
+        border-radius: 2.5px;
+        color: white;
         @include flexCenter(column);
         justify-content: space-evenly;
+        font-size: 12.5px;
 
-        .full_name {
+        .confirm_con {
             width: 80%;
-            height: 25px;
             @include flexCenter(row);
-            border-radius: 2.5px;
-            font-size: 12.5;
+            justify-content: space-around;
 
-        }
-        .email {
-            width: 80%;
-            height: 25px;
-            background: orange;
-            @include flexCenter(row);
-            border-radius: 2.5px;
-            font-size: 12.5px;
-            color: white;
-        }
-
-        .i_d {
-            width: 20px;
-            height: 15px;
-            background: rgb(248, 180, 55);
-            border-radius: 2.5px;
-            @include flexCenter(row);
-            margin-right: 5px;
-            font-size: 8px;
-
-        }
-
-        .i_a {
-            width: 40px;
-            height: 15px;
-            background: rgb(248, 180, 55);
-            border-radius: 2.5px;
-            @include flexCenter(row);
-            margin-right: 5px;
-            font-size: 8px;
-
-        }
-
-        .id {
-            width: 80%;
-            height: 25px;
-            background: #de7631;
-            @include flexCenter(row);
-            border-radius: 2.5px;
-            font-size: 8px;
-            color: white;
-
-            input {
-                background: none;
-                border: none;
+            .no {
+                background: rgb(248, 180, 55);
+                border: 1px solid white;
+                border-radius: 2.5px;
                 color: white;
-            }
-
-        }
-    
-        .date_added {
-            width: 80%;
-            height: 25px;
-            background: $conBtn;
-            @include flexCenter(row);
-            border-radius: 2.5px;
-            font-size: 11px;
-            color: white;
-
-        }
-
-        .on_employee {
-            width: 80%;
-            height: 40px;
-            @include flexCenter(column);
-            justify-content: space-between;
-        }
-
-        .check_for_del {
-
-            width: 100%;
-            height: 50px;
-            border: 2px solid #DD3544;
-            background: #e65763;
-            border-radius: 2.5px;
-            color: white;
-            @include flexCenter(column);
-            justify-content: space-evenly;
-            font-size: 12.5px;
-
-            .confirm_con {
-                width: 80%;
+                height: 100%;
+                width: 30%;
                 @include flexCenter(row);
-                justify-content: space-around;
-
-                .no {
-                    background: rgb(248, 180, 55);
-                    border: 1px solid white;
-                    border-radius: 2.5px;
-                    color: white;
-                    height: 100%;
-                    width: 30%;
-                    @include flexCenter(row);
 
 
-                    &:focus {outline: 0;}
-                    &:hover {cursor: pointer; opacity: 78%;}
-                    
-                }
-
-                .yes {
-                    -webkit-appearance: none;
-                    background: #67d380;
-                    border: 1px solid white;
-                    border-radius: 2.5px;
-                    color: white;
-                    height: 100%;
-                    width: 100%;
-                    @include flexCenter(row);
-
-                    &:focus {outline: 0;}
-                    &:hover {cursor: pointer; opacity: 78%;}
-
-                }
+                &:focus {outline: 0;}
+                &:hover {cursor: pointer; opacity: 78%;}
+                
             }
-        }
 
-        img {
-            width: 100px;
-            height: 100px;
-            opacity: 70%;
+            .yes {
+                -webkit-appearance: none;
+                background: #67d380;
+                border: 1px solid white;
+                border-radius: 2.5px;
+                color: white;
+                height: 100%;
+                width: 100%;
+                @include flexCenter(row);
+
+                &:focus {outline: 0;}
+                &:hover {cursor: pointer; opacity: 78%;}
+
+            }
         }
     }
 
+    img {
+        width: 100px;
+        height: 100px;
+        opacity: 70%;
+    }
 }
 
 @media only screen and (max-width: 650px) {
     .add_employees {
-        // display: none;
+        min-height: 250px;
+        width: 80%;
         @include flexCenter(column);
         justify-content: space-around;
-        height: 300px;
-        width: 100%;
         border-bottom: 1px solid rgba(0,0,0,0.05);
+        margin-bottom: 20px;
         padding-bottom: 20px;
+        padding-top: 20px;
     
         .add_employee {
-            min-width: 200px;
-            height: 35px;
+            margin-top: 10px;
+            min-width: 224px;
+            min-height: 40px;
             border-radius: 5px;
             background: $conBtn;
             border: none;
