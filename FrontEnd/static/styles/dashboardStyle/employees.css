@@ -20,7 +20,6 @@ is_off {
 
 @media only screen and (min-width: 650px) {
   .add_employees {
-    display: none;
     width: calc(100% - 200px);
     display: -webkit-box;
     display: -ms-flexbox;
@@ -59,6 +58,48 @@ is_off {
   }
 }
 
+.form_add {
+  background: #67d380;
+  border: none;
+  border-radius: 2.5px;
+  height: 40px;
+  width: 65%;
+  margin: 20px 0 20px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+}
+
+.form_add:focus {
+  outline: none !important;
+}
+
+.form_add:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.form_hide {
+  background: orange;
+  border: none;
+  border-radius: 2.5px;
+  height: 50px;
+  width: 65%;
+  margin: 20px 0 20px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+}
+
+.form_hide:focus {
+  outline: none !important;
+}
+
+.form_hide:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
 .em_input {
   background: rgba(196, 196, 196, 0.2);
   border: 0.5px solid rgba(196, 196, 196, 0.2);
@@ -91,7 +132,6 @@ is_off {
           justify-content: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  overflow: scroll;
 }
 
 .employees .cardBtn {
@@ -180,7 +220,6 @@ is_off {
       -ms-flex-direction: row;
           flex-direction: row;
   border-radius: 2.5px;
-  overflow: scroll;
   font-size: 12.5;
 }
 
@@ -204,7 +243,6 @@ is_off {
   border-radius: 2.5px;
   font-size: 12.5px;
   color: white;
-  overflow: scroll;
 }
 
 .employees .employee .i_d {
@@ -227,7 +265,6 @@ is_off {
           flex-direction: row;
   margin-right: 5px;
   font-size: 8px;
-  overflow: scroll;
 }
 
 .employees .employee .i_a {
@@ -250,7 +287,6 @@ is_off {
           flex-direction: row;
   margin-right: 5px;
   font-size: 8px;
-  overflow: scroll;
 }
 
 .employees .employee .id {
@@ -273,7 +309,6 @@ is_off {
   border-radius: 2.5px;
   font-size: 8px;
   color: white;
-  overflow: scroll;
 }
 
 .employees .employee .id input {
@@ -302,7 +337,6 @@ is_off {
   border-radius: 2.5px;
   font-size: 11px;
   color: white;
-  overflow: scroll;
 }
 
 .employees .employee .on_employee {
@@ -442,10 +476,25 @@ is_off {
 
 @media only screen and (max-width: 650px) {
   .add_employees {
-    display: none;
-    height: 200px;
-    overflow: scroll;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    height: 300px;
+    width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 20px;
   }
   .add_employees .add_employee {
     min-width: 200px;
@@ -485,7 +534,6 @@ is_off {
   .employees {
     width: 100%;
     height: 70%;
-    overflow: auto;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

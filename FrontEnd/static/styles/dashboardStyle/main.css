@@ -14,7 +14,7 @@ body {
     justify-content: center;
 }
 .main {
-    height: 100vh;
+    height: 100%;
     width: calc(100% - 105px);
     font-family: 'Montserrat', sans-serif;
     display: flex;

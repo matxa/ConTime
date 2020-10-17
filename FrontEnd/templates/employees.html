@@ -1,6 +1,8 @@
 {% extends 'appLayout.html' %}
 {% from 'addMacro.html' import render_field %}
 {% block employees %}
+    <button class="form_add">ADD a new employee</button>
+    <button class="form_hide">Hide</button>
     <form action="{{ url_for('dash.employers_employee') }}" method="POST" class="add_employees">
         {{ form.hidden_tag() }}
         {{ render_field(form.first_name) }}
