@@ -229,7 +229,7 @@ is_off {
 .employee .email {
   width: 80%;
   height: 25px;
-  background: orange;
+  background: #4F4F4F;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -298,7 +298,7 @@ is_off {
 .employee .id {
   width: 80%;
   height: 25px;
-  background: #de7631;
+  background: #4F4F4F;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -327,7 +327,7 @@ is_off {
 .employee .date_added {
   width: 80%;
   height: 25px;
-  background: #cc4100;
+  background: #4F4F4F;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

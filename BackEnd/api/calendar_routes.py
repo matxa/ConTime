@@ -15,7 +15,6 @@ import sys
 from bson.objectid import ObjectId
 from models.employee import Employee
 from models.calendar import WeekCalendar, start_end_week
-from api.employer_routes import api
 from api.api_errors import api_error
 import datetime
 
@@ -32,7 +31,10 @@ col_employee = db["Employees"]
 col_calendar = db["Calendar"]
 
 
-@api.route(
+calendar = Blueprint('calendar', __name__)
+
+
+@calendar.route(
     '/calendar/employee/<employee_id>/',
     methods=["GET"],
     strict_slashes=False)
@@ -54,7 +56,7 @@ def get_calendars(employee_id):
         return jsonify(eval(api_error['EXCEPT_ERR']))
 
 
-@api.route(
+@calendar.route(
     '/calendar/<employee_id>/<date>',
     methods=["GET"],
     strict_slashes=False)
@@ -77,7 +79,7 @@ def get_employee_calendar(employee_id, date):
         return jsonify(eval(api_error['EXCEPT_ERR']))
 
 
-@api.route(
+@calendar.route(
     '/calendar/<employee_id>/<date>',
     methods=["POST"],
     strict_slashes=False)
@@ -96,14 +98,14 @@ def post_employee_calendar(employee_id, date):
             col_calendar.create_index("calendar_id", unique=True)
 
             col_calendar.insert_one(calendar_week.object())
-            return redirect(url_for('api.get_employee_calendar',
+            return redirect(url_for('calendar.get_employee_calendar',
                             employee_id=employee_id,
                             date=date))
     except Exception as e:
         return jsonify(eval(api_error['EXCEPT_ERR']))
 
 
-@api.route(
+@calendar.route(
     '/calendar/employer/<employer_id>',
     methods=["GET"],
     strict_slashes=False)
@@ -125,7 +127,7 @@ def get_workers_calendars(employer_id):
         return jsonify(eval(api_error['EXCEPT_ERR']))
 
 
-@api.route(
+@calendar.route(
     '/calendar/employer/<employer_id>/<date>',
     methods=["GET"],
     strict_slashes=False)

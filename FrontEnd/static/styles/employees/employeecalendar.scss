@@ -1,0 +1,87 @@
+@import "../loginStyle/variablesMixin";
+
+.profile-container {
+    width: 80%;
+    margin-top: 100px;
+    @include flexCenter(row);
+
+    .info {
+        font-size: 13.5px;
+        box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.15);
+        width: 80%;
+        height: 40px;
+        border-radius: 2.5px;
+        @include flexCenter(row);
+    }
+}
+
+.employer {
+    width: 40%;
+    height: 20px;
+    font-size: 12.5px;
+    color: white;
+    background: $timeLogin;
+    border-radius: 2px;
+    @include flexCenter(row);
+    margin-left: 5px;
+}
+
+@media only screen and (max-width: 750px) {
+    .profile-container {
+        width: 100%;
+        @include flexCenter(column);
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .profile-container {
+        @include flexCenter(column);
+
+        .info {
+            width: 80%;
+        }
+    }
+}
+
+
+
+table {
+    margin-top: 50px;
+}
+
+input {
+    width: 50%;
+    border: none;
+    border-radius: 2.5px;
+    box-shadow: 0 0 1px $inputBorderShadow;
+    padding-left: 5%;
+
+    &:focus {
+        outline: none !important;
+        
+    }
+}
+
+.hour {
+    width: 40px;
+}
+
+td {
+    margin: 0;
+    padding: 0;
+}
+
+@media only screen and (max-width: 650px) {
+    input {
+        width: 100%;
+        border: none;
+        border-radius: 2.5px;
+        box-shadow: 0 0 1px $inputBorderShadow;
+        padding-left: 10%;
+    
+        &:focus {
+            outline: none !important;
+            
+        }
+    }
+}

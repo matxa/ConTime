@@ -14,7 +14,6 @@ import os
 import sys
 from bson.objectid import ObjectId
 from models.employee import Employee
-from api.employer_routes import api
 from api.api_errors import api_error
 
 
@@ -29,7 +28,10 @@ col_employer = db["Employers"]
 col_employee = db["Employees"]
 
 
-@api.route('/employee', methods=["GET"], strict_slashes=False)
+employee = Blueprint('employee', __name__)
+
+
+@employee.route('/employee', methods=["GET"], strict_slashes=False)
 def get_employees():
     """get all employees in DataBase
     """
@@ -43,7 +45,7 @@ def get_employees():
     return jsonify(dictionary_of_employees)
 
 
-@api.route('/employee', methods=["POST"], strict_slashes=False)
+@employee.route('/employee', methods=["POST"], strict_slashes=False)
 def add_employee():
     """add one employee
     """
@@ -77,7 +79,7 @@ def add_employee():
                                 g_id = col_employee.insert_one(
                                     em).inserted_id
                                 return redirect(
-                                    url_for('api.get_employee_by_id', id=g_id))
+                                    url_for('employee.get_employee_by_id', id=g_id))
                         except Exception as e:
                             return jsonify(api_error["EMAIL_IN_USE"])
                 except Exception as e:
@@ -90,7 +92,7 @@ def add_employee():
         return jsonify(api_error["INVALID_JSON"])
 
 
-@api.route('/employee/<id>', methods=["GET"], strict_slashes=False)
+@employee.route('/employee/<id>', methods=["GET"], strict_slashes=False)
 def get_employee_by_id(id):
     """get employee
     by id
@@ -98,16 +100,16 @@ def get_employee_by_id(id):
     try:
         employee = col_employee.find_one({"_id": ObjectId(id)})
         if employee is None:
-            return jsonify(api_error["INVALID_WORKER"])
+            return jsonify(api_error["INVALID_WORKER"]), 400
         else:
             employee = dict(employee)
-            del employee['_id']
-            return jsonify(employee)
+            employee['_id'] = str(employee['_id'])
+            return jsonify(employee), 200
     except Exception as e:
-        return jsonify(eval(api_error['EXCEPT_ERR']))
+        return jsonify(eval(api_error['EXCEPT_ERR'])), 400
 
 
-@api.route('/employee/<id>/employer', methods=["GET"], strict_slashes=False)
+@employee.route('/employee/<id>/employer', methods=["GET"], strict_slashes=False)
 def get_employee_employer(id):
     """get the employer of
     given employee by employee id

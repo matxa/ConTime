@@ -2,7 +2,9 @@
 """Where all the utility functions live
 helper functions
 """
+import requests
 from datetime import date
+from dateutil.parser import parse
 import hashlib
 
 
@@ -26,7 +28,8 @@ def today_date():
     """Get current date
     ex: Wednesday, October 14
     """
-    dt = date.today()
+    req = requests.get("http://worldtimeapi.org/api/timezone/America/New_York")
+    dt = parse(req.json()["datetime"])
     day = dt.strftime("%A")
     month = dt.strftime("%B")
     day_n = dt.strftime("%d")

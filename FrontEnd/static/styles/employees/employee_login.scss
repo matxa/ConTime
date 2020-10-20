@@ -1,10 +1,11 @@
 /* Place for the form */
-@import "./variablesMixin";
+@import "./../loginStyle/variablesMixin";
+
 
 .form-container {
     @include flexCenter(column);
     width: 60%;
-    height: 720px;
+    height: 500px;
 
     .form {
         @include flexCenter(column);
@@ -29,7 +30,7 @@
 
         h1 {
             color: $timeLogin;
-            font-size: 40px;
+            font-size: 25px;
             margin-bottom: 50px;
         }
 
@@ -78,9 +79,25 @@
     }
 }
 
-@media only screen and (max-width: 700px) {
-    .form-container {
-        margin-top: -100px;
+.logo-container {
+    margin-top: 100px;
+    height: 100px;
+    width: 367px;
+    @include flexCenter(row);
+
+    .con {
+        @include conTime();
+        background: $conBtn;
+        color: white;
+        width: 180px;
+        text-align: right;
+    }
+
+    .time {
+        @include conTime();
+        color: $timeLogin;
+        text-align: left;
+        margin-left: -0.5px;
     }
 }
 

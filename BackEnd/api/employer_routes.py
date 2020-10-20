@@ -28,10 +28,10 @@ col_employer = db["Employers"]
 col_employee = db["Employees"]
 
 
-api = Blueprint('api', __name__, url_prefix='/api')
+employer = Blueprint('employer', __name__)
 
 
-@api.route('/', methods=["GET"], strict_slashes=False)
+@employer.route('/', methods=["GET"], strict_slashes=False)
 def api_home():
     """API Totality or summary,
     API description
@@ -41,7 +41,7 @@ def api_home():
     return jsonify(documentation)
 
 
-@api.route('/employer', methods=["GET"], strict_slashes=False)
+@employer.route('/employer', methods=["GET"], strict_slashes=False)
 def get_all_employers():
     """Get all employers
     """
@@ -55,7 +55,7 @@ def get_all_employers():
     return jsonify(dictionary_of_employers)
 
 
-@api.route('/employer', methods=["POST"], strict_slashes=False)
+@employer.route('/employer', methods=["POST"], strict_slashes=False)
 def add_employer():
     """add one employer
     """
@@ -76,7 +76,7 @@ def add_employer():
                     generated_id = col_employer.insert_one(
                         new_employer.object()).inserted_id
                     return redirect(
-                        url_for('api.get_employer_by_id', id=generated_id))
+                        url_for('employer.get_employer_by_id', id=generated_id))
                 except Exception:
                     return jsonify(api_error["EMAIL_IN_USE"]), 303
             else:
@@ -87,7 +87,7 @@ def add_employer():
         return jsonify(api_error["INVALID_JSON"]), 400
 
 
-@api.route('/employer/<id>', methods=["GET"], strict_slashes=False)
+@employer.route('/employer/<id>', methods=["GET"], strict_slashes=False)
 def get_employer_by_id(id):
     """get employer
     by id
@@ -104,7 +104,7 @@ def get_employer_by_id(id):
         return jsonify(eval(api_error["EXCEPT_ERR"]))
 
 
-@api.route(
+@employer.route(
     '/employer/<id>/employee',
     methods=["GET"],
     strict_slashes=False)
@@ -127,7 +127,7 @@ def get_all_employees(id):
         return jsonify(eval(api_error["EXCEPT_ERR"]))
 
 
-@api.route(
+@employer.route(
     '/employer/<id>/employee/<employee_id>',
     methods=["GET"],
     strict_slashes=False)
@@ -151,7 +151,7 @@ def get_employee(id, employee_id):
         return jsonify(eval(api_error["EXCEPT_ERR"]))
 
 
-@api.route(
+@employer.route(
     '/employer/<id>/employee/<employee_id>',
     methods=["DELETE"],
     strict_slashes=False)

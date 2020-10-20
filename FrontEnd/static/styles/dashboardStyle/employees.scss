@@ -149,7 +149,7 @@ is_off {
     .email {
         width: 80%;
         height: 25px;
-        background: orange;
+        background: $timeLogin;
         @include flexCenter(row);
         border-radius: 2.5px;
         font-size: 12.5px;
@@ -184,7 +184,7 @@ is_off {
     .id {
         width: 80%;
         height: 25px;
-        background: #de7631;
+        background: $timeLogin;
         @include flexCenter(row);
         border-radius: 2.5px;
         font-size: 8px;
@@ -202,7 +202,7 @@ is_off {
     .date_added {
         width: 80%;
         height: 25px;
-        background: $conBtn;
+        background: $timeLogin;
         @include flexCenter(row);
         border-radius: 2.5px;
         font-size: 11px;

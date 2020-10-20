@@ -41,7 +41,7 @@ with open(os.path.join(sys.path[0], 'config.json')) as conf:
     configuration = json.load(conf)
 
 
-auth = Blueprint('auth', __name__, url_prefix='/auth')
+auth = Blueprint('auth', __name__)
 
 
 """Login Manager and MngoDB
@@ -52,35 +52,7 @@ login_manager.login_view = 'login'
 # DB
 client = pymongo.MongoClient(configuration["MONGO_URI"])
 db = client["ConTime"]
-col_employer = db["Employers"]
-
-
-@auth.route('/register', strict_slashes=False, methods=['GET', 'POST'])
-def register():
-    """Register User
-    if non existent
-    """
-    form = RegisterForm()
-
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            new_employer = Employer(
-                form.first_name.data,
-                form.last_name.data,
-                form.email.data,
-                hash_pwd(form.password.data))
-            req = requests.post(
-                'http://{}/employer'.format(configuration["API_TEST_HOST"]),
-                json=new_employer.object()
-            )
-            if req.status_code == 303 or req.status_code == 400:
-                flash("User already exists")
-                return redirect(url_for('auth.register'))
-            else:
-                flash("Account successfully created. Login!", 'flash-success')
-                return redirect(url_for('auth.login'))
-
-    return render_template('register.html', title='Register', form=form)
+col_employee = db["Employees"]
 
 
 @login_manager.user_loader
@@ -88,7 +60,7 @@ def load_user(user_id):
     """load_user is essential
     for login in user
     """
-    user_check = col_employer.find_one({'_id': ObjectId(user_id)})
+    user_check = col_employee.find_one({'_id': ObjectId(user_id)})
     return User(user_check)
 
 
@@ -102,27 +74,43 @@ def login():
 
     if request.method == "GET":
         if current_user.is_authenticated:
-            return redirect(url_for('dash.dashboard'))
-        return render_template('login.html', title='Login', form=form)
+            return redirect(url_for('auth.employee_dash'))
+        return render_template('employee_login.html', title='Login', form=form)
 
     if form.validate_on_submit():
         # look for email in database
-        user_check = col_employer.find_one({"email": form.email.data})
+        user_check = col_employee.find_one({"_id": ObjectId(form.password.data)})
         # check if user exists if so check pwd to database hash pwd
         if user_check is None:
             flash("Account doesn't exist", 'flash-error')
             return redirect(url_for('auth.login'))
 
-        if user_check is not None and check_pwd(
-         form.password.data, user_check["password"]):
-            employer_user = User(user_check)
+        if user_check is not None and form.email.data == user_check["email"]:
+            employee_user = User(user_check)
             # log user in
-            login_user(employer_user)
-            redirect(url_for('dash.dashboard'))
+            login_user(employee_user)
+            redirect(url_for('auth.employee_dash'))
         else:
             flash('Invalid password', 'flash-error')
 
     return redirect(url_for('auth.login'))
+
+
+@auth.route('/dashboard', strict_slashes=False, methods=['GET', 'POST'])
+@login_required
+def employee_dash():
+    """Employees Dash board page
+    """
+    req = requests.get(
+        "http://{}/employee/{}".format(
+            configuration["API_TEST_HOST"], "5f8c7d3dbd5404daf575593c")
+    )
+    req_data = req.json()
+
+    return jsonify(req.status_code)
+    return render_template(
+        'employeecalendar.html',
+        user=req_data)
 
 
 @auth.route('/logout', strict_slashes=False, methods=['GET', 'POST'])

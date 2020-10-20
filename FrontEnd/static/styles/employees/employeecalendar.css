@@ -15,10 +15,8 @@
 /* input box background and border */
 /* Flex Center Mixin */
 .profile-container {
-  width: 100%;
-  height: 50px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  width: 80%;
+  margin-top: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -38,10 +36,8 @@
   font-size: 13.5px;
   -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
           box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
-  width: 33%;
-  height: 30px;
-  overflow-y: hidden;
-  overflow-x: scroll;
+  width: 80%;
+  height: 40px;
   border-radius: 2.5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -56,36 +52,14 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
 }
 
-.profile-container .info .n_em {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 125px;
-}
-
-.profile-container .info .employee_amount {
-  width: 40px;
+.employer {
+  width: 40%;
   height: 20px;
   font-size: 12.5px;
   color: white;
-  background: orange;
+  background: #4F4F4F;
   border-radius: 2px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -100,12 +74,12 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  margin-left: 5px;
 }
 
 @media only screen and (max-width: 750px) {
   .profile-container {
     width: 100%;
-    height: 50px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -115,10 +89,10 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    -webkit-box-orient: horizontal;
+    -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 
@@ -137,12 +111,49 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    height: 65px;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
   }
   .profile-container .info {
     width: 80%;
   }
 }
-/*# sourceMappingURL=profile.css.map */
+
+table {
+  margin-top: 50px;
+}
+
+input {
+  width: 50%;
+  border: none;
+  border-radius: 2.5px;
+  -webkit-box-shadow: 0 0 1px #719ECE;
+          box-shadow: 0 0 1px #719ECE;
+  padding-left: 5%;
+}
+
+input:focus {
+  outline: none !important;
+}
+
+.hour {
+  width: 40px;
+}
+
+td {
+  margin: 0;
+  padding: 0;
+}
+
+@media only screen and (max-width: 650px) {
+  input {
+    width: 100%;
+    border: none;
+    border-radius: 2.5px;
+    -webkit-box-shadow: 0 0 1px #719ECE;
+            box-shadow: 0 0 1px #719ECE;
+    padding-left: 10%;
+  }
+  input:focus {
+    outline: none !important;
+  }
+}
+/*# sourceMappingURL=employeecalendar.css.map */

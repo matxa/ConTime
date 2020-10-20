@@ -4,6 +4,7 @@
     width: 100%;
     height: 50px;
     margin-top: 20px;
+    margin-bottom: 20px;
     @include flexCenter(row);
 
     .info {

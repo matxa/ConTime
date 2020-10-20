@@ -19,8 +19,6 @@ from flask_login import (
     login_required,
     login_manager)
 from flask_pymongo import PyMongo
-from APP.auth_routes import auth
-from APP.dashboard import dash
 from models.employer import Employer
 from models.employee import Employee
 from models.user import User
@@ -28,6 +26,7 @@ from models.forms import LoginForm
 from models.forms import RegisterForm
 from models.utils import today_date
 from models.utils import hash_pwd, check_pwd
+from employee_app.auth import auth
 import requests
 import pymongo
 from bson import ObjectId
@@ -44,19 +43,26 @@ with open(os.path.join(sys.path[0], 'config.json')) as conf:
 """App configutation"""
 template_dir = os.path.abspath('FrontEnd/templates')
 static_dir = os.path.abspath('FrontEnd/static')
-app = Flask(
+employee_app = Flask(
     __name__,
     template_folder=template_dir,
     static_folder=static_dir)
-app.config["SECRET_KEY"] = configuration["FLASK_SECRET_KEY"]
-app.secret_key = configuration["FLASK_SECRET_KEY"]
-app.config["MONGO_URI"] = configuration["MONGO_URI"]
-app.config['SESSION_COOKIE_NAME'] = 'google-login-session'
-mongo = PyMongo(app)
+
+employee_app.config["SECRET_KEY"] = configuration["FLASK_SECRET_KEY"]
+employee_app.secret_key = configuration["FLASK_SECRET_KEY"]
+employee_app.config["MONGO_URI"] = configuration["MONGO_URI"]
+employee_app.config['SESSION_COOKIE_NAME'] = 'google-login-session'
+
+
+"""MongoDB setup"""
+client = pymongo.MongoClient(configuration["MONGO_URI"])
+db = client["ConTime"]
+col_employee = db["Employee"]
+
 """Login Manager
 """
 login_manager = LoginManager()
-login_manager.init_app(app)
+login_manager.init_app(employee_app)
 login_manager.login_view = 'login'
 
 
@@ -65,31 +71,18 @@ def load_user(user_id):
     """load_user is essential
     for login in user
     """
-    user_check = col_employer.find_one({'_id': ObjectId(user_id)})
+    user_check = col_employee.find_one({'_id': ObjectId(user_id)})
     return User(user_check)
 
 
-"""MongoDB setup"""
-client = pymongo.MongoClient(configuration["MONGO_URI"])
-db = client["ConTime"]
-col_employer = db["Employers"]
-
-
 """register Blueprints to app"""
-app.register_blueprint(auth)
-app.register_blueprint(dash)
-
-
-@app.route('/', strict_slashes=False)
-def landin_page():
-    """Landing Pages
-    """
-    return 'Landing Page'
+employee_app.register_blueprint(auth)
+# app.register_blueprint(dash)
 
 
 if __name__ == "__main__":
-    app.run(
-        host=configuration["APP_HOST"],
-        port=configuration["APP_PORT"],
+    employee_app.run(
+        host=configuration["EM_HOST"],
+        port=configuration["EM_PORT"],
         debug=True
     )

@@ -47,15 +47,15 @@ def app_layout():
     """
     """user"""
     req = requests.get(
-        "http://{}/api/employer/{}".format(
-            configuration["TEST_HOST"], current_user.get_id())
+        "http://{}/employer/{}".format(
+            configuration["API_TEST_HOST"], current_user.get_id())
     )
     req_data = req.json()
 
     """employee count"""
     employee_count = requests.get(
-        "http://{}/api/employer/{}/employee".format(
-            configuration["TEST_HOST"],
+        "http://{}/employer/{}/employee".format(
+            configuration["API_TEST_HOST"],
             current_user.get_id())
     )
     count = next(iter(employee_count.json()))
@@ -71,6 +71,7 @@ def dashboard():
 
     return render_template(
         'dashboard.html',
+        title="DashBoard",
         current_date=today_date(),
         user=app_layout()[0],
         count=app_layout()[1])
@@ -87,7 +88,7 @@ def employers_employee():
     if request.method == 'POST':
         if form.validate_on_submit():
             add_employees = requests.post(
-                "http://{}/api/employee".format(configuration["TEST_HOST"]),
+                "http://{}/employee".format(configuration["API_TEST_HOST"]),
                 json={
                     "first_name": form.first_name.data,
                     "last_name": form.last_name.data,
@@ -98,15 +99,16 @@ def employers_employee():
         return redirect(url_for('dash.employers_employee'))
 
     employees_req = requests.get(
-        "http://{}/api/employer/{}/employee".format(
-            configuration["TEST_HOST"],
+        "http://{}/employer/{}/employee".format(
+            configuration["API_TEST_HOST"],
             current_user.get_id())
     )
 
     employees = employees_req.json()
-    
+
     return render_template(
         'employees.html',
+        title="Employees",
         current_date=today_date(),
         user=app_layout()[0],
         count=app_layout()[1],
@@ -120,8 +122,8 @@ def delete_worker(id):
     """Detete worker
     """
     del_req = requests.delete(
-        "http://{}/api/employer/{}/employee/{}".format(
-            configuration["TEST_HOST"],
+        "http://{}/employer/{}/employee/{}".format(
+            configuration["API_TEST_HOST"],
             current_user.get_id(),
             id
         )
@@ -133,7 +135,7 @@ def delete_worker(id):
 @dash.route('/deleteboss', strict_slashes=False, methods=["POST"])
 @login_required
 def delete_boss():
-    """Detete worker
+    """Detete boss(Main User)
     """
 
     col_employer.delete_one({"email": app_layout()[0]["email"]})
@@ -166,6 +168,7 @@ def profile():
 
     return render_template(
         'profile_info.html',
+        title="Profile",
         current_date=today_date(),
         user=app_layout()[0],
         count=app_layout()[1],

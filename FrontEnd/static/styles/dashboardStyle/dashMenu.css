@@ -16,7 +16,7 @@
 /* Flex Center Mixin */
 @media only screen and (min-width: 850px) {
   .dashboard {
-    background: #CC4100;
+    background: #4F4F4F;
     min-width: 100px;
     height: calc(100vh - 47px);
     position: fixed;
@@ -107,7 +107,7 @@
             flex-direction: row;
   }
   .choices .choice:hover {
-    background: #AD1E15;
+    background: black;
     opacity: 70%;
   }
   .choices .cor {
@@ -129,7 +129,7 @@
 
 @media only screen and (max-width: 849px) {
   .dashboard {
-    background: #CC4100;
+    background: #4F4F4F;
     min-width: 100%;
     height: 45px;
     position: fixed;
@@ -191,7 +191,7 @@
             flex-direction: row;
   }
   .dashboard .choices .choice:hover {
-    background: #AD1E15;
+    background: black;
     opacity: 70%;
   }
   .dashboard .choices .cor {
