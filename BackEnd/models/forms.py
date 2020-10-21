@@ -245,7 +245,7 @@ class DaysOfWeek(FlaskForm):
             "employee_id": self.employee_id,
             "employer_id": self.employer_id,
             "is_week_over": self.is_week_over,
-            "total_hours": total_hours(),
+            "total_hours": self.total_hours(),
             "week": self.week()
         }
 

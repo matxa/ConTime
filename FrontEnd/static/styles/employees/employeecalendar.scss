@@ -44,6 +44,13 @@
     }
 }
 
+.week_info {
+    width: 80%;
+    @include flexCenter(row);
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
 .save-view {
     margin-top: 20px;
     width: 100%;
@@ -142,6 +149,10 @@ td {
 
     .cal-table {
         margin-top: 50px;
+        width: 100%;
+    }
+
+    .week_info {
         width: 100%;
     }
 }

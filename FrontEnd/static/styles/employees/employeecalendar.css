@@ -118,6 +118,26 @@
   }
 }
 
+.week_info {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-bottom: 20px;
+}
+
 .save-view {
   margin-top: 20px;
   width: 100%;
@@ -232,6 +252,9 @@ td {
   }
   .cal-table {
     margin-top: 50px;
+    width: 100%;
+  }
+  .week_info {
     width: 100%;
   }
 }

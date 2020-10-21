@@ -89,6 +89,9 @@ def dashboard():
                 col_calendar.update_one(
                     {"week_id": form.week_id()},
                     {"$set": {"week": form.week()}})
+                col_calendar.update_one(
+                    {"week_id": form.week_id()},
+                    {"$set": {"total_hours": form.total_hours()}})
                 return redirect(url_for('dash.dashboard'))
 
     current_cal = col_calendar.find_one({"week_id": form.week_id()})
