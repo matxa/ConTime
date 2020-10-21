@@ -39,7 +39,7 @@ def get_employees():
     employees = col_employee.find()
 
     for document in employees:
-        del document['_id']
+        document['_id'] = str(document['_id'])
         dictionary_of_employees.append(document)
 
     return jsonify(dictionary_of_employees)

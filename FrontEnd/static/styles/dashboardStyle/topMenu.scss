@@ -14,14 +14,12 @@
     .logo-container {
         height: 45px;
         width: 170px;
-        margin-top: 5px;
         @include flexCenter(row);
     
         .con {
-            // @include conTime();
+            margin-left: 2.5%;
             background: none;
             color: $conBtn;
-            width: 180px;
             text-align: right;
             font-size: 30px;
             font-weight: 900;

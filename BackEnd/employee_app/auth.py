@@ -34,6 +34,7 @@ from bson import ObjectId
 import os
 import sys
 import json
+import bson
 
 
 """read from config file"""
@@ -48,7 +49,7 @@ auth = Blueprint('auth', __name__)
 """
 login_manager = LoginManager()
 login_manager.init_app(auth)
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 # DB
 client = pymongo.MongoClient(configuration["MONGO_URI"])
 db = client["ConTime"]
@@ -74,12 +75,17 @@ def login():
 
     if request.method == "GET":
         if current_user.is_authenticated:
-            return redirect(url_for('auth.employee_dash'))
+            return redirect(url_for('dash.dashboard'))
         return render_template('employee_login.html', title='Login', form=form)
 
     if form.validate_on_submit():
         # look for email in database
-        user_check = col_employee.find_one({"_id": ObjectId(form.password.data)})
+
+        if bson.objectid.ObjectId.is_valid(form.password.data):
+            user_check = col_employee.find_one({"_id": ObjectId(form.password.data)})
+        else:
+            flash("Invalid password", 'flash-error')
+            return redirect(url_for('auth.login'))
         # check if user exists if so check pwd to database hash pwd
         if user_check is None:
             flash("Account doesn't exist", 'flash-error')
@@ -89,28 +95,11 @@ def login():
             employee_user = User(user_check)
             # log user in
             login_user(employee_user)
-            redirect(url_for('auth.employee_dash'))
+            redirect(url_for('dash.dashboard'))
         else:
             flash('Invalid password', 'flash-error')
 
     return redirect(url_for('auth.login'))
-
-
-@auth.route('/dashboard', strict_slashes=False, methods=['GET', 'POST'])
-@login_required
-def employee_dash():
-    """Employees Dash board page
-    """
-    req = requests.get(
-        "http://{}/employee/{}".format(
-            configuration["API_TEST_HOST"], "5f8c7d3dbd5404daf575593c")
-    )
-    req_data = req.json()
-
-    return jsonify(req.status_code)
-    return render_template(
-        'employeecalendar.html',
-        user=req_data)
 
 
 @auth.route('/logout', strict_slashes=False, methods=['GET', 'POST'])

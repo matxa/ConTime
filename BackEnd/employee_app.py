@@ -19,6 +19,8 @@ from flask_login import (
     login_required,
     login_manager)
 from flask_pymongo import PyMongo
+from employee_app.auth import auth
+from employee_app.dash import dash
 from models.employer import Employer
 from models.employee import Employee
 from models.user import User
@@ -26,7 +28,6 @@ from models.forms import LoginForm
 from models.forms import RegisterForm
 from models.utils import today_date
 from models.utils import hash_pwd, check_pwd
-from employee_app.auth import auth
 import requests
 import pymongo
 from bson import ObjectId
@@ -47,23 +48,23 @@ employee_app = Flask(
     __name__,
     template_folder=template_dir,
     static_folder=static_dir)
-
 employee_app.config["SECRET_KEY"] = configuration["FLASK_SECRET_KEY"]
 employee_app.secret_key = configuration["FLASK_SECRET_KEY"]
 employee_app.config["MONGO_URI"] = configuration["MONGO_URI"]
-employee_app.config['SESSION_COOKIE_NAME'] = 'google-login-session'
+employee_app.config['SESSION_COOKIE_NAME'] = 'employee-login-session'
+mongo = PyMongo(employee_app)
+"""Login Manager
+"""
+login_manager = LoginManager()
+login_manager.init_app(employee_app)
+login_manager.login_view = 'auth.login'
 
 
 """MongoDB setup"""
 client = pymongo.MongoClient(configuration["MONGO_URI"])
 db = client["ConTime"]
-col_employee = db["Employee"]
-
-"""Login Manager
-"""
-login_manager = LoginManager()
-login_manager.init_app(employee_app)
-login_manager.login_view = 'login'
+col_employee = db["Employees"]
+col_calendar = db["Calendar"]
 
 
 @login_manager.user_loader
@@ -77,7 +78,14 @@ def load_user(user_id):
 
 """register Blueprints to app"""
 employee_app.register_blueprint(auth)
-# app.register_blueprint(dash)
+employee_app.register_blueprint(dash)
+
+
+@employee_app.route('/', strict_slashes=False)
+def landin_page():
+    """Landing Pages
+    """
+    return 'Landing Page'
 
 
 if __name__ == "__main__":

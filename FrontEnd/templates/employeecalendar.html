@@ -34,71 +34,91 @@
             <span class="time">Time</span>
         </div>
         <div class="date">{{ current_date }}</div>
+        <div class="choice" id="logout"><a href="{{ url_for('auth.logout') }}"><span><img src="{{ url_for('static', filename='images/sign-out-alt-solid_em.svg') }}" alt="signout" class="iconImg"></span></a></div>
     </div>
 
     <div class="profile-container">
         <div class="info">
-            Macaia Goia
+            {{ user.first_name }} {{ user.last_name }}
         </div>
         <div class="info">
-            Employer: <div class="employer">Macelo Martins</div>
+            Employer: <div class="employer">{{ employer.first_name }} {{ employer.last_name }}</div>
         </div>
     </div>
-    <div class="table-responsive">
-        <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">DAY</th>
-                <th scope="col">HOUR</th>
-                <th scope="col">LOCATION</th>
-                <th scope="col">DESCRIPTION</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">SUN</th>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-              </tr>
-              <tr>
-                <th scope="row">MON</th>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-              </tr>
-              <tr>
-                <th scope="row">TUE</th>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-              </tr>
-              <tr>
-                <th scope="row">WED</th>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-              </tr>
-              <tr>
-                <th scope="row">THU</th>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-              </tr>
-              <tr>
-                <th scope="row">FRI</th>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-              </tr>
-              <tr>
-                <th scope="row">SAT</th>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="cal-table">
+      <form action="{{ url_for('dash.dashboard') }}" method="POST">
+        <div class="table-responsive">
+          <table class="table">
+              <thead class="thead-ligth">
+                <tr>
+                  <th scope="col">WEEK: Oct. 18 - Oct. 24</th>
+                  <th></th>
+                  <th></th>
+                  <th scope="col">TOTAL HOURS: 37.5</th>
+                </tr>
+              </thead>
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">DAY</th>
+                  <th scope="col">HOUR</th>
+                  <th scope="col">LOCATION</th>
+                  <th scope="col">DESCRIPTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {% from 'weekMacro.html' import render_field %}
+                  {{ form.hidden_tag() }}
+                  <th scope="row">SUN</th>
+                  <td>{{ render_field(form.SUN_HOUR) }}</td>
+                  <td>{{ render_field(form.SUN_LOCAL) }}</td>
+                  <td>{{ render_field(form.SUN_DESCRIPTION) }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">MON</th>
+                  <td>{{ render_field(form.MON_HOUR) }}</td>
+                  <td>{{ render_field(form.MON_LOCAL) }}</td>
+                  <td>{{ render_field(form.MON_DESCRIPTION) }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">TUE</th>
+                  <td>{{ render_field(form.TUE_HOUR) }}</td>
+                  <td>{{ render_field(form.TUE_LOCAL) }}</td>
+                  <td>{{ render_field(form.TUE_DESCRIPTION) }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">WED</th>
+                  <td>{{ render_field(form.WED_HOUR) }}</td>
+                  <td>{{ render_field(form.WED_LOCAL) }}</td>
+                  <td>{{ render_field(form.WED_DESCRIPTION) }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">THU</th>
+                  <td>{{ render_field(form.THU_HOUR) }}</td>
+                  <td>{{ render_field(form.THU_LOCAL) }}</td>
+                  <td>{{ render_field(form.THU_DESCRIPTION) }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">FRI</th>
+                  <td>{{ render_field(form.FRI_HOUR) }}</td>
+                  <td>{{ render_field(form.FRI_LOCAL) }}</td>
+                  <td>{{ render_field(form.FRI_DESCRIPTION) }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">SAT</th>
+                  <td>{{ render_field(form.SAT_HOUR) }}</td>
+                  <td>{{ render_field(form.SAT_LOCAL) }}</td>
+                  <td>{{ render_field(form.SAT_DESCRIPTION) }}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="save-view">
+          <input class="past" type="submit" value="PAST calendars">
+          <span class="sep"></span>
+          <input class="save" type="submit" value="SAVE calendar">
+        </div>
+      </form>
     </div>
     
 </body>

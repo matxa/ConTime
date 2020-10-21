@@ -29,6 +29,7 @@ with open(os.path.join(sys.path[0], 'config.json')) as conf:
 api = Flask(__name__)
 api.register_blueprint(employer)
 api.register_blueprint(employee)
+api.register_blueprint(calendar)
 
 
 """API Congiguration"""

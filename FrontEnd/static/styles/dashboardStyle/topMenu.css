@@ -44,7 +44,6 @@
 .topMenu .logo-container {
   height: 45px;
   width: 170px;
-  margin-top: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -61,9 +60,9 @@
 }
 
 .topMenu .logo-container .con {
+  margin-left: 2.5%;
   background: none;
   color: #cc4100;
-  width: 180px;
   text-align: right;
   font-size: 30px;
   font-weight: 900;

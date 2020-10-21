@@ -31,7 +31,11 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
-                        <div class="{{ category }}">{{ message }}</div>
+                        {% if category == none %}
+                            <div class="flash-bye">{{ message }}</div>
+                        {% else %}
+                            <div class="{{ category }}">{{ message }}</div>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             {% endwith %}

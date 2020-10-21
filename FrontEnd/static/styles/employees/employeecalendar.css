@@ -33,7 +33,8 @@
 }
 
 .profile-container .info {
-  font-size: 13.5px;
+  font-size: 15px;
+  font-weight: 500;
   -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
           box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
   width: 80%;
@@ -57,9 +58,9 @@
 .employer {
   width: 40%;
   height: 20px;
-  font-size: 12.5px;
+  font-size: 15px;
   color: white;
-  background: #4F4F4F;
+  background: #cc4100;
   border-radius: 2px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -117,8 +118,75 @@
   }
 }
 
-table {
+.save-view {
+  margin-top: 20px;
+  width: 100%;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.save-view .past, .save-view .save {
+  width: 250px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding-left: 0;
+  border-radius: 5px;
+  color: white;
+  font-size: 17px;
+}
+
+.save-view .sep {
+  border: 1px solid #4F4F4F;
+  height: 40px;
+}
+
+.save-view .past {
+  background: #4F4F4F;
+}
+
+.save-view .save {
+  background: #cc4100;
+}
+
+.choice {
+  margin-right: 2.5%;
+  width: 25px;
+  height: 25px;
+}
+
+.cal-table {
+  margin-bottom: 100px;
   margin-top: 50px;
+  width: 80%;
 }
 
 input {
@@ -132,6 +200,14 @@ input {
 
 input:focus {
   outline: none !important;
+}
+
+.des {
+  width: 100%;
+}
+
+.loc {
+  width: 80%;
 }
 
 .hour {
@@ -154,6 +230,14 @@ td {
   }
   input:focus {
     outline: none !important;
+  }
+  .save-view .past, .save-view .save {
+    width: 40%;
+    height: 40px;
+  }
+  .cal-table {
+    margin-top: 50px;
+    width: 100%;
   }
 }
 /*# sourceMappingURL=employeecalendar.css.map */
