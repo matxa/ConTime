@@ -227,6 +227,14 @@ class DaysOfWeek(FlaskForm):
         wi = "{}|{}|{}".format(self.sunday, self.employee_id, self.employer_id)
         return wi
 
+    def total_hours(self):
+        """get weeks total hour
+        """
+        total = self.SUN_HOUR.data + self.MON_HOUR.data + self.TUE_HOUR.data +\
+            self.WED_HOUR.data + self.THU_HOUR.data + self.FRI_HOUR.data +\
+            self.SAT_HOUR.data
+        
+        return str(total)
 
     def object(self):
         """Dump into DB
@@ -237,6 +245,7 @@ class DaysOfWeek(FlaskForm):
             "employee_id": self.employee_id,
             "employer_id": self.employer_id,
             "is_week_over": self.is_week_over,
+            "total_hours": total_hours(),
             "week": self.week()
         }
 

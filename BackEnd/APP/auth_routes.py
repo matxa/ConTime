@@ -49,6 +49,8 @@ auth = Blueprint('auth', __name__, url_prefix='/auth')
 login_manager = LoginManager()
 login_manager.init_app(auth)
 login_manager.login_view = 'auth.login'
+login_manager.login_message = u"Please Login!"
+login_manager.login_message_category = "flash-error"
 # DB
 client = pymongo.MongoClient(configuration["MONGO_URI"])
 db = client["ConTime"]

@@ -18,7 +18,13 @@ from flask_login import (
     login_required,
     login_manager)
 from flask_pymongo import PyMongo
-from models.utils import today_date, strip_date, hash_pwd, check_pwd
+from models.utils import (
+    today_date,
+    strip_date,
+    hash_pwd,
+    check_pwd,
+    sunday,
+    week_start_end)
 from models.forms import AddEmployee, ChangepwdForm, DaysOfWeek
 import requests
 import pymongo
@@ -69,7 +75,7 @@ def dashboard():
     """
 
     form = DaysOfWeek()
-    form.sunday = "2020-10-18"
+    form.sunday = sunday()[0]
     form.employee_id = app_layout()[0]["_id"]
     form.employer_id = app_layout()[0]["employer_id"]
 
@@ -124,4 +130,5 @@ def dashboard():
         current_date=today_date(),
         user=app_layout()[0],
         employer=app_layout()[1],
-        form=form)
+        form=form,
+        week_start_end=week_start_end())

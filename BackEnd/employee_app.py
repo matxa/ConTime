@@ -58,6 +58,8 @@ mongo = PyMongo(employee_app)
 login_manager = LoginManager()
 login_manager.init_app(employee_app)
 login_manager.login_view = 'auth.login'
+login_manager.login_message = u"Please Login!"
+login_manager.login_message_category = "flash-error"
 
 
 """MongoDB setup"""
