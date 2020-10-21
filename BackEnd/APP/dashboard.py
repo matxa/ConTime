@@ -18,7 +18,7 @@ from flask_login import (
     login_required,
     login_manager)
 from flask_pymongo import PyMongo
-from models.utils import today_date, strip_date, hash_pwd, check_pwd
+from models.utils import time_date, hash_pwd, check_pwd
 from models.forms import AddEmployee, ChangepwdForm
 import requests
 import pymongo
@@ -72,7 +72,7 @@ def dashboard():
     return render_template(
         'dashboard.html',
         title="DashBoard",
-        current_date=today_date(),
+        current_date=time_date()[0],
         user=app_layout()[0],
         count=app_layout()[1])
 
@@ -109,7 +109,7 @@ def employers_employee():
     return render_template(
         'employees.html',
         title="Employees",
-        current_date=today_date(),
+        current_date=time_date()[0],
         user=app_layout()[0],
         count=app_layout()[1],
         workers=employees["{}".format(app_layout()[1])],
@@ -169,7 +169,7 @@ def profile():
     return render_template(
         'profile_info.html',
         title="Profile",
-        current_date=today_date(),
+        current_date=time_date()[0],
         user=app_layout()[0],
         count=app_layout()[1],
         form=form)

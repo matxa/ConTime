@@ -49,10 +49,13 @@
       <form action="{{ url_for('dash.dashboard') }}" method="POST">
         <div class="table-responsive">
           <table class="table">
-              <div class="week_info">
-                <div class="s_e_w">WEEK: {{ week_start_end }}</div>
-                <div class="t_h">TOTAL HOURS: {{ form.total_hours() }}</div>
-              </div>
+            <div class="profile-container">
+                <div class="info">
+                  WEEK: {{ week_start_end }}
+                </div>
+                <div class="info">
+                  TOTAL HOURS: <div class="employer">{{ form.total_hours() }}</div>
+                </div>
               <thead class="thead-dark">
                 <tr>
                   <th scope="col">DAY</th>

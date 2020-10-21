@@ -20,7 +20,7 @@ from flask_login import (
     login_required,
     login_manager)
 from models.utils import (
-    today_date,
+    time_date,
     hash_pwd,
     check_pwd)
 from models.forms import (

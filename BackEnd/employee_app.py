@@ -26,8 +26,7 @@ from models.employee import Employee
 from models.user import User
 from models.forms import LoginForm
 from models.forms import RegisterForm
-from models.utils import today_date
-from models.utils import hash_pwd, check_pwd
+from models.utils import time_date, hash_pwd, check_pwd
 import requests
 import pymongo
 from bson import ObjectId
