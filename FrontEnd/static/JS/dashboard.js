@@ -22,6 +22,15 @@ else {
 $(".form_hide").hide();
 $(".check_for_del").hide();
 $(".boss_for_del").hide();
+$(".cal-table").hide();
+
+
+// Tables
+$(".employee-hour").first().css({
+    "box-shadow": "0px 0px 2px 2px #cc4100",
+});
+
+$(".cal-table").first().show()
 
 
 /* Run script only after page is done loading */
@@ -53,6 +62,13 @@ $(document).ready(() => {
 
     });
 
+    // Tables
+    $(".employee-hour").click(function() {
+        const tb_id = "#tb-"+$(this).attr('id')
+        $(".cal-table").hide();
+        $(tb_id).show()
+    });
+    //  End
 
     $(".form_add").click(() => {
         $(".form_hide").show()
@@ -98,4 +114,3 @@ $(document).ready(() => {
         });
     });
 });
-

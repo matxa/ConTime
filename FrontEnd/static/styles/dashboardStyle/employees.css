@@ -37,6 +37,8 @@ is_off {
     height: 100px;
     width: 90%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    padding-bottom: 20px;
   }
   .add_employees .add_employee {
     width: 20%;
@@ -172,6 +174,11 @@ is_off {
 .cardBtn button:hover {
   cursor: pointer;
   opacity: 78%;
+}
+
+.cardBtn button a {
+  text-decoration: none;
+  color: white;
 }
 
 .cardBtn .del {

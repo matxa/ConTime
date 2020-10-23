@@ -22,6 +22,7 @@ from models.utils import time_date, hash_pwd, check_pwd
 from models.forms import AddEmployee, ChangepwdForm
 import requests
 import pymongo
+from bson import ObjectId
 import os
 import sys
 import json
@@ -36,6 +37,7 @@ with open(os.path.join(sys.path[0], 'config.json')) as conf:
 client = pymongo.MongoClient(configuration["MONGO_URI"])
 db = client["ConTime"]
 col_employer = db["Employers"]
+col_employee = db["Employees"]
 col_calendar = db["Calendar"]
 
 
@@ -69,8 +71,15 @@ def app_layout():
 def dashboard():
     """dashBoard
     """
+    current_week = str(time_date()[1])
 
     past_cal = col_calendar.find({"employer_id": current_user.get_id()})
+    convert_to_list = []
+    total_hours_worked = 0
+    for cal in past_cal:
+        if cal["week_id"].split('|')[0] == current_week:
+            convert_to_list.append(cal)
+            total_hours_worked += int(cal["total_hours"])
 
     return render_template(
         'dashboard.html',
@@ -78,7 +87,8 @@ def dashboard():
         current_date=time_date()[0],
         user=app_layout()[0],
         count=app_layout()[1],
-        list_of_employee_calendars=past_cal)
+        list_of_employee_calendars=convert_to_list,
+        total_hours=total_hours_worked)
 
 
 @dash.route('/employees', strict_slashes=False, methods=['GET', "POST"])
@@ -118,6 +128,25 @@ def employers_employee():
         count=app_layout()[1],
         workers=employees["{}".format(app_layout()[1])],
         form=form)
+
+
+@dash.route('/pastcalendars/<id>', strict_slashes=False, methods=['GET', 'POST'])
+@login_required
+def past_calendars(id):
+    """get all past calendars
+    """
+
+    time_dt = time_date()
+
+    past_cal = col_calendar.find({"employee_id": id})
+    employee = col_employee.find_one({"_id": ObjectId(id)})
+
+    return render_template(
+        'allcalendars.html',
+        title="ALL Celendars",
+        current_date=time_dt[0],
+        user=employee,
+        past_calendars=past_cal)
 
 
 @dash.route('/deleteworker/<id>', strict_slashes=False, methods=["POST"])

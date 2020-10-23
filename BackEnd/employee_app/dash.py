@@ -147,7 +147,7 @@ def past_calendars():
 
     return render_template(
         'pastcalendars.html',
-        title="Past Celendars",
+        title="ALL Celendars",
         current_date=time_dt[0],
         user=app_layout()[0],
         employer=app_layout()[1],

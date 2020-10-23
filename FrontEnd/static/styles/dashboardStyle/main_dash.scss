@@ -1,19 +1,29 @@
 @import "../loginStyle/variablesMixin";
 
+.main-dash::-webkit-scrollbar {
+    width: 1em;
+    height: 5px;
+}
+
+.main-dash::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.main-dash::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
 
 .main-dash {
-    min-width: 190px;
-    max-width: 190px;
-    height: 80%;
-    @include flexCenter(column);
+    min-width: 80%;
+    max-width: 80%;
+    min-height: 200px;
+    max-height: 200px;
     overflow: auto;
-    position: absolute;
-    padding-top: 10%;
     left: 50px;
     top: 100px;
-
-    // box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0,0,0,0.15);
-    border-radius: 2.5px;
+    @include flexCenter(column);
+    flex-wrap: wrap;
 
     .prevent {
         min-width: 60.25px;
@@ -23,20 +33,57 @@
         margin: 20px;
     }
 
+    .total {
+        min-width: 125px;
+        min-height: 140px;
+        max-width: 125px;
+        max-height: 140px;
+        margin: 10px;
+        box-shadow: 0px 0px 1px 1px orange;
+        border-radius: 2.5px;
+        @include flexCenter(column);
+        justify-content: center;
+        background: cornsilk;
+
+        .h {
+            @include flexCenter(column);
+            justify-content: space-evenly;
+            width: 100px;
+            height: 50px;
+            font-size: 12.5px;
+            font-weight: 600;
+            
+            .hour {
+                width: 100%;
+                height: 20px;
+                font-size: 12.5px;
+                color: white;
+                background: #cc4100;
+                border-radius: 2px;
+                @include flexCenter(row);
+            }
+        }
+    }
+
     .employee-hour {
         min-width: 125px;
         min-height: 140px;
         max-width: 125px;
         max-height: 140px;
-        margin: 20px;
+        margin: 10px;
         box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.15);
         border-radius: 2.5px;
+        transition: 0.5s;
 
         @include flexCenter(column);
         justify-content: space-evenly;
 
         &:first-child {
-            margin-top: 150px;
+            margin-left: 150px;
+        }
+
+        &:last-child {
+            margin-right: 50px;
         }
 
         &:hover {
@@ -65,10 +112,12 @@
             @include flexCenter(row);
             width: 100px;
             height: 35px;
+            font-size: 12.5px;
+            font-weight: 500;
             
             .hour {
                 width: 40%;
-                height: 15px;
+                height: 17px;
                 font-size: 12.5px;
                 color: white;
                 background: #cc4100;
@@ -81,17 +130,16 @@
 }
 
 .cal-table {
-    position: relative;
+    // position: relative;
     min-width: 70%;
     max-width: 70%;
-    // height: 200px;
 }
 
 .table {
     margin-top: -25px;
 }
 
-.table th {
+.table th td {
     text-align: center;
 }
 

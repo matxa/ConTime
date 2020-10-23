@@ -1,79 +1,90 @@
 {% extends 'appLayout.html' %}
 {% block dashboard %}
-    <div class="main-dash">
-        {% for cal in list_of_employee_calendars %}
-            <div class="employee-hour">
+    <div class="main-dash" >
+        <div class="total">
+            <div class="h">
+                Calendars: <div class="hour">{{ list_of_employee_calendars|length }}</div>
+            </div>
+            <div class="h">
+                Hours: <div class="hour">{{ total_hours }}</div>
+            </div>
+        </div>
+        {% for calendar in list_of_employee_calendars %}
+            <div class="employee-hour" id="{{ calendar.employee_id }}">
                 <img src="{{ url_for('static', filename='images/worker.png') }}" alt="worker">
                 <div class="name">
-                    <span>{{ get_name(cal.employee_id)[0] }}</span>
-                    <span>{{ get_name(cal.employee_id)[1] }}</span>
+                    <span>{{ get_name(calendar.employee_id)[0] }}</span>
+                    <span>{{ get_name(calendar.employee_id)[1] }}</span>
                 </div>
                 <div class="h">
-                    Hours: <div class="hour">{{ cal.total_hours }}</div>
+                    Hours: <div class="hour">{{ calendar.total_hours }}</div>
                 </div>
             </div>
         {% endfor %}
+        <div class="prevent"></div>
     </div>
-    <div class="cal-table" style="">
-        <div class="table-responsive">
-        <table class="table">
-            <div class="profile-container">
-                <div class="info">
-                    WEEK: 
-                </div>
-            <thead class="thead-dark">
-                <tr>
-                <th scope="col">DAY</th>
-                <th scope="col" class="hr">HOUR</th>
-                <th scope="col">LOCATION</th>
-                <th scope="col">DESCRIPTION</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <th scope="row">SUN</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <th scope="row">MON</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <th scope="row">TUE</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <th scope="row">WED</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <th scope="row">THU</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <th scope="row">FRI</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <th scope="row">SAT</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-            </tbody>
-            </table>
+    {% for calendar in list_of_employee_calendars %}
+        <div class="cal-table" id="tb-{{ calendar.employee_id }}">
+            <div class="table-responsive">
+            <table class="table">
+                <div class="profile-container">
+                    <div class="info">
+                    WEEK: {{ week_s_e(calendar.week_id.split('|')[0]) }}
+                    </div>
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">DAY</th>
+                    <th scope="col" class="hr">HOUR</th>
+                    <th scope="col">LOCATION</th>
+                    <th scope="col">DESCRIPTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="row">SUN</th>
+                    <td>{{ calendar.week[0].SUN_HOUR }}</td>
+                    <td>{{ calendar.week[0].SUN_LOCATION }}</td>
+                    <td>{{ calendar.week[0].SUN_DESCRIPTION }}</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">MON</th>
+                    <td>{{ calendar.week[1].MON_HOUR }}</td>
+                    <td>{{ calendar.week[1].MON_LOCATION }}</td>
+                    <td>{{ calendar.week[1].MON_DESCRIPTION }}</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">TUE</th>
+                    <td>{{ calendar.week[2].TUE_HOUR }}</td>
+                    <td>{{ calendar.week[2].TUE_LOCATION }}</td>
+                    <td>{{ calendar.week[2].TUE_DESCRIPTION }}</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">WED</th>
+                    <td>{{ calendar.week[3].WED_HOUR }}</td>
+                    <td>{{ calendar.week[3].WED_LOCATION }}</td>
+                    <td>{{ calendar.week[3].WED_DESCRIPTION }}</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">THU</th>
+                    <td>{{ calendar.week[4].THU_HOUR }}</td>
+                    <td>{{ calendar.week[4].THU_LOCATION }}</td>
+                    <td>{{ calendar.week[4].THU_DESCRIPTION }}</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">FRI</th>
+                    <td>{{ calendar.week[5].FRI_HOUR }}</td>
+                    <td>{{ calendar.week[5].FRI_LOCATION }}</td>
+                    <td>{{ calendar.week[5].FRI_DESCRIPTION }}</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">SAT</th>
+                    <td>{{ calendar.week[6].SAT_HOUR }}</td>
+                    <td>{{ calendar.week[6].SAT_LOCATION }}</td>
+                    <td>{{ calendar.week[6].SAT_DESCRIPTION }}</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+    {% endfor %}
 {% endblock dashboard %}

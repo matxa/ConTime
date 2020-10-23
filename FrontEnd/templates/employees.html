@@ -35,7 +35,7 @@
                 <div class="on_employee">
                     <div class="cardBtn">
                         <button class="del">Delete</button>
-                        <button class="view">View</button>
+                        <button class="view"><a href="{{ url_for('dash.past_calendars', id=worker._id) }}">View</a></button>
                     </div>
                     <div class="check_for_del">
                         Are you sure?

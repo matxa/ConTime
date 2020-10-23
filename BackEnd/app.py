@@ -28,6 +28,8 @@ from models.forms import LoginForm
 from models.forms import RegisterForm
 from models.utils import time_date
 from models.utils import hash_pwd, check_pwd
+from datetime import datetime, timedelta, date
+from dateutil.parser import parse
 import requests
 import pymongo
 from bson import ObjectId
@@ -92,7 +94,22 @@ def some_processor():
         )
         
         return req.json()["first_name"], req.json()["last_name"]
-    return {'get_name': get_name}
+    def week_s_e(sunday):
+        """custom jinja processor"""
+        l = sunday.split("-")
+        s_day = date(int(l[0]), int(l[1]), int(l[2]))
+        s_month = s_day.strftime("%b")
+        start_day = s_day.strftime("%d")
+        e_day = s_day + timedelta(days=6)
+        e_month = e_day.strftime("%b")
+        end_day = e_day.strftime("%d")
+
+        s_e_w =  "{} {} - {} {}".format(s_month, start_day, e_month, end_day)
+        return s_e_w
+    return {
+        'get_name': get_name,
+        'week_s_e': week_s_e,
+        }
 
 
 @app.route('/', strict_slashes=False)

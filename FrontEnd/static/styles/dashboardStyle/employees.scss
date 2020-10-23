@@ -11,6 +11,8 @@ is_off {
         height: 100px;
         width: 90%;
         border-bottom: 1px solid rgba(0,0,0,0.05);
+        margin-top: 20px;
+        padding-bottom: 20px;
     
         .add_employee {
             width: 20%;
@@ -118,6 +120,11 @@ is_off {
 
         &:focus {outline: 0;}
         &:hover {cursor: pointer; opacity: 78%;}
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
     }
 
     .del {
