@@ -5,6 +5,7 @@
     @include flexCenter(column);
     width: 60%;
     height: 720px;
+    margin-top: 25px;
 
     .form-register {
         @include flexCenter(column);

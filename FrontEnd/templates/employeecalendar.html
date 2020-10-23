@@ -17,7 +17,7 @@
     <!-- jQuery and JS bundle w/ Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
+    <!-- End Boostrap -->
     <SCRIPT src="https://code.jquery.com/jquery-3.2.1.min.js"></SCRIPT>
 
     {% if title %}
@@ -25,14 +25,25 @@
     {% else %}
         <title>ConTime</title>
     {% endif %}
+
+    <style>
+      .hr {
+        width: 10%;
+      }
+      a {
+            text-decoration: none !important;
+        }
+    </style>
 </head>
 <body>
     <div class="topMenu">
         <!-- Logo Container -->
-        <div class="logo-container">
-            <span class="con">Con</span>
-            <span class="time">Time</span>
-        </div>
+        <a href="{{ url_for('dash.dashboard') }}">
+          <div class="logo-container">
+              <span class="con">Con</span>
+              <span class="time">Time</span>
+          </div>
+      </a>
         <div class="date">{{ current_date }}</div>
         <div class="choice" id="logout"><a href="{{ url_for('auth.logout') }}"><span><img src="{{ url_for('static', filename='images/sign-out-alt-solid_em.svg') }}" alt="signout" class="iconImg"></span></a></div>
     </div>
@@ -59,7 +70,7 @@
               <thead class="thead-dark">
                 <tr>
                   <th scope="col">DAY</th>
-                  <th scope="col">HOUR</th>
+                  <th scope="col" class="hr">HOUR</th>
                   <th scope="col">LOCATION</th>
                   <th scope="col">DESCRIPTION</th>
                 </tr>
@@ -113,7 +124,9 @@
             </table>
         </div>
         <div class="save-view">
-          <input class="past" type="submit" value="PAST calendars">
+          <div class="past">
+            <a style="text-decoration: none; -webkit-appearance: none; color: white;" href="{{ url_for('dash.past_calendars') }}">PAST calendars</a>
+          </div>
           <span class="sep"></span>
           <input class="save" type="submit" value="SAVE calendar">
         </div>

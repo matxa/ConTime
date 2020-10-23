@@ -156,6 +156,7 @@
           flex-direction: column;
   width: 60%;
   height: 720px;
+  margin-top: 25px;
 }
 
 .form-container .form-register {

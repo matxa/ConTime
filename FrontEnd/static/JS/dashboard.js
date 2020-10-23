@@ -90,5 +90,12 @@ $(document).ready(() => {
         $(this).closest(".on_employee").find(".check_for_del").hide();
         $(this).closest(".on_employee").find(".cardBtn").show();
     });
+
+    $(".employee-hour").click(function() {
+        $(".employee-hour").css({"box-shadow": "1px 1px 1px 1px rgba(0,0,0,0.15)"});
+        $(this).css({
+            "box-shadow": "0px 0px 2px 2px #cc4100",
+        });
+    });
 });
 

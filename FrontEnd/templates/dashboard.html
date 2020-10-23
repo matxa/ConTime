@@ -1,6 +1,79 @@
 {% extends 'appLayout.html' %}
 {% block dashboard %}
-    <div style="">
-        dashboard
+    <div class="main-dash">
+        {% for cal in list_of_employee_calendars %}
+            <div class="employee-hour">
+                <img src="{{ url_for('static', filename='images/worker.png') }}" alt="worker">
+                <div class="name">
+                    <span>{{ get_name(cal.employee_id)[0] }}</span>
+                    <span>{{ get_name(cal.employee_id)[1] }}</span>
+                </div>
+                <div class="h">
+                    Hours: <div class="hour">{{ cal.total_hours }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="cal-table" style="">
+        <div class="table-responsive">
+        <table class="table">
+            <div class="profile-container">
+                <div class="info">
+                    WEEK: 
+                </div>
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">DAY</th>
+                <th scope="col" class="hr">HOUR</th>
+                <th scope="col">LOCATION</th>
+                <th scope="col">DESCRIPTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">SUN</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+                <tr>
+                <th scope="row">MON</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+                <tr>
+                <th scope="row">TUE</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+                <tr>
+                <th scope="row">WED</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+                <tr>
+                <th scope="row">THU</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+                <tr>
+                <th scope="row">FRI</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+                <tr>
+                <th scope="row">SAT</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
     </div>
 {% endblock dashboard %}

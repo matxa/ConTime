@@ -133,3 +133,22 @@ def dashboard():
         employer=app_layout()[1],
         form=form,
         week_start_end=time_dt[2])
+
+
+@dash.route('/pastcalendars', strict_slashes=False, methods=['GET', 'POST'])
+@login_required
+def past_calendars():
+    """get all past calendars
+    """
+
+    time_dt = time_date()
+
+    past_cal = col_calendar.find({"employee_id": current_user.get_id()})
+
+    return render_template(
+        'pastcalendars.html',
+        title="Past Celendars",
+        current_date=time_dt[0],
+        user=app_layout()[0],
+        employer=app_layout()[1],
+        past_calendars=past_cal)

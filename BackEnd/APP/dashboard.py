@@ -36,6 +36,7 @@ with open(os.path.join(sys.path[0], 'config.json')) as conf:
 client = pymongo.MongoClient(configuration["MONGO_URI"])
 db = client["ConTime"]
 col_employer = db["Employers"]
+col_calendar = db["Calendar"]
 
 
 dash = Blueprint('dash', __name__)
@@ -69,12 +70,15 @@ def dashboard():
     """dashBoard
     """
 
+    past_cal = col_calendar.find({"employer_id": current_user.get_id()})
+
     return render_template(
         'dashboard.html',
         title="DashBoard",
         current_date=time_date()[0],
         user=app_layout()[0],
-        count=app_layout()[1])
+        count=app_layout()[1],
+        list_of_employee_calendars=past_cal)
 
 
 @dash.route('/employees', strict_slashes=False, methods=['GET', "POST"])
@@ -128,6 +132,8 @@ def delete_worker(id):
             id
         )
     )
+
+    col_calendar.delete_many({"employee_id": id})
 
     return redirect(url_for('dash.employers_employee'))
 

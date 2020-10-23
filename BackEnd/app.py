@@ -82,6 +82,19 @@ app.register_blueprint(auth)
 app.register_blueprint(dash)
 
 
+@app.context_processor
+def some_processor():
+    def get_name(em_id):
+        """custom jinja processor"""
+        req = requests.get(
+        "http://{}/employee/{}".format(
+            configuration["API_TEST_HOST"], em_id)
+        )
+        
+        return req.json()["first_name"], req.json()["last_name"]
+    return {'get_name': get_name}
+
+
 @app.route('/', strict_slashes=False)
 def landin_page():
     """Landing Pages
