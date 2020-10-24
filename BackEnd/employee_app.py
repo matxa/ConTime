@@ -83,15 +83,15 @@ def load_user(user_id):
 def some_processor():
     def week_s_e(sunday):
         """custom jinja processor"""
-        l = sunday.split("-")
-        s_day = date(int(l[0]), int(l[1]), int(l[2]))
+        ls_sunday = sunday.split("-")
+        s_day = date(int(ls_sunday[0]), int(ls_sunday[1]), int(ls_sunday[2]))
         s_month = s_day.strftime("%b")
         start_day = s_day.strftime("%d")
         e_day = s_day + timedelta(days=6)
         e_month = e_day.strftime("%b")
         end_day = e_day.strftime("%d")
 
-        s_e_w =  "{} {} - {} {}".format(s_month, start_day, e_month, end_day)
+        s_e_w = "{} {} - {} {}".format(s_month, start_day, e_month, end_day)
         return s_e_w
     return {'week_s_e': week_s_e}
 

@@ -140,7 +140,7 @@
 /* Mixin font-size and weight for ConTime Logo */
 /* input box background and border */
 /* Flex Center Mixin */
-.form-container {
+.form-container_r {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -155,11 +155,12 @@
       -ms-flex-direction: column;
           flex-direction: column;
   width: 60%;
-  height: 720px;
+  min-height: 700px;
+  max-height: 700px;
   margin-top: 25px;
 }
 
-.form-container .form-register {
+.form-container_r .form-register {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -177,10 +178,9 @@
   width: 300px;
   border-radius: 10px;
   background: white;
-  margin-top: 40px;
 }
 
-.form-container .form-register .flash-error {
+.form-container_r .form-register .flash-error {
   width: 60%;
   height: 25px;
   border-radius: 5px;
@@ -202,7 +202,7 @@
   color: white;
 }
 
-.form-container .form-register .flash-success {
+.form-container_r .form-register .flash-success {
   width: 60%;
   height: 25px;
   border-radius: 5px;
@@ -224,13 +224,13 @@
   color: white;
 }
 
-.form-container .form-register h1 {
+.form-container_r .form-register h1 {
   color: #4F4F4F;
   font-size: 40px;
   margin-bottom: 50px;
 }
 
-.form-container .form-register .input {
+.form-container_r .form-register .input {
   background: rgba(196, 196, 196, 0.2);
   border: 0.5px solid rgba(196, 196, 196, 0.2);
   width: 200px;
@@ -240,28 +240,28 @@
   padding-left: 20px;
 }
 
-.form-container .form-register .input:focus {
+.form-container_r .form-register .input:focus {
   outline: none !important;
   border: 1px solid #cc4100;
   -webkit-box-shadow: 0 0 5px #719ECE;
           box-shadow: 0 0 5px #719ECE;
 }
 
-.form-container .form-register .errors {
+.form-container_r .form-register .errors {
   list-style: square;
 }
 
-.form-container .form-register .error:first-child {
+.form-container_r .form-register .error:first-child {
   margin-top: -20px;
 }
 
-.form-container .form-register .error {
+.form-container_r .form-register .error {
   font-size: 12px;
   color: #f54242;
   margin-left: 20px;
 }
 
-.form-container .form-register .login-btn {
+.form-container_r .form-register .login-btn {
   width: 100px;
   height: 40px;
   border-radius: 20px;
@@ -274,16 +274,16 @@
   -webkit-appearance: none;
 }
 
-.form-container .form-register .login-btn:focus {
+.form-container_r .form-register .login-btn:focus {
   outline: none !important;
 }
 
-.form-container .form-register .login-btn:hover {
+.form-container_r .form-register .login-btn:hover {
   cursor: pointer;
   opacity: 70%;
 }
 
-.form-container .signup {
+.form-container_r .signup {
   color: #4F4F4F;
   font-size: 15px;
   margin-top: 15px;

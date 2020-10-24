@@ -79,7 +79,9 @@ def add_employee():
                                 g_id = col_employee.insert_one(
                                     em).inserted_id
                                 return redirect(
-                                    url_for('employee.get_employee_by_id', id=g_id))
+                                    url_for(
+                                        'employee.get_employee_by_id',
+                                        id=g_id))
                         except Exception as e:
                             return jsonify(api_error["EMAIL_IN_USE"])
                 except Exception as e:
@@ -109,7 +111,10 @@ def get_employee_by_id(id):
         return jsonify(eval(api_error['EXCEPT_ERR'])), 400
 
 
-@employee.route('/employee/<id>/employer', methods=["GET"], strict_slashes=False)
+@employee.route(
+    '/employee/<id>/employer',
+    methods=["GET"],
+    strict_slashes=False)
 def get_employee_employer(id):
     """get the employer of
     given employee by employee id

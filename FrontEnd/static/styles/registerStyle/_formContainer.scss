@@ -1,10 +1,11 @@
 /* Place for the form */
 @import "./../loginStyle/variablesMixin";
 
-.form-container {
+.form-container_r {
     @include flexCenter(column);
     width: 60%;
-    height: 720px;
+    min-height: 700px;
+    max-height: 700px;
     margin-top: 25px;
 
     .form-register {
@@ -13,7 +14,6 @@
         width: 300px;
         border-radius: 10px;
         background: $conFormLogin;
-        margin-top: 40px;
 
         .flash-error {
             @include flash_msg($flash_error);

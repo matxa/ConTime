@@ -56,6 +56,6 @@ def time_date():
     e_month = e_day.strftime("%b")
     end_day = e_day.strftime("%d")
 
-    s_e_w =  "{} {} - {} {}".format(s_month, start_day, e_month, end_day)
+    s_e_w = "{} {} - {} {}".format(s_month, start_day, e_month, end_day)
 
     return (today, sunday, s_e_w)

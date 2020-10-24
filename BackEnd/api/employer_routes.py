@@ -76,7 +76,9 @@ def add_employer():
                     generated_id = col_employer.insert_one(
                         new_employer.object()).inserted_id
                     return redirect(
-                        url_for('employer.get_employer_by_id', id=generated_id))
+                        url_for(
+                            'employer.get_employer_by_id',
+                            id=generated_id))
                 except Exception:
                     return jsonify(api_error["EMAIL_IN_USE"]), 303
             else:

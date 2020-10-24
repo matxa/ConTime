@@ -113,7 +113,7 @@ class DaysOfWeek(FlaskForm):
     employee_id = ""
     employer_id = ""
     is_week_over = False
-    
+
     # SUNDAY
     SUN_HOUR = IntegerField(
         'hour',
@@ -170,7 +170,6 @@ class DaysOfWeek(FlaskForm):
     SAT_LOCAL = StringField('location', render_kw={"placeholder": "LOCAL"})
     SAT_DESCRIPTION = StringField(
         'description', render_kw={"placeholder": "DES"})
-
 
     def week(self):
         """Generate calendar for
@@ -233,7 +232,7 @@ class DaysOfWeek(FlaskForm):
         total = self.SUN_HOUR.data + self.MON_HOUR.data + self.TUE_HOUR.data +\
             self.WED_HOUR.data + self.THU_HOUR.data + self.FRI_HOUR.data +\
             self.SAT_HOUR.data
-        
+
         return str(total)
 
     def object(self):

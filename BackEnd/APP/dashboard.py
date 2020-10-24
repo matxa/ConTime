@@ -130,7 +130,10 @@ def employers_employee():
         form=form)
 
 
-@dash.route('/pastcalendars/<id>', strict_slashes=False, methods=['GET', 'POST'])
+@dash.route(
+    '/pastcalendars/<id>',
+    strict_slashes=False,
+    methods=['GET', 'POST'])
 @login_required
 def past_calendars(id):
     """get all past calendars

@@ -4,7 +4,8 @@
 .form-container {
     @include flexCenter(column);
     width: 60%;
-    height: 720px;
+    max-height: 450px;
+    min-height: 450px;
 
     .form {
         @include flexCenter(column);
@@ -80,7 +81,7 @@
 
 @media only screen and (max-width: 700px) {
     .form-container {
-        margin-top: -100px;
+        margin-top: 50px;
     }
 }
 

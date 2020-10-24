@@ -84,7 +84,8 @@ def login():
         # look for email in database
 
         if bson.objectid.ObjectId.is_valid(form.password.data):
-            user_check = col_employee.find_one({"_id": ObjectId(form.password.data)})
+            user_check = col_employee.find_one(
+                {"_id": ObjectId(form.password.data)})
         else:
             flash("Invalid password", 'flash-error')
             return redirect(url_for('auth.login'))

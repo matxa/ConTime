@@ -155,7 +155,8 @@
       -ms-flex-direction: column;
           flex-direction: column;
   width: 60%;
-  height: 720px;
+  max-height: 450px;
+  min-height: 450px;
 }
 
 .form-container .form {
@@ -299,7 +300,7 @@
 
 @media only screen and (max-width: 700px) {
   .form-container {
-    margin-top: -100px;
+    margin-top: 50px;
   }
 }
 
