@@ -43,8 +43,8 @@ with open(os.path.join(sys.path[0], 'config.json')) as conf:
 
 
 """App configutation"""
-template_dir = os.path.abspath('FrontEnd/templates')
-static_dir = os.path.abspath('FrontEnd/static')
+template_dir = os.path.abspath('/root/ConTime/FrontEnd/templates')
+static_dir = os.path.abspath('/root/ConTime/FrontEnd/static')
 employee_app = Flask(
     __name__,
     template_folder=template_dir,

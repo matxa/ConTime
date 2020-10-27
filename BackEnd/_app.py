@@ -44,8 +44,8 @@ with open(os.path.join(sys.path[0], 'config.json')) as conf:
 
 
 """App configutation"""
-template_dir = os.path.abspath('FrontEnd/templates')
-static_dir = os.path.abspath('FrontEnd/static')
+template_dir = os.path.abspath('/root/ConTime/FrontEnd/templates')
+static_dir = os.path.abspath('/root/ConTime/FrontEnd/static')
 app = Flask(
     __name__,
     template_folder=template_dir,
@@ -122,7 +122,9 @@ def landin_page():
 
 if __name__ == "__main__":
     app.run(
-        host=configuration["APP_HOST"],
-        port=configuration["APP_PORT"],
+        host="0.0.0.0",
+        port=8080,
+        #host=configuration["APP_HOST"],
+        #port=configuration["APP_PORT"],
         debug=True
     )

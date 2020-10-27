@@ -1,0 +1,16 @@
+{
+    "MONGO_URI": "mongodb+srv://macato:Tarrafal10@cluster0.qgdv3.mongodb.net/ConTime?retryWrites=true&w=majority",
+    "FLASK_SECRET_KEY": "wwk_bm5u=z0*4=sv4!$62)hp1$ppi10$hz#+2mjz3=ebz0el2s",
+    "GOOGLE_API_CLIENT_ID": "979296745129-cr73hkb3pugjk4v9nkdbd3rcapb49oio.apps.googleusercontent.com",
+    "GOOGLE_API_SECRET_KEY": "s_UfmB5fAbEUI7wgYH5EASTO",
+    "APP_TEST_HOST": "0.0.0.0:8080",
+    "APP_HOST": "0.0.0.0",
+    "APP_PORT": "8080",
+    "EM_TEST_HOST": "0.0.0.0:8081",
+    "EM_HOST": "0.0.0.0",
+    "EM_PORT": "5550",
+    "API_TEST_HOST": "0.0.0.0:5000",
+    "API_HOST": "0.0.0.0",
+    "API_PORT": "5000"
+}
+

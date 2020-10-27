@@ -1,8 +1,7 @@
-/BackEnd/config.json
+/BackEnd/app_venv/
 *.pyc
 *.pyo
 __pycache__
-/contime_app_venv
 
 # Visual studio code
 .vscode/*
@@ -12,3 +11,4 @@ __pycache__
 !.vscode/extensions.json 
 .history
 .DS_Store
+
