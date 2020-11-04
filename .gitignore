@@ -1,4 +1,4 @@
-/BackEnd/app_venv/
+/BackEnd/api_venv/
 *.pyc
 *.pyo
 __pycache__
