@@ -84,6 +84,11 @@ app.register_blueprint(auth)
 app.register_blueprint(dash)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('not_found_page.html'), 404
+
+
 @app.context_processor
 def some_processor():
     def get_name(em_id):
@@ -117,7 +122,7 @@ def some_processor():
 def landin_page():
     """Landing Pages
     """
-    return 'Landing Page'
+    return redirect(url_for('auth.login'))
 
 
 if __name__ == "__main__":
