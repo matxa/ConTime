@@ -9,7 +9,7 @@
     "EM_TEST_HOST": "0.0.0.0:8081",
     "EM_HOST": "0.0.0.0",
     "EM_PORT": "5550",
-    "API_TEST_HOST": "0.0.0.0:5000",
+    "API_TEST_HOST": "157.230.89.208",
     "API_HOST": "0.0.0.0",
     "API_PORT": "5000"
 }

@@ -101,11 +101,16 @@ employee_app.register_blueprint(auth)
 employee_app.register_blueprint(dash)
 
 
+@employee_app.errorhandler(404)
+def page_not_found(e):
+    return render_template('not_found_page.html'), 404
+
+
 @employee_app.route('/', strict_slashes=False)
 def landin_page():
     """Landing Pages
     """
-    return 'Landing Page'
+    return redirect(url_for('auth.login'))
 
 
 if __name__ == "__main__":
