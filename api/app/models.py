@@ -11,7 +11,6 @@ from mongoengine.fields import (
     DateTimeField,
     DecimalField
 )
-from .utils import time_date
 
 
 class Employee(Document):
@@ -47,15 +46,14 @@ class Day(EmbeddedDocument):
 
 class Calendar(Document):
     meta = {'collection': 'calendars'}
-    time = time_date()
     employee_id = ObjectIdField()
     company_id = ObjectIdField()
-    week = StringField(default=time[0])
+    week = StringField()
     total_hours = DecimalField(default=0)
-    sunday = EmbeddedDocumentField(Day, default=Day(day=time[0]))
-    monday = EmbeddedDocumentField(Day, default=Day(day=time[1]))
-    tuesday = EmbeddedDocumentField(Day, default=Day(day=time[2]))
-    wednesday = EmbeddedDocumentField(Day, default=Day(day=time[3]))
-    thursday = EmbeddedDocumentField(Day, default=Day(day=time[4]))
-    friday = EmbeddedDocumentField(Day, default=Day(day=time[5]))
-    saturday = EmbeddedDocumentField(Day, default=Day(day=time[6]))
+    sunday = EmbeddedDocumentField(Day)
+    monday = EmbeddedDocumentField(Day)
+    tuesday = EmbeddedDocumentField(Day)
+    wednesday = EmbeddedDocumentField(Day)
+    thursday = EmbeddedDocumentField(Day)
+    friday = EmbeddedDocumentField(Day)
+    saturday = EmbeddedDocumentField(Day)
