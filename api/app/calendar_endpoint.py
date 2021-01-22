@@ -100,38 +100,43 @@ def calendar_by_id(id):
 @calendars.route('/employees/<employee_id>', strict_slashes=False)
 def employee_calendars(employee_id):
     """Return all employees calendar"""
-    _calendars = Calendar.objects(employee_id=employee_id)
-    __calendars = []
-    for calendar in _calendars:
-        calendar = calendar_to_json(calendar)
-        __calendars.append(calendar)
-    return jsonify([
-        {
-            "metadata": { "count": len(_calendars) },
-        },
-        {
-            "data": __calendars
-        },
-    ])
+    try:
+        _calendars = Calendar.objects(employee_id=employee_id)
+        __calendars = []
+        for calendar in _calendars:
+            calendar = calendar_to_json(calendar)
+            __calendars.append(calendar)
+        return jsonify([
+            {
+                "metadata": { "count": len(_calendars) },
+            },
+            {
+                "data": __calendars
+            },
+        ])
+    except Exception as e:
+        code_message(400, e)
 
 
 @calendars.route('/companies/<company_id>', strict_slashes=False)
 def company_calendars(company_id):
     """Return all employees calendar"""
-    _calendars = Calendar.objects(company_id=company_id)
-    __calendars = []
-    for calendar in _calendars:
-        calendar = calendar_to_json(calendar)
-        __calendars.append(calendar)
-    return jsonify([
-        {
-            "metadata": { "count": len(_calendars) },
-        },
-        {
-            "data": __calendars
-        },
-    ]), 200
-
+    try:
+        _calendars = Calendar.objects(company_id=company_id)
+        __calendars = []
+        for calendar in _calendars:
+            calendar = calendar_to_json(calendar)
+            __calendars.append(calendar)
+        return jsonify([
+            {
+                "metadata": { "count": len(_calendars) },
+            },
+            {
+                "data": __calendars
+            },
+        ]), 200
+    except Exception as e:
+        code_message(400, e)
 
 @calendars.route(
     '/companies/<company_id>/employees/<employee_id>', strict_slashes=False)
@@ -139,21 +144,23 @@ def company_employee_calendars(company_id, employee_id):
     """Return All calendars where employee_id
     and company_id present
     """
-    _calendars = Calendar.objects(
-        company_id=company_id, employee_id=employee_id)
-    __calendars = []
-    for calendar in _calendars:
-        calendar = calendar_to_json(calendar)
-        __calendars.append(calendar)
-    return jsonify([
-        {
-            "metadata": { "count": len(_calendars) },
-        },
-        {
-            "data": __calendars
-        },
-    ]), 200
-
+    try:
+        _calendars = Calendar.objects(
+            company_id=company_id, employee_id=employee_id)
+        __calendars = []
+        for calendar in _calendars:
+            calendar = calendar_to_json(calendar)
+            __calendars.append(calendar)
+        return jsonify([
+            {
+                "metadata": { "count": len(_calendars) },
+            },
+            {
+                "data": __calendars
+            },
+        ]), 200
+    except Exception as e:
+        code_message(400, e)
 
 @calendars.route(
     '/companies/<company_id>/employees/<employee_id>/current',
