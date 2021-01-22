@@ -93,7 +93,7 @@ def calendar_by_id(id):
         calendar = Calendar.objects.get(id=ObjectId(id))
         calendar = calendar_to_json(calendar)
         return jsonify(calendar), 200
-    except DoesNotExist as e:
+    except Exception as e:
         return code_message(404, e)
 
 
