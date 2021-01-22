@@ -54,7 +54,7 @@ def company_links(id):
         },
         {
             "rel": "calendars",
-            "href": f"https://api.contime.work/companies/{id}/calendars",
+            "href": f"https://api.contime.work/calendars/companies/{id}",
             "action": "GET"
         },
         {
@@ -98,7 +98,7 @@ def employee_links(id):
         },
         {
             "rel": "calendars",
-            "href": f"https://api.contime.work/employees/{id}/calendars",
+            "href": f"https://api.contime.work/calendars/employees/{id}",
             "action": "GET"
         },
         {
