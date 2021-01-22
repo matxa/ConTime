@@ -1,4 +1,7 @@
 # ConTime API
+
+![contime_logo](https://imgur.com/gallery/WQivsOl)
+
 ## ConTime API is the bridge between the backend and the frontend of the [ConTime Web Application](https://github.com/matxa/ConTime).
 <hr>
 

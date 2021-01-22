@@ -1,4 +1,7 @@
 # ConTime
+
+![contime_logo](https://imgur.com/gallery/WQivsOl)
+
 Making it easier for (sub)contractors to manage employees' work history.
 
 ## [API](https://api.contime.work/)
