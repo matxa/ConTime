@@ -130,7 +130,7 @@ def calendar_links(id, employee_id, company_id):
         },
         {
             "rel": "companies",
-            "href": f"https://api.contime.work/employees/{company_id}",
+            "href": f"https://api.contime.work/companies/{company_id}",
             "action": "GET"
         },
         {
@@ -208,4 +208,3 @@ def time_date():
         days.append(str(sunday + timedelta(days=i)))
 
     return days
-
