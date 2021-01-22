@@ -115,7 +115,7 @@ def employee_calendars(employee_id):
             },
         ])
     except Exception as e:
-        code_message(400, e)
+        return code_message(400, e)
 
 
 @calendars.route('/companies/<company_id>', strict_slashes=False)
@@ -136,7 +136,7 @@ def company_calendars(company_id):
             },
         ]), 200
     except Exception as e:
-        code_message(400, e)
+        return code_message(400, e)
 
 @calendars.route(
     '/companies/<company_id>/employees/<employee_id>', strict_slashes=False)
@@ -160,7 +160,7 @@ def company_employee_calendars(company_id, employee_id):
             },
         ]), 200
     except Exception as e:
-        code_message(400, e)
+        return code_message(400, e)
 
 @calendars.route(
     '/companies/<company_id>/employees/<employee_id>/current',
