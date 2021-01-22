@@ -1,6 +1,6 @@
 # ConTime
 
-![contime_logo](https://imgur.com/gallery/WQivsOl)
+![contime_logo](https://i.imgur.com/D6X6mDf.png)
 
 Making it easier for (sub)contractors to manage employees' work history.
 
