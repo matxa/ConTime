@@ -16,7 +16,7 @@
 
 ### ConTime API Roles:
 
-- ConTime is a web application that makes it possible for Sub(Contractors) to keep track of all the hours worked by its employees.
+- ConTime is a web application that makes it easier for Sub(Contractors) to keep track of their employee's working history.
 
     - Quick Overview of API features
         - CREATE [ company, employee, calendars ]
