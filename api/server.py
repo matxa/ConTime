@@ -12,6 +12,7 @@ from flask_mongoengine import MongoEngine
 import markdown
 import markdown.extensions.fenced_code
 from flask import jsonify
+from flask_cors import CORS
 from os import getenv
 from app.utils import code_message
 from app.models import Company, Employee, Calendar
@@ -20,6 +21,7 @@ from bson import ObjectId
 
 """Flask App"""
 app = Flask(__name__)
+CORS(app)
 app.register_blueprint(companies, url_prefix="/companies")
 app.register_blueprint(employees, url_prefix="/employees")
 app.register_blueprint(calendars, url_prefix="/calendars")
