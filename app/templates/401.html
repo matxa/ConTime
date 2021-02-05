@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon_io/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon_io/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='favicon_io/site.webmanifest') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;900&display=swap" rel="stylesheet">
+    <title>404 Not Found</title>
+
+    <style>
+        *
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* background: rgba(204, 65, 0, .5); */
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #4F4F4F;
+            text-align: center;
+        }
+        .err {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-top: 200px;
+        }
+        span {
+            font-size: 80px;
+            font-weight: 600;
+        }
+        .f {
+            height: 90px;
+            width: 90px;
+            background: #FF0000;
+            text-align: center;
+            color: white;
+            transform: rotate(-5deg);
+        }
+        .z, .z1 {
+            height: 90px;
+            width: 90px;
+            background: #4F4F4F;
+            color: white;
+            text-align: center;
+            transform: rotate(5deg);
+            margin-left: 8px;
+        }
+        .z {
+            margin-right: 2.5px;
+        }
+        .z1 {
+            margin-left: 4.5px;
+            transform: rotate(-5deg);
+        }
+        p {
+            width: 300px;
+            font-size: 20px;
+            font-weight: 600;
+            /* color: black; */
+        }
+    </style>
+</head>
+<body>
+    <div class="err">
+        <span class="f">4</span><span class="z">0</span><span class="z1">1</span>
+    </div>
+    <p>You are not authorized to use this ROUTE.</p>
+</body>
+</html>

@@ -1,0 +1,348 @@
+/* HEADER
+  ============================= */
+.header {
+    background-image: url("../images/construction2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+/* NAV */
+.header .nav {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+/* INPUT : CHECKBOX FOR HAMBURGER MENU */
+#menu-btn, .menu-icon {
+    display: none;
+}
+
+/* NAV - LOGO */
+.logo, .logo img {
+    width: 160px;
+    height: 40px;
+}
+
+
+/* NAV - UL */
+.header .nav .nav-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    width: 200px;
+}
+
+.header .nav .nav-menu li {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.header .nav .nav-menu li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--primany-text-color);
+}
+
+/* HEADER SECTION */
+.header-section {
+    width: 70%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.header-section-container {
+    width: 100%;
+    max-width: var(--content-max-width);
+    height: 50%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-section-container > p {
+    color: var(--primany-text-color);
+    font-size: 48px;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+.login-btn {
+    border: none;
+    color: white;
+    background: #FF0000;
+    text-transform: uppercase;
+    border-radius: 22px;
+    width: 162px;
+    height: 44px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 90%;
+    margin: 0 10px 0 10px;
+}
+
+.login {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login span {
+    color: var(--primany-text-color);
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 80%;
+}
+
+
+/* MAIN
+  ============================= */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: var(--primany-text-color);
+}
+
+/* FEATURES SECTION */
+.features-section {
+    height: 50vh;
+}
+.features-section, .features {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.features {
+    height: 80%;
+}
+
+.features h2, .about h2, .demo h2 {
+    font-size: 38px;
+}
+
+.features .list-features {
+    list-style: square;
+    padding-left: 12.5%;
+}
+
+.features .list-features li {
+    padding: 10px;
+    font-size: 20px;
+}
+
+/* ABOUT SECTION */
+
+.about-section {
+    width: 100%;
+    height: 100%;
+    background: #f2f2f2;
+    line-height: 30px;
+}
+
+.about-section, .about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about {
+    width: 70%;
+}
+
+/* DEMO SECTION */
+.demo-section, .demo {
+    height: 700px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.demo {
+    flex-direction: column;
+}
+
+.demo iframe {
+    height: 80%;
+    width: 70%;
+}
+
+
+/* FOOTER
+  ============================= */
+.footer {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-image: url("../images/construction2.jpg");
+    background-size: cover;
+    margin-top: 50px;
+}
+
+.footer .footer-container {
+    width: 80%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.copy-right p {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primany-text-color);
+    opacity: 0.7;
+}
+
+/* TABLET VERSION */
+@media (max-width: 750px) {
+    .header .nav {
+        width: 90%;
+    }
+
+    /* HEADER SECTION */
+    .header-section-container > p {
+        font-size: 38px;
+        max-width: 500px;
+        min-width: 300px;
+    }
+
+    /* FEATURES SECTION */
+    .features-section, .features {
+        width: 100%;
+    }
+
+    /* DEMO SECTION */
+    .demo-section, .demo {
+        height: 400px;
+    }
+    .demo iframe {
+        height: 60%;
+        width: 70%;
+    }
+}
+
+/* MOBILE VERSION */
+@media (max-width: 480px) {
+    /* NAV */
+    .header .nav {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* NAV - UL */
+    .header .nav .nav-menu {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        visibility: hidden;
+        transition: all .2s ease-out;
+    }
+
+    .header .nav .nav-menu li {
+        padding: 7px 0 7px 0;
+    }
+
+    /* HAMBURGER MENU */
+    .menu-icon {
+        display: unset;
+        padding: 20px 20px;
+        position: absolute;
+        left: 15px;
+        top: 50px;
+    }
+
+    .menu-icon .nav-icon::before {
+        background: var(--primany-text-color);
+        content: "";
+        display: block;
+        height: 100%;
+        width: 18px;
+        position: absolute;
+        transition: all 0.2s ease-out;
+        top: 5px;
+    }
+
+    .menu-icon .nav-icon {
+        background: var(--primany-text-color);
+        display: block;
+        height: 2px;
+        width: 14px;
+        position: relative;
+        transition: background 0.2s ease-out;
+    }
+
+    .menu-icon .nav-icon::after {
+        background: var(--primany-text-color);
+        content: "";
+        display: block;
+        height: 100%;
+        width: 18px;
+        position: absolute;
+        transition: all 0.2s ease-out;
+        top: -5px;
+    }
+
+    .menu-btn:checked ~ .nav-menu {
+        visibility: visible;
+    }
+
+    .menu-btn:checked ~ .menu-icon .nav-icon::before {
+        transform: rotate(-45deg);
+        top: 0;
+    }
+
+    .menu-btn:checked ~ .menu-icon .nav-icon {
+        background: transparent;
+    }
+
+    .menu-btn:checked ~ .menu-icon .nav-icon::after {
+        top: 0;
+        transform: rotate(45deg);
+    }
+
+    /* HEADER SECTION */
+
+    .header-section-container {
+        margin-bottom: 100px;
+    }
+
+    .login {
+        min-width: 200px;
+        min-height: 170px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+}

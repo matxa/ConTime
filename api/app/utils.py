@@ -18,9 +18,9 @@ from dateutil.parser import parse
 
 
 CHANGE_PWD_SCHEMA = {
-    "type" : "object",
-    "properties" : {
-        "password" : {"type" : "string"}
+    "type": "object",
+    "properties": {
+        "password": {"type": "string"}
     },
     "required": [
         "password"
@@ -41,7 +41,7 @@ def company_links(id):
             "href": f"https://api.contime.work/companies/{id}/employees",
             "action": "PUT",
             "query": {
-                "employee_id": {"type" : "string"}
+                "employee_id": {"type": "string"}
             }
         },
         {
@@ -49,7 +49,7 @@ def company_links(id):
             "href": f"https://api.contime.work/companies/{id}/employees",
             "action": "DELETE",
             "query": {
-                "employee_id": {"type" : "string"}
+                "employee_id": {"type": "string"}
             }
         },
         {
@@ -88,13 +88,13 @@ def employee_links(id):
             "rel": "companies",
             "href": f"https://api.contime.work/employees/{id}/companies",
             "action": "PUT",
-            "query": {"company_id": {"type" : "string"}}
+            "query": {"company_id": {"type": "string"}}
         },
         {
             "rel": "companies",
             "href": f"https://api.contime.work/employees/{id}/companies",
             "action": "DELETE",
-            "query": {"company_id": {"type" : "string"}}
+            "query": {"company_id": {"type": "string"}}
         },
         {
             "rel": "calendars",
@@ -144,7 +144,8 @@ def calendar_links(id, employee_id, company_id):
 
 def code_message(code, message):
     """ exception error message and code """
-    return jsonify({ 'code': code, 'message': str(message) }), code
+    return jsonify({'code': code, 'message': str(message)}), code
+
 
 def company_to_json(company):
     """ Take a (company) mongo collection and make json ready """
@@ -163,7 +164,11 @@ def employee_to_json(employee):
     employee = employee.to_mongo()
     employee['links'] = employee_links(employee['_id'])
     employee['_id'] = str(employee['_id'])
-    del employee['pending_requests']
+    pending = employee['pending_requests']
+    pending_requests = []
+    for id in pending:
+        pending_requests.append(str(id))
+    employee['pending_requests'] = pending_requests
     del employee['date_created']
     del employee['password']
     del employee['companies']
@@ -174,7 +179,7 @@ def calendar_to_json(calendar):
     """ Take a (calendar) mongo collection and make json ready """
     calendar = calendar.to_mongo()
     calendar['_id'] = str(calendar['_id'])
-    calendar['links'] =  calendar_links(
+    calendar['links'] = calendar_links(
         calendar["_id"],
         calendar["employee_id"],
         calendar["company_id"])
@@ -189,7 +194,6 @@ def time_date():
     """
     """make request to time API"""
     req = requests.get("http://worldtimeapi.org/api/timezone/America/New_York")
-
 
     dt = parse(req.json()["datetime"])
 

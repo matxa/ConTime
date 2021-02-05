@@ -38,10 +38,10 @@ class Company(Document):
 
 
 class Day(EmbeddedDocument):
-    day = StringField(default="N/A", max_length=250)
+    day = StringField(default="", max_length=250)
     hours = DecimalField(default=0)
-    description = StringField(default="N/A", max_length=250)
-    location = StringField(default="N/A", max_length=20)
+    description = StringField(default="", max_length=250)
+    location = StringField(default="", max_length=20)
 
 
 class Calendar(Document):
@@ -50,10 +50,10 @@ class Calendar(Document):
     company_id = ObjectIdField()
     week = StringField()
     total_hours = DecimalField(default=0)
-    sunday = EmbeddedDocumentField(Day)
-    monday = EmbeddedDocumentField(Day)
-    tuesday = EmbeddedDocumentField(Day)
-    wednesday = EmbeddedDocumentField(Day)
-    thursday = EmbeddedDocumentField(Day)
-    friday = EmbeddedDocumentField(Day)
-    saturday = EmbeddedDocumentField(Day)
+    sunday = EmbeddedDocumentField(Day, default=Day)
+    monday = EmbeddedDocumentField(Day, default=Day)
+    tuesday = EmbeddedDocumentField(Day, default=Day)
+    wednesday = EmbeddedDocumentField(Day, default=Day)
+    thursday = EmbeddedDocumentField(Day, default=Day)
+    friday = EmbeddedDocumentField(Day, default=Day)
+    saturday = EmbeddedDocumentField(Day, default=Day)

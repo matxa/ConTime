@@ -44,7 +44,6 @@ COMPANY_SCHEMA = {
         "password" : {"type" : "string"},
         "company_name" : {"type" : "string"},
         "description" : {"type" : "string"},
-        "date_created": {"type" : "string"},
     },
     "required": [
         "first_name",
@@ -161,7 +160,7 @@ CHANGE_PWD_SCHEMA = {
 
 - <mark style="background-color: #7bb3ba">&#10240; /employees/< id >/companies &#10240;</mark>
     - GET &#10240; &#11138; &#10240; returns a list all of the companies employee works for.
-    - PUT &#10240; &#11138; &#10240; accept job offer to work for a company using the query parameter <b>`company_id = < id >`</b>
+    - PUT &#10240; &#11138; &#10240; accept job offer to work for a company using the query parameter <b>`company_id = < id >`</b> and <b>`status = < accept > || < decline >`</b>
     - DELETE &#10240; &#11138; &#10240; leave a company using the query parameter <b>`company_id = < id >`</b>.
 
 - <mark style="background-color: #7bb3ba">&#10240; /calendars &#10240;</mark>

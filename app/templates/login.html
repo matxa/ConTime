@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../static/favicon_io/site.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <link rel="stylesheet" href="../static/css/login.css">
+    <SCRIPT src="https://code.jquery.com/jquery-3.2.1.min.js"></SCRIPT>
+
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>ConTime</title>
+    {% endif %}
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('home') }}">
+            <div class="logo">
+                <img src="../static/images/logo.png" alt="logo">
+            </div>
+        </a>
+        <div class="form-container">
+            <h2>Login</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form class="form" method="POST">
+                {{ form.hidden_tag() }}
+                {{ form.email(class='input-box') }}
+                {{ form.password(class='input-box') }}
+                <div>
+                    <span>Login as</span>
+                    {{ form.login_type(class='select-box') }}
+                </div>
+                <button class="login-btn" type="submit">login</button>
+            </form>
+            <a class="signup" href="{{ url_for('register') }}">Create Account</a>
+        </div>
+    </div>
+    <script src="../static/js/index.js"></script>
+</body>
+</html>

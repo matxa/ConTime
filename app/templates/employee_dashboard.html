@@ -1,0 +1,75 @@
+{% extends 'employee_layout.html' %}
+{% block dashboard_style %}
+    <style>
+        .item-one svg {
+            color: #FF0000; cursor: pointer; background: #f5f5f5;
+        }
+    </style>
+{% endblock dashboard_style %}
+{% block dashboard %}
+    <main class="main-dashboard">
+        <section class="pending-request">
+            <div class="pending-request-container">
+                <h2>Pending job offers ( {{ company_offers|length }} ) <small style="color: #FF0000;" class="arrow">&#8681;</small></h2>
+                {% for company_offer in company_offers %}
+                    <div class="company-card">
+                        <div class="company-card-svg">
+                            <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="building" class="svg-inline--fa fa-building fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M128 148v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12zm140 12h40c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12zm-128 96h40c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12zm128 0h40c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12zm-76 84v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm76 12h40c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12zm180 124v36H0v-36c0-6.6 5.4-12 12-12h19.5V24c0-13.3 10.7-24 24-24h337c13.3 0 24 10.7 24 24v440H436c6.6 0 12 5.4 12 12zM79.5 463H192v-67c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v67h112.5V49L80 48l-.5 415z"></path></svg>
+                        </div>
+                        <div class="info">
+                            <div class="company-card-info">
+                                <p style="color: black;">{{ company_offer.company_name }}</p>
+                                <p>{{ company_offer.description }}</p>
+                                <p><span class="manager-name">Manager</span> : {{ company_offer.first_name }} {{ company_offer.last_name }}</p>
+                                <p><span class="manager-email">Email</span> : {{ company_offer.email }}</p>
+                            </div>
+                            <div class="company-btns">
+                                <form action="{{ url_for('employee.job_offer', company_id=company_offer._id, status='accept') }}" method="POST">
+                                    <input class="company-btn btn-two" type="submit" value="accept">
+                                </form>
+                                <button class="company-btn btn-three">decline</button>
+                                <div class="yes-no">
+                                    <button class="btn-no">no</button>
+                                    <form action="{{ url_for('employee.job_offer', company_id=company_offer._id, status='decline') }}" method="POST">
+                                        <input class="btn-yes" type="submit" value="yes">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+        </section>
+        <section class="companies">
+            <div class="companes-container">
+                <h2>Companies ( {{ companies|length }} ) <small><svg style="color: #339933; width: 15px; height: 15px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="briefcase" class="svg-inline--fa fa-briefcase fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M320 336c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z"></path></svg></small></h2>
+                {% for company in companies %}
+                    <div class="company-card-work">
+                        <div class="company-card-svg">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="briefcase" class="svg-inline--fa fa-briefcase fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M320 336c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z"></path></svg>
+                        </div>
+                        <div class="info">
+                            <div class="company-card-info">
+                                <p style="color: black;">{{ company.company_name }}</p>
+                                <p>{{ company.description }}</p>
+                                <p><span class="manager-name">Manager</span> : {{ company.first_name }} {{ company.last_name }}</p>
+                                <p><span class="manager-email">Email</span> : {{ company.email }}</p>
+                            </div>
+                            <div class="company-btns">
+                                <form action="{{ url_for('employee.company_calendars', company_id=company._id) }}" method="GET">
+                                    <input class="company-btn btn-two" type="submit" value="calendars">
+                                </form>
+                                <button class="company-btn btn-three">remove</button>
+                                <div class="yes-no">
+                                    <button class="btn-no">no</button>
+                                    <form action="{{ url_for('employee.delete_job', company_id=company._id) }}" method="POST">
+                                        <input class="btn-yes" type="submit" value="yes">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock dashboard %}

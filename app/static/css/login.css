@@ -1,0 +1,97 @@
+:root {
+    --primany-text-color: #4F4F4F;
+    --content-max-width: 800px;
+}
+
+/* CONTAINER
+  ============================= */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-image: url("../images/construction2.jpg");
+}
+
+.logo img {
+    width: 300px;
+}
+
+.form-container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+    height: 350px;
+    border-radius: 10px;
+    background: white;
+}
+
+.form-container h2 {
+    color: var(--primany-text-color);
+    font-size: 28px;
+}
+
+.form-container a {
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: var(--primany-text-color);
+}
+
+.form-container .form {
+    width: 225px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    background: white;
+    font-size: 14px;
+}
+
+.form-container .form .input-box {
+    border: unset;
+    border-bottom: 0.1px solid var(--primany-text-color);
+    height: 30px;
+    width: 80%;
+}
+
+.form-container .form .input-box:focus {
+    outline: none;
+}
+
+.select-box {
+    border: unset;
+    border: 2px solid #FF0000;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #FF0000;
+    font-weight: 600;
+    width: 100px;
+    height: 30px;
+    opacity: 0.7;
+}
+.select-box:focus {
+    outline: none;
+}
+.login-btn {
+    border: none;
+    color: white;
+    background: #FF0000;
+    text-transform: uppercase;
+    border-radius: 22px;
+    min-width: 162px;
+    max-width: 162px;
+    min-height: 44px;
+    max-height: 44px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 90%;
+    margin: 0 10px 0 10px;
+}

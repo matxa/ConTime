@@ -23,11 +23,11 @@ from jsonschema import validate
 from mongoengine.errors import DoesNotExist
 
 DAY_REF = {
-    "type" : "object",
+    "type": "object",
     "properties": {
-        "hours": {"type" : "number"},
-        "description": {"type" : "string"},
-        "location": {"type" : "string"},
+        "hours": {"type": "number"},
+        "description": {"type": "string"},
+        "location": {"type": "string"},
     },
     "required": [
         "hours",
@@ -36,15 +36,15 @@ DAY_REF = {
     ]
 }
 CALENDAR_SCHEMA = {
-    "type" : "object",
-    "properties" : {
-        "sunday" : DAY_REF,
-        "monday" : DAY_REF,
-        "tuesday" : DAY_REF,
-        "wednesday" : DAY_REF,
-        "thursday" : DAY_REF,
-        "friday" : DAY_REF,
-        "saturday" : DAY_REF,
+    "type": "object",
+    "properties": {
+        "sunday": DAY_REF,
+        "monday": DAY_REF,
+        "tuesday": DAY_REF,
+        "wednesday": DAY_REF,
+        "thursday": DAY_REF,
+        "friday": DAY_REF,
+        "saturday": DAY_REF,
     },
     "required": [
         "sunday",
@@ -61,6 +61,7 @@ CALENDAR_SCHEMA = {
 """ Companies Blueprint"""
 calendars = Blueprint('calendars', __name__)
 
+
 @calendars.route('/', strict_slashes=False)
 def all_calendars():
     """Return all the calendars from the database"""
@@ -71,7 +72,7 @@ def all_calendars():
         __calendars.append(calendar)
     return jsonify([
         {
-            "metadata": { "count": len(_calendars) },
+            "metadata": {"count": len(_calendars)},
             "links": [
                 {
                     "rel": "self",
@@ -108,7 +109,7 @@ def employee_calendars(employee_id):
             __calendars.append(calendar)
         return jsonify([
             {
-                "metadata": { "count": len(_calendars) },
+                "metadata": {"count": len(_calendars)},
             },
             {
                 "data": __calendars
@@ -129,7 +130,7 @@ def company_calendars(company_id):
             __calendars.append(calendar)
         return jsonify([
             {
-                "metadata": { "count": len(_calendars) },
+                "metadata": {"count": len(_calendars)},
             },
             {
                 "data": __calendars
@@ -137,6 +138,7 @@ def company_calendars(company_id):
         ]), 200
     except Exception as e:
         return code_message(400, e)
+
 
 @calendars.route(
     '/companies/<company_id>/employees/<employee_id>', strict_slashes=False)
@@ -153,7 +155,7 @@ def company_employee_calendars(company_id, employee_id):
             __calendars.append(calendar)
         return jsonify([
             {
-                "metadata": { "count": len(_calendars) },
+                "metadata": {"count": len(_calendars)},
             },
             {
                 "data": __calendars
@@ -161,6 +163,7 @@ def company_employee_calendars(company_id, employee_id):
         ]), 200
     except Exception as e:
         return code_message(400, e)
+
 
 @calendars.route(
     '/companies/<company_id>/employees/<employee_id>/current',
@@ -186,10 +189,12 @@ def current_calendar(company_id, employee_id):
         request.json['friday']['day'] = time[5]
         request.json['saturday']['day'] = time[6]
         total_hours = request.json['sunday']['hours'] +\
-           request.json['monday']['hours'] + request.json['tuesday']['hours']\
-           + request.json['wednesday']['hours'] + request.json['thursday']\
-           ['hours'] + request.json['friday']['hours'] +\
-           request.json['saturday']['hours']
+            request.json['monday']['hours'] +\
+            request.json['tuesday']['hours'] +\
+            request.json['wednesday']['hours'] +\
+            request.json['thursday']['hours'] +\
+            request.json['friday']['hours'] +\
+            request.json['saturday']['hours']
         request.json['total_hours'] = total_hours
         curr_calendar.modify(**request.json)
         curr_calendar = calendar_to_json(curr_calendar)
@@ -197,7 +202,8 @@ def current_calendar(company_id, employee_id):
     except DoesNotExist:
         new_calendar = Calendar(
             company_id=company_id,
-            employee_id=employee_id)
+            employee_id=employee_id,
+            week=time[0])
         new_calendar.save()
         new_calendar = calendar_to_json(new_calendar)
         return jsonify(new_calendar), 201

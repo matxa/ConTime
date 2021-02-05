@@ -17,12 +17,12 @@ from jsonschema import validate
 
 
 EMPLOYEE_SCHEMA = {
-    "type" : "object",
-    "properties" : {
-        "first_name" : {"type" : "string"},
-        "last_name" : {"type" : "string"},
-        "email" : {"type" : "string"},
-        "password" : {"type" : "string"}
+    "type": "object",
+    "properties": {
+        "first_name": {"type": "string"},
+        "last_name": {"type": "string"},
+        "email": {"type": "string"},
+        "password": {"type": "string"}
     },
     "required": [
         "first_name",
@@ -50,7 +50,7 @@ def all_employees():
             __employees.append(employee)
         return jsonify([
             {
-                "metadata": { "count": len(_employees) },
+                "metadata": {"count": len(_employees)},
                 "links": [
                     {
                         "rel": "self",
@@ -61,11 +61,11 @@ def all_employees():
                         "rel": "self",
                         "href": f"https://api.contime.work/employees",
                         "action": "POST",
-                        "schema" : {
-                            "first_name" : {"type" : "string"},
-                            "last_name" : {"type" : "string"},
-                            "email" : {"type" : "string"},
-                            "password" : {"type" : "string"}
+                        "schema": {
+                            "first_name": {"type": "string"},
+                            "last_name": {"type": "string"},
+                            "email": {"type": "string"},
+                            "password": {"type": "string"}
                         },
                     },
                 ]
@@ -90,7 +90,8 @@ def all_employees():
             return code_message(400, str(e).split('\n')[0])
 
 
-@employees.route('/<id>',methods=['GET', 'PUT', 'DELETE'],strict_slashes=False)
+@employees.route(
+    '/<id>', methods=['GET', 'PUT', 'DELETE'], strict_slashes=False)
 def company(id):
     """ obtain / modify company by id """
     try:
@@ -131,28 +132,43 @@ def companies(id):
     if request.method == 'GET':
         _companies = Company.objects.filter(
             employees__contains=employee.id)
-        __companies = [{ "metadata": { "count": len(_companies) } }]
+        __companies = [{"metadata": {"count": len(_companies)}}]
         for company in _companies:
             company = company_to_json(company)
             __companies.append(company)
         return jsonify(__companies), 200
     if request.method == "PUT":
-        if "company_id" in request.args.keys():
+        if "company_id" in request.args.keys() and\
+           "status" in request.args.keys():
             try:
                 company = Company.objects.get(
                     id=ObjectId(request.args.get('company_id')))
+                """ACCEPT JOB OFFER"""
                 if company.id in employee.pending_requests and\
-                   company.id not in employee.companies:
+                   company.id not in employee.companies and\
+                   request.args['status'] == 'accept':
                     employee.companies.append(company.id)
                     employee.pending_requests.remove(company.id)
                     company.pending_requests.remove(employee.id)
                     company.employees.append(employee.id)
                     employee.save()
                     company.save()
-                    return jsonify({ "request": "successful" }), 200
-                return jsonify({ "request": "fail" }), 200
+                    return jsonify({"request": "successful"}), 200
+                """DECLINE JOB OFFER"""
+                if company.id in employee.pending_requests and\
+                   company.id not in employee.companies and\
+                   request.args['status'] == 'decline':
+                    employee.pending_requests.remove(company.id)
+                    company.pending_requests.remove(employee.id)
+                    employee.save()
+                    company.save()
+                    return jsonify({"request": "successful"}), 200
+
+                return code_message(400, "Bad request")
             except Exception as e:
                 return code_message(404, e)
+        return code_message(400, "Bad request")
+
     if request.method == "DELETE":
         if "company_id" in request.args.keys():
             try:
@@ -163,7 +179,7 @@ def companies(id):
                     company.employees.remove(employee.id)
                     employee.save()
                     company.save()
-                    return jsonify({ "request": "successful" }), 200
-                return jsonify({ "request": "fail" }), 200
+                    return jsonify({"request": "successful"}), 200
+                return jsonify({"request": "fail"}), 200
             except Exception as e:
                 return code_message(404, e)

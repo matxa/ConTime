@@ -1,0 +1,200 @@
+:root {
+    --primany-text-color: #4F4F4F;
+    --content-max-width: 800px;
+    --red-color: #FF0000;
+    --border-color: #e6e6e6;
+    --success: #339933;
+}
+
+/* PENDING REQUEST SECTION */
+.pending-request, .companies {
+    height: 100%;
+    min-width: 600px;
+    max-width: 600px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pending-request h2, .companies h2 {
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.pending-request small {
+    /* If you want to implement it in very old browser-versions */
+    -webkit-user-select: none; /* Chrome/Safari */ 
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+
+    /* The rule below is not implemented in browsers yet */
+    -o-user-select: none;
+
+    /* The rule below is implemented in most browsers by now */
+    user-select: none;
+}
+
+.pending-request small:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.pending-request-container {
+    /* border: 1px solid black; */
+}
+
+.company-card, .company-card-work {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid var(--border-color);
+    line-height: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.company-card:hover, .company-card-work:hover {
+    background-color: #fcfcfc;
+}
+
+.company-card:hover svg, .company-card-work:hover svg {
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    color: var(--red-color);
+    opacity: 0.5;
+}
+
+.company-card-work:hover svg {
+    color: var(--success);
+}
+
+.company-card-info p {
+    font-weight: 600;
+    font-size: 12px;
+    /* text-transform: uppercase; */
+    opacity: 0.7;
+}
+
+.company-card-info p:first-child {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.company-card .info, .company-card-work .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    min-height: 100px;
+    max-height: 100px;
+    min-width: 520px;
+    max-width: 520px;
+    padding-left: 20px;
+}
+
+.company-card-svg {
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 150px;
+    max-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--border-color);
+}
+
+.company-card svg, .company-card-work svg {
+    width: 40px;
+    height: 40px;
+    color: var(--primany-text-color);
+    opacity: 0.5;
+}
+
+/* CARD BUTTONs */
+.company-btns {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-btn {
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 25px;
+    max-height: 25px;
+    border-radius: 5px;
+    margin: 0 5px;
+    border: none;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.btn-two {
+    margin-left: 0;
+    color: #339933;
+    border: 1px solid #339933;
+    background: white;
+}
+
+.btn-three {
+    color: var(--red-color);
+    border: 1px solid var(--red-color);
+    background: white;
+}
+
+.manager-name, .manager-email {
+    color: black;
+    text-decoration: underline;
+}
+
+.yes-no {
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 25px;
+    max-height: 25px;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btn-yes, .btn-no {
+    text-transform: uppercase;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 25px;
+    max-height: 25px;
+    background: white;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.btn-no {
+    color: #339933;
+    border: 1px solid #339933;
+}
+
+.btn-yes {
+    color: var(--red-color);
+    border: 1px solid var(--red-color);
+}
+
+.btn-no:hover {
+    color: white;
+    background: #339933;
+    border: white;
+}
+
+.btn-yes:hover {
+    background: var(--red-color);
+    color: white;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../static/favicon_io/site.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/landing.css">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <title>ConTime</title>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <!-- NAV -->
+        <nav class="nav">
+            <input class="menu-btn" type="checkbox" id="menu-btn">
+            <label for="menu-btn" class="menu-icon">
+                <span class="nav-icon"></span>
+            </label>
+            <div class="logo">
+                <img src="../static/images/logo.png" alt="logo">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#features-section">features</a></li>
+                <li><a href="#about-section">about</a></li>
+                <li><a href="#demo-section">demo</a></li>
+            </ul>
+        </nav>
+        <!-- HEADER SECTION -->
+        <section class="header-section">
+            <div class="header-section-container">
+                <p>Making it easier for (sub)contractors to manage employees.</p>
+                <div class="login">
+                    <a href="{{ url_for('login') }}"><button class="login-btn">Login</button></a>
+                    <span>or</span>
+                    <a href="{{ url_for('register') }}"><button class="login-btn">Sign UP</button></a>
+                </div>
+            </div>
+        </section>
+    </header>
+    <!-- MAIN -->
+    <main class="main">
+        <!-- FEATURES SECTION -->
+        <section class="features-section" id="features-section">
+            <div class="features">
+                <h2>Key features</h2>
+                <ul class="list-features">
+                    <li>Easy to use Dashboard</li>
+                    <li>Add and remove employees</li>
+                    <li>View employees full working history</li>
+                </ul>
+            </div>
+        </section>
+        <!-- ABOUT SECTION -->
+        <section class="about-section" id="about-section">
+            <div class="about">
+                <h2>About</h2>
+                <div class="paragraphs">
+                    <p>The <b>inspiration</b> for this project came about when I was working for a contractor. At this position I was working from Monday - Saturday, and every Saturday, before 12pm I had to send a picture of a spreadsheet That I would make documenting how many hours I worked that week, along with a description of what I did every day. As time passed I started noticing that all my co-workers had to do the same thing.</p>
+                    <p>With this I saw an <b>emerging problem</b>, both on the employees side and employers side. The employees only had a picture to prove that they worked a certain amount of hours. And the employer only had a picture to base on in order to make payments, what if the employer wants to know the total hours worked by all its employees that given week, he/she has to manually calculate it, or even worse log everything in a Excel file manually just by looking at the picture. After witnessing this painful and unreliable process, I said to myself why not create an application that would make this process safer and more reliable.</p>
+                    <p><b>ConTime’s intention</b> is to make it easier for (sub)contractors to manage their employees. The idea behind ConTime is to allow (sub)contractors to login in, and from there add or remove employees, each employee is then given an access code so he/she can login using their email and their access code, upon login the employee will see a timesheet which he/she can fill documenting hours work, along with location and job description, then submit it, so it can now be visible to the employer. The (sub)contractors will get all the information submitted to him/her displayed on his dashboard in an elegant way. The (sub)contractor will have the option to filter out information displayed making it easier to see the more relevant information, such as total hours worked. (sub)contractors will be able to click on an employee and from there see all their work history from since the first day of work to the present day. And the most exciting feature will be to have an option to export all this data in csv format.</p>
+                </div>
+            </div>
+        </section>
+        <!-- DEMO SECTION -->
+        <section class="demo-section" id="demo-section">
+            <div class="demo">
+                <h2>Demo</h2>
+                <iframe width="966" height="543" src="https://www.youtube.com/embed/QQVNVOneZNg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="logo">
+                <img src="../static/images/logo.png" alt="logo">
+            </div>
+            <div class="addthis_inline_follow_toolbox"></div>
+        </div>
+        <div class="copy-right">
+            <p>©ConTime 2021</p>
+        </div>
+    </footer>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f9a453205c402ff"></script>
+</body>
+</html>

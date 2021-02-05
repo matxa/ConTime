@@ -16,15 +16,14 @@ from jsonschema import validate
 
 
 COMPANY_SCHEMA = {
-    "type" : "object",
-    "properties" : {
-        "first_name" : {"type" : "string"},
-        "last_name" : {"type" : "string"},
-        "email" : {"type" : "string"},
-        "password" : {"type" : "string"},
-        "company_name" : {"type" : "string"},
-        "description" : {"type" : "string"},
-        "date_created": {"type" : "string"},
+    "type": "object",
+    "properties": {
+        "first_name": {"type": "string"},
+        "last_name": {"type": "string"},
+        "email": {"type": "string"},
+        "password": {"type": "string"},
+        "company_name": {"type": "string"},
+        "description": {"type": "string"},
     },
     "required": [
         "first_name",
@@ -54,7 +53,7 @@ def all_companies():
             __companies.append(company)
         return jsonify([
             {
-                "metadata": { "count": len(_companies) },
+                "metadata": {"count": len(_companies)},
                 "links": [
                     {
                         "rel": "self",
@@ -65,14 +64,14 @@ def all_companies():
                         "rel": "self",
                         "href": f"https://api.contime.work/companies",
                         "action": "POST",
-                        "schema" : {
-                            "first_name" : {"type" : "string"},
-                            "last_name" : {"type" : "string"},
-                            "email" : {"type" : "string"},
-                            "password" : {"type" : "string"},
-                            "company_name" : {"type" : "string"},
-                            "description" : {"type" : "string"},
-                            "date_created": {"type" : "string"},
+                        "schema": {
+                            "first_name": {"type": "string"},
+                            "last_name":  {"type": "string"},
+                            "email": {"type": "string"},
+                            "password": {"type": "string"},
+                            "company_name": {"type": "string"},
+                            "description": {"type": "string"},
+                            "date_created": {"type": "string"},
                         }
                     },
                 ]
@@ -97,7 +96,8 @@ def all_companies():
             return code_message(400, str(e).split('\n')[0])
 
 
-@companies.route('/<id>', methods=['GET','PUT','DELETE'], strict_slashes=False)
+@companies.route(
+    '/<id>', methods=['GET', 'PUT', 'DELETE'], strict_slashes=False)
 def company(id):
     """ obtain / modify company by id """
     try:
@@ -125,7 +125,7 @@ def company(id):
 
 @companies.route(
     '/<id>/employees',
-    methods=['GET', 'PUT', 'DELETE'],strict_slashes=False)
+    methods=['GET', 'PUT', 'DELETE'], strict_slashes=False)
 def employees(id):
     """Return list of company employees
     Request employee to work for company
@@ -137,7 +137,7 @@ def employees(id):
         return code_message(404, e)
     if request.method == 'GET':
         _employees = Employee.objects.filter(companies__contains=company.id)
-        __employees = [{ "metadata": { "count": len(_employees) } }]
+        __employees = [{"metadata": {"count": len(_employees)}}]
         for employee in _employees:
             employee = employee_to_json(employee)
             __employees.append(employee)
@@ -153,10 +153,10 @@ def employees(id):
                     employee.pending_requests.append(company.id)
                     company.save()
                     employee.save()
-                    return jsonify({ "request": "successful" }), 200
+                    return jsonify({"request": "successful"}), 200
             except Exception as e:
                 return code_message(404, e)
-        return jsonify({ "request": "Bad Request" }), 400
+        return code_message(400, "Bad request")
     if request.method == "DELETE":
         if "employee_id" in request.args.keys():
             try:
@@ -167,7 +167,7 @@ def employees(id):
                     employee.companies.remove(company.id)
                     company.save()
                     employee.save()
-                    return jsonify({ "request": "successful" }), 200
+                    return jsonify({"request": "successful"}), 200
             except Exception as e:
                 return code_message(404, e)
-        return jsonify({ "request": "Bad Request" }), 400
+        return code_message(400, "Bad request")
