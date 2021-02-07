@@ -6,9 +6,10 @@ from flask import (
     abort,
     render_template,
     jsonify,
-    request)
+    request,
+    flash)
 from flask_login import login_required, current_user
-from forms import Calendar
+from forms import Calendar, Password
 from utils import check_user_type
 import requests
 
@@ -110,12 +111,11 @@ def company_calendars(company_id):
     if request.method == 'POST':
         """Current calendar"""
         print(form.schema())
-        if form.validate_on_submit:
+        if form.validate_on_submit():
             update_current_calendar = requests.put(
                 f"{url}/calendars/companies/{company_id}/employees/\
 {current_user.id}/current", json=form.schema())
 
-        print(update_current_calendar.json())
         return redirect(
             url_for('employee.company_calendars', company_id=company_id))
 
@@ -152,6 +152,59 @@ def company_calendars(company_id):
     calendars = company_calendars.json()[1]['data'][:-1]
     last_calendar = company_calendars.json()[1]['data'].pop()
 
+    company = requests.get(f'{url}/companies/{company_id}')
+
     return render_template(
         'employee_company_calendar.html',
-        form=form, calendars=calendars, company_id=company_id)
+        form=form, calendars=calendars,
+        company_id=company_id, current_calendar=last_calendar,
+        company=company.json())
+
+
+@employee.route(
+    '/employee_calendars',
+    strict_slashes=False, methods=['GET'])
+def employee_calendars():
+    """ALL calendars related to current user"""
+    request_calendars = requests.get(
+        f'{url}/calendars/employees/{current_user.id}')
+    calendars = request_calendars.json()[1]['data']
+    for calendar in calendars:
+        request_company = requests.get(calendar['links'][1]['href'])
+        calendar['company_name'] = request_company.json()['company_name']
+        calendar['company_id'] = request_company.json()['_id']
+
+    return render_template('employee_calendars.html', calendars=calendars)
+
+
+@employee.route(
+    '/profile',
+    strict_slashes=False, methods=['GET', 'POST'])
+def profile():
+    """Profile"""
+    form = Password()
+
+    """Get current user from API"""
+    employee = requests.get(f"{url}/employees/{current_user.id}")
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            pwd = requests.put(
+                f"{url}/employees/{current_user.id}",
+                json={'password': form.password.data})
+            if pwd.status_code == 200:
+                flash(
+                    "Password Changed successfully",
+                    category='flash-success')
+            else:
+                flash(
+                    "Something Went Wromg",
+                    category='flash-error')
+        else:
+            flash(
+                "Passwords don't validate",
+                category='flash-error')
+        return redirect(url_for('employee.profile'))
+
+    return render_template(
+        'employee_profile.html', form=form, employee=employee.json())

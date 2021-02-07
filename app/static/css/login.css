@@ -55,20 +55,20 @@
     font-size: 14px;
 }
 
-.form-container .form .input-box {
+.input-box {
     border: unset;
     border-bottom: 0.1px solid var(--primany-text-color);
     height: 30px;
     width: 80%;
 }
 
-.form-container .form .input-box:focus {
+.input-box:focus {
     outline: none;
 }
 
 .select-box {
     border: unset;
-    border: 2px solid #FF0000;
+    border: 1px solid #FF0000;
     border-radius: 5px;
     font-size: 12px;
     color: #FF0000;

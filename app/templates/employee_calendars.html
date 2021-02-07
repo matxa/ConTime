@@ -1,90 +1,15 @@
 {% extends 'employee_layout.html' %}
-{% block company_calendar_style %}
+{% block employee_calendars_style %}
     <style>
-        .item-one svg {
+        .item-two svg {
             color: #FF0000; cursor: pointer; background: #f5f5f5;
         }
     </style>
-{% endblock company_calendar_style %}
-{% block company_calendar %}
+{% endblock employee_calendars_style %}
+{% block employee_calendars %}
     <main class="main-dashboard">
-      <section class="current-calendar">
-        <span class="week-start">{{ company.company_name }}</span>
-        <h2>Current calendar</h2>
-        <div class="cal-table">
-          <form action="{{ url_for('employee.company_calendars', company_id=company_id) }}" method="POST">
-            <div>
-              <table>
-                <div class="profile-container">
-                  <div class="week">
-                    <div class="info">
-                      <span>WEEK:</span><span class="week-start">{{ current_calendar.week }}</span>
-                    </div>
-                    <div class="info">
-                      <span>TOTAL HOURS:</span><span class="hour">{{ current_calendar.total_hours }}</span>
-                    </div>
-                  </div>
-                  <thead>
-                    <tr>
-                      <th scope="col">DAY</th>
-                      <th scope="col" class="hr">HOUR</th>
-                      <th scope="col">LOCATION</th>
-                      <th scope="col">DESCRIPTION</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      {{ form.hidden_tag() }}
-                      <th scope="row">SUN</th>
-                      <td>{{ form.SUN_HOUR }}</td>
-                      <td>{{ form.SUN_LOCAL }}</td>
-                      <td>{{ form.SUN_DESCRIPTION }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">MON</th>
-                      <td>{{ form.MON_HOUR }}</td>
-                      <td>{{ form.MON_LOCAL }}</td>
-                      <td>{{ form.MON_DESCRIPTION }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">TUE</th>
-                      <td>{{ form.TUE_HOUR }}</td>
-                      <td>{{ form.TUE_LOCAL }}</td>
-                      <td>{{ form.TUE_DESCRIPTION }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">WED</th>
-                      <td>{{ form.WED_HOUR }}</td>
-                      <td>{{ form.WED_LOCAL }}</td>
-                      <td>{{ form.WED_DESCRIPTION }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">THU</th>
-                      <td>{{ form.THU_HOUR }}</td>
-                      <td>{{ form.THU_LOCAL }}</td>
-                      <td>{{ form.THU_DESCRIPTION }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">FRI</th>
-                      <td>{{ form.FRI_HOUR }}</td>
-                      <td>{{ form.FRI_LOCAL }}</td>
-                      <td>{{ form.FRI_DESCRIPTION }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">SAT</th>
-                      <td>{{ form.SAT_HOUR }}</td>
-                      <td>{{ form.SAT_LOCAL }}</td>
-                      <td>{{ form.SAT_DESCRIPTION }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
-              <input class="company-btn btn-two" type="submit" value="Save">
-          </form>
-        </div>
-      </section>
       <section class="past-calendars">
-        <h2>Past calendars</h2>
+        <h2>All calendars ( {{ calendars|length }} )</h2>
         {% for calendar in calendars %}
           <div class="cal-table">
               <div>
@@ -93,6 +18,9 @@
                     <div class="week">
                       <div class="info">
                         <span>WEEK:</span><span class="week-start">{{ calendar.week }}</span>
+                      </div>
+                      <div class="info">
+                        <span>COMPANY:</span><a id="company_name" href="{{ url_for('employee.company_calendars', company_id=calendar.company_id) }}"><span class="week-start">{{ calendar.company_name }}</span></a>
                       </div>
                       <div class="info">
                         <span>TOTAL HOURS:</span><span class="hour">{{ calendar.total_hours }}</span>
@@ -156,4 +84,4 @@
         {% endfor %}
       </section>
     </main>
-{% endblock company_calendar %}
+{% endblock employee_calendars %}

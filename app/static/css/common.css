@@ -61,15 +61,18 @@ a:hover, a:active {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    background: var(--red-color);
+    color: var(--red-color);
+    border: 1px solid var(--red-color);
     font-size: 12px;
     font-weight: 600;
-    color: white;
+    background: white;
     opacity: 0.7;
 }
 
 .flash-success {
-    background: #339933;
+    color: #339933;
+    background: white;
+    border: 1px solid #339933;
 }
 
 

@@ -14,7 +14,7 @@
     border-bottom: 1px solid var(--border-color);
 }
 
-.pending-request h2, .companies h2 {
+h2 {
     text-transform: uppercase;
     font-size: 20px;
     margin-bottom: 25px;
@@ -22,7 +22,7 @@
 
 .pending-request small {
     /* If you want to implement it in very old browser-versions */
-    -webkit-user-select: none; /* Chrome/Safari */ 
+    -webkit-user-select: none; /* Chrome/Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
 
@@ -197,4 +197,231 @@
 .btn-yes:hover {
     background: var(--red-color);
     color: white;
+}
+
+/* CALENDARS */
+
+.cal-table {
+
+}
+
+.current-calendar h2, .past-calendars h2 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.week {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.week div {
+    padding: 10px;
+}
+
+table {
+    border-spacing: 0;
+    margin-bottom: 20px;
+}
+
+thead {
+    background: var(--success);
+    color: white;
+}
+
+tr th {
+    width: 100%;
+    height: 30px;
+    font-size: 12px;
+}
+
+tr th, tr td {
+    border-right: 1px solid var(--success);
+}
+
+tr input {
+    height: 30px;
+    border: unset;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+thead tr th {
+    width: 60px;
+}
+
+tr td:last-child {
+    border: none;
+}
+
+.info {
+    color: var(--primany-text-color);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.week-start, .hour {
+    margin-left: 5px;
+    color: #339933;
+    border: 1px solid #339933;
+    background: white;
+    border-radius: 3px;
+    padding: 2.5px 7px;
+    font-size: 12px;
+}
+
+.current-calendar {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+
+/* PAST CALENDARS */
+
+.past-calendars thead {
+    background: var(--red-color);
+    color: white;
+}
+
+.past-calendars .week-start, .past-calendars .hour {
+    color: var(--red-color);
+    border: 1px solid var(--red-color);
+}
+
+.past-calendars tr th, .past-calendars tr td {
+    border-right: 1px solid var(--red-color);
+}
+
+.past-calendars tbody {
+    text-align: center;
+}
+
+.past-calendars tbody th, .past-calendars tbody td {
+    display: table-cell;
+    min-width: 125px;
+    max-width: 125px;
+    min-height: 45px;
+    max-height: 45px;
+}
+
+.past-calendars tbody td:last-child {
+    min-width: 250px;
+    max-width: 250px;
+    border-right: unset;
+}
+
+.past-calendars tbody td {
+    font-size: 12px;
+    border-bottom: 1px solid var(--border-color);
+    overflow: scroll;
+}
+
+.past-calendars tbody tr:last-child td {
+    border-bottom: unset;
+}
+
+.past-calendars table {
+    margin-bottom: 50px;
+    border-bottom: 1px solid var(--red-color);
+}
+
+.past-calendars {
+    min-width: 630px;
+    max-width: 630px;
+}
+
+#company_name {
+    color: var(--red-color);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    border-bottom: unset;
+    /* margin-top: 100px; */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.info-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 500px;
+    max-width: 500px;
+    min-height: 120px;
+    max-height: 120px;
+    justify-content: space-evenly;
+}
+
+.card-image {
+    min-width: 80px;
+    max-width: 80px;
+    min-height:120px;
+    max-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-image img {
+    min-width: 50px;
+    max-width: 50px;
+    min-height:50px;
+    max-height: 50px;
+}
+
+.card-image span {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.card-info {
+    min-height:120px;
+    max-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+    padding-left: 20px;
+    border-left: 1px solid var(--border-color);
+}
+
+.card-info span {
+    padding: 5px 0;
+}
+
+.credentials {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.change-password {
+    min-width: 500px;
+    max-width: 500px;
+    min-height: 300px;
+    max-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+    border: 1px solid var(--border-color);
+}
+
+.pwd-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 200px;
+    max-height: 200px;
 }

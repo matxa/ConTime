@@ -1,6 +1,6 @@
 """APPLICATION FORMS"""
 from flask_wtf import FlaskForm
-from wtforms.validators import DataRequired, EqualTo
+from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms import (
     StringField, PasswordField, SelectField,
     SubmitField, FormField, FloatField
@@ -32,11 +32,11 @@ class EmployeeRegistration(FlaskForm):
     password = PasswordField(
         'password', validators=[
             DataRequired(),
-            EqualTo('confirm', message='Password must match')],
-        render_kw={"placeholder": "Password"})
+            EqualTo('confirm', message='Password must match'), Length(min=8)],
+        render_kw={"placeholder": "Password"},)
     confirm = PasswordField('confirm', validators=[
-        DataRequired()],
-        render_kw={"placeholder": "Confirm Password"})
+        DataRequired(), Length(min=8)],
+        render_kw={"placeholder": "Confirm Password"},)
     login_type = SelectField('login type', choices=['employee', 'company'])
     submit = SubmitField('Sign UP')
 
@@ -71,11 +71,11 @@ class CompanyResgistration(FlaskForm):
     password = PasswordField(
         'password', validators=[
             DataRequired(),
-            EqualTo('confirm', message='Password must match')],
-        render_kw={"placeholder": "Password"})
+            EqualTo('confirm', message='Password must match'), Length(min=8)],
+        render_kw={"placeholder": "Password"},)
     confirm = PasswordField('confirm', validators=[
-        DataRequired()],
-        render_kw={"placeholder": "Confirm Password"})
+        DataRequired(), Length(min=8)],
+        render_kw={"placeholder": "Confirm Password"},)
     login_type = SelectField('login type', choices=['employee', 'company'])
     submit = SubmitField('Sign UP')
 
@@ -118,57 +118,57 @@ class Calendar(FlaskForm):
         'hour',
         render_kw={"placeholder": "0"},
         default=0)
-    SUN_LOCAL = StringField('location', render_kw={"placeholder": "LOCAL"})
+    SUN_LOCAL = StringField('location', render_kw={"placeholder": "location"})
     SUN_DESCRIPTION = StringField(
-        'description', render_kw={"placeholder": "DES"})
+        'description', render_kw={"placeholder": "description"})
     #  MONDAY
     MON_HOUR = FloatField(
         'hour',
         render_kw={"placeholder": "0"},
         default=0)
-    MON_LOCAL = StringField('location', render_kw={"placeholder": "LOCAL"})
+    MON_LOCAL = StringField('location', render_kw={"placeholder": "location"})
     MON_DESCRIPTION = StringField(
-        'description', render_kw={"placeholder": "DES"})
+        'description', render_kw={"placeholder": "description"})
     #  TUESDAY
     TUE_HOUR = FloatField(
         'hour',
         render_kw={"placeholder": "0"},
         default=0)
-    TUE_LOCAL = StringField('location', render_kw={"placeholder": "LOCAL"})
+    TUE_LOCAL = StringField('location', render_kw={"placeholder": "location"})
     TUE_DESCRIPTION = StringField(
-        'description', render_kw={"placeholder": "DES"})
+        'description', render_kw={"placeholder": "description"})
     #  WEDNESDAY
     WED_HOUR = FloatField(
         'hour',
         render_kw={"placeholder": "0"},
         default=0)
-    WED_LOCAL = StringField('location', render_kw={"placeholder": "LOCAL"})
+    WED_LOCAL = StringField('location', render_kw={"placeholder": "location"})
     WED_DESCRIPTION = StringField(
-        'description', render_kw={"placeholder": "DES"})
+        'description', render_kw={"placeholder": "description"})
     #  THUSDAY
     THU_HOUR = FloatField(
         'hour',
         render_kw={"placeholder": "0"},
         default=0)
-    THU_LOCAL = StringField('location', render_kw={"placeholder": "LOCAL"})
+    THU_LOCAL = StringField('location', render_kw={"placeholder": "location"})
     THU_DESCRIPTION = StringField(
-        'description', render_kw={"placeholder": "DES"})
+        'description', render_kw={"placeholder": "description"})
     #  FRIDAY
     FRI_HOUR = FloatField(
         'hour',
         render_kw={"placeholder": "0"},
         default=0)
-    FRI_LOCAL = StringField('location', render_kw={"placeholder": "LOCAL"})
+    FRI_LOCAL = StringField('location', render_kw={"placeholder": "location"})
     FRI_DESCRIPTION = StringField(
-        'description', render_kw={"placeholder": "DES"})
+        'description', render_kw={"placeholder": "description"})
     #  SATURDAY
     SAT_HOUR = FloatField(
         'hour',
         render_kw={"placeholder": "0"},
         default=0)
-    SAT_LOCAL = StringField('location', render_kw={"placeholder": "LOCAL"})
+    SAT_LOCAL = StringField('location', render_kw={"placeholder": "location"})
     SAT_DESCRIPTION = StringField(
-        'description', render_kw={"placeholder": "DES"})
+        'description', render_kw={"placeholder": "description"})
 
     def schema(self):
         """turn object values into dictionary type"""
@@ -211,3 +211,15 @@ class Calendar(FlaskForm):
         }
 
         return schema
+
+
+class Password(FlaskForm):
+    """Change password field"""
+    password = PasswordField(
+        'password', validators=[
+            DataRequired(),
+            EqualTo('confirm', message='Password must match'), Length(min=8)],
+        render_kw={"placeholder": "Password"},)
+    confirm = PasswordField('confirm', validators=[
+        DataRequired(), Length(min=8)],
+        render_kw={"placeholder": "Confirm Password"},)
