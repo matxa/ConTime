@@ -109,7 +109,10 @@ def employee_links(id):
         {
             "rel": "self",
             "href": f"https://api.contime.work/employees/{id}",
-            "action": "PUT"
+            "action": "PUT",
+            "body": {
+                "password": {"type": "string"}
+            },
         },
         {
             "rel": "self",

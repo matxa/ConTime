@@ -71,7 +71,6 @@ def all_companies():
                             "password": {"type": "string"},
                             "company_name": {"type": "string"},
                             "description": {"type": "string"},
-                            "date_created": {"type": "string"},
                         }
                     },
                 ]
