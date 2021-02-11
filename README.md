@@ -7,7 +7,7 @@ Making it easier for (sub)contractors to manage employees' work history.
 <b>ConTime</b> - is the final project of my foundation year at HOLBERTON SCHOOL in New Haven. In this project I wanted to illustrate my understanding of REST APIs. The project is divided into two parts, the API, and the main APP. The main APP is basically a GUI for the API.
 
 ## Screenshots
-![contime_landing_page](https://i.imgur.com/n5Avdh3.jpg)
+![contime_landing_page](https://i.imgur.com/n5Avdh3.jpg =450x250)
 ![contime_login_page](https://i.imgur.com/rXWo7qj.jpg)
 ![contime_register_page](https://i.imgur.com/KEY2Cke.jpg)
 ![contime_employee_dashboard](https://i.imgur.com/lzfAwx1.jpg)
