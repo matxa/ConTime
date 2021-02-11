@@ -9,6 +9,10 @@ Making it easier for (sub)contractors to manage employees' work history.
 &#10240;
 
 ### Technologies & Tools used :
+
+- HTML5
+- CSS
+- JavaScript ( JQuery )
 - [Python](https://www.python.org/) v3.8.5
 - [MongoDB](https://www.mongodb.com/1) - "A document database, which means it stores data in JSON-like documents..."
 
