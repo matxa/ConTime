@@ -4,7 +4,7 @@
 
 Making it easier for (sub)contractors to manage employees' work history.
 
-<b>ConTime</b> - is the final project of my foundation year at HOLBERTON SCHOOL in New Haven. In this project I wanted to illustrate my understanding of REST APIs. The project is divided into two parts, the API, and the main APP. The main APP is basically a GUI for the API.
+<b>ConTime</b> - is the final project of my foundation year at HOLBERTON SCHOOL in New Haven. In this project I wanted to illustrate my understanding of REST APIs. The project is divided into two parts, the API, and the main APP. The main APP is the front-end that's consuming from the API.
 
 &#10240;
 
