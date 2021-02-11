@@ -6,6 +6,12 @@ Making it easier for (sub)contractors to manage employees' work history.
 
 <b>ConTime</b> - is the final project of my foundation year at HOLBERTON SCHOOL in New Haven. In this project I wanted to illustrate my understanding of REST APIs. The project is divided into two parts, the API, and the main APP. The main APP is basically a GUI for the API.
 
+&#10240;
+
+### Technologies & Tools used :
+- [Python](https://www.python.org/) v3.8.5
+- [MongoDB](https://www.mongodb.com/1) - "A document database, which means it stores data in JSON-like documents..."
+
 ## Screenshots
 
 <img src="https://i.imgur.com/n5Avdh3.jpg" alt="contime_landing_page" width="200" height="400"> <img src="https://i.imgur.com/rXWo7qj.jpg" alt="contime_login_page" width="200" height="400"> <img src="https://i.imgur.com/KEY2Cke.jpg" alt="contime_register_page" width="200" height="400"> <img src="https://i.imgur.com/lzfAwx1.jpg" alt="contime_employee_dashboard" width="200" height="400"> <img src="https://i.imgur.com/bB8Rnx1.jpg" alt="contime_current_calendar" width="200" height="400"> <img src="https://i.imgur.com/goQUSnI.jpg" alt="contime_all_calendars" width="200" height="400"> <img src="https://i.imgur.com/UZJgx0o.jpg" alt="contime_employee_profile" width="200" height="400">
