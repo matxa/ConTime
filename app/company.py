@@ -18,8 +18,7 @@ company = Blueprint('company', __name__)
 
 
 """API URL"""
-# url = "https://api.contime.work"
-url = "http://127.0.0.1:5001"
+url = "https://api.contime.work"
 
 
 @company.route('/', strict_slashes=False, methods=['GET', 'POST'])

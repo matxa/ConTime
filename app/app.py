@@ -21,8 +21,8 @@ app.register_blueprint(company, url_prefix='/company')
 app.register_blueprint(employee, url_prefix='/employee')
 
 """API URL"""
-# url = "https://api.contime.work"
-url = "http://127.0.0.1:5001"
+url = "https://api.contime.work"
+
 
 """USER LOGIN"""
 login_manager = LoginManager()
@@ -149,7 +149,4 @@ def register():
 
 
 if __name__ == '__main__':
-    app.run(
-        host='0.0.0.0',
-        debug=True
-    )
+    app.run()
