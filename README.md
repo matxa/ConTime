@@ -9,12 +9,13 @@ Making it easier for (sub)contractors to manage employees' work history.
 ## Screenshots
 
 <img src="https://i.imgur.com/n5Avdh3.jpg" alt="contime_landing_page" width="200" height="400">
-![contime_login_page](https://i.imgur.com/rXWo7qj.jpg)
-![contime_register_page](https://i.imgur.com/KEY2Cke.jpg)
-![contime_employee_dashboard](https://i.imgur.com/lzfAwx1.jpg)
-![contime_current_calendar](https://i.imgur.com/bB8Rnx1.jpg)
-![contime_all_calendars](https://i.imgur.com/goQUSnI.jpg)
-![contime_employee_profile](https://i.imgur.com/UZJgx0o.jpg)
+<img src="https://i.imgur.com/rXWo7qj.jpg" alt="contime_login_page" width="200" height="400">
+<img src="https://i.imgur.com/KEY2Cke.jpg" alt="contime_register_page" width="200" height="400">
+<img src="https://i.imgur.com/lzfAwx1.jpg" alt="contime_employee_dashboard" width="200" height="400">
+<img src="https://i.imgur.com/bB8Rnx1.jpg" alt="contime_current_calendar" width="200" height="400">
+<img src="https://i.imgur.com/goQUSnI.jpg" alt="contime_all_calendars" width="200" height="400">
+<img src="https://i.imgur.com/UZJgx0o.jpg" alt="contime_employee_profile" width="200" height="400">
+
 
 ## [API](https://api.contime.work/)
 ### ConTime API is the bridge between the backend and the frontend of the [ConTime Web Application](https://github.com/matxa/ConTime).
