@@ -19,7 +19,7 @@
                         <div class="info">
                             <div class="company-card-info">
                                 <p style="color: black;">{{ company_offer.company_name }}</p>
-                                <p>{{ company_offer.description }}</p>
+                                <p>{{ company_offer.description[:32] }}...</p>
                                 <p><span class="manager-name">Manager</span> : {{ company_offer.first_name }} {{ company_offer.last_name }}</p>
                                 <p><span class="manager-email">Email</span> : {{ company_offer.email }}</p>
                             </div>
@@ -50,7 +50,7 @@
                         <div class="info">
                             <div class="company-card-info">
                                 <p style="color: black;">{{ company.company_name }}</p>
-                                <p>{{ company.description }}</p>
+                                <p>{{ company.description[:32] }}...</p>
                                 <p><span class="manager-name">Manager</span> : {{ company.first_name }} {{ company.last_name }}</p>
                                 <p><span class="manager-email">Email</span> : {{ company.email }}</p>
                             </div>

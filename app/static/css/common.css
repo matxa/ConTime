@@ -30,6 +30,12 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+body, html{
+    margin:0;
+    padding:0;
+    min-height: 100%;
+}
+
 button:hover, button:active, input:hover, input:active {
     opacity: 0.8;
     cursor: pointer;
@@ -42,6 +48,10 @@ button:focus, input:focus {
 a:hover, a:active {
     opacity: 0.7;
     cursor: pointer;
+}
+
+main {
+    padding-bottom: 100px;
 }
 
 .flash-error, .flash-success {
@@ -88,23 +98,29 @@ a:hover, a:active {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     border: 1px solid #e6e6e6;
     border-top: none;
+    overflow: scroll;
 }
 
-.logo-ct {
+
+.logo-ct, .logout {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100px;
     max-height: 100px;
-    min-width: 65px;
-    max-width: 65px;
+    min-width: 66px;
+    max-width: 66px;
     border-bottom: 1px solid #e6e6e6;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background: white;
 }
-
 
 .logo-ct img {
     height: 40px;
@@ -121,19 +137,54 @@ a:hover, a:active {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    margin-top: 100px;
+}
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    top: 100px;
+    bottom: 100px;
+    width: 65px;
+    z-index: 5;
+    overflow-y: scroll;
+}
+
+.menu-container::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-height: 410px) {
+    .side-menu .menu {
+        min-height: unset;
+        max-height: unset;
+        justify-content: center;
+        overflow-y: scroll;
+        margin-top: 90px;
+    }
 }
 
 .menu-logout {
     list-style: none;
     padding: 0;
-    min-height: 250px;
-    max-height: 250px;
+    min-width: 66px;
+    max-width: 66px;
+    min-height: 100px;
+    max-height: 100px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    margin-top: 100px;
+    justify-content: center;
+    border-top: 1px solid #e6e6e6;
+    top: unset;
+    bottom: -15px;
+    border-bottom: unset;
+    z-index: 5;
+}
+
+.menu-logout svg {
+    z-index: 5;
 }
 
 .menu-item svg {
@@ -159,4 +210,195 @@ a:hover, a:active {
     justify-content: center;
     color: var(--primany-text-color);
     padding-top: 80px;
+}
+
+.confirm {
+    width: 162px;
+    height: 44px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.delete-account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-account .btn-no, .delete-account .btn-yes {
+    min-width: 71px;
+    max-width: 71px;
+    min-height: 44px;
+    max-height: 44px;
+    border-radius: 22px;
+}
+
+@media (max-width: 750px){
+    .side-menu {
+        width: 100%;
+        height: 50px;
+        z-index: 5;
+        background: white;
+    }
+
+    .side-menu .menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin-top: 50px !important;
+        border: 1px solid #e6e6e6;
+        width: 65px;
+        min-height: 250px;
+        background: white;
+        box-shadow: -5px 2.5px 10px 0px #e6e6e6;
+    }
+
+    .menu-logout {
+        all: unset;
+        position: fixed;
+        bottom: unset;
+        top: 0;
+        right: 0;
+        margin-top: 300px;
+        min-height: 60px;
+        max-height: 60px;
+        min-width: 66px;
+        max-width: 66px;
+        border-bottom: 1px solid #e6e6e6;
+        border-left: 1px solid #e6e6e6;
+        border-top: 1px solid #e6e6e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+        background: white;
+        list-style: none;
+        box-shadow: -5px 5px 10px 0px #e6e6e6;
+    }
+
+    .logo-ct {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+        max-height: 50px;
+        min-width: 66px;
+        max-width: 66px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        background: white;
+    }
+
+    main, .main-dashboard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        padding: unset !important;
+        margin: unset !important;
+        margin-top: 100px !important;
+        overflow: hidden;
+        margin-bottom: 50px;
+    }
+
+    main section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        border-bottom-width: 80%;
+    }
+
+    main section > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+/* HAMBURGER MENU */
+
+#menu-btn {
+    display: none;
+}
+
+.side-menu .menu-icon {
+    cursor: pointer;
+    width: 66px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    border-left: 1px solid #e6e6e6;
+}
+
+.side-menu .menu-icon .nav-icon::before {
+    background: var(--primany-text-color);
+    content: "";
+    display: block;
+    height: 100%;
+    width: 22px;
+    position: absolute;
+    transition: all 0.2s ease-out;
+    top: 5px;
+}
+
+.side-menu .menu-icon .nav-icon {
+    background: var(--primany-text-color);
+    display: block;
+    height: 2px;
+    width: 18px;
+    position: relative;
+    transition: background 0.2s ease-out;
+    position: fixed;
+}
+
+.side-menu .menu-icon .nav-icon::after {
+    background: var(--primany-text-color);
+    content: "";
+    display: block;
+    height: 100%;
+    width: 22px;
+    position: absolute;
+    transition: all 0.2s ease-out;
+    top: -5px;
+}
+
+.side-menu .menu-btn:checked ~ .nav-menu {
+    visibility: visible;
+}
+
+.side-menu .menu-btn:checked ~ .menu-icon .nav-icon::before {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+.side-menu .menu-btn:checked ~ .menu-icon .nav-icon {
+    background: transparent;
+}
+
+.side-menu .menu-btn:checked ~ .menu-icon .nav-icon::after {
+    top: 0;
+    transform: rotate(45deg);
 }

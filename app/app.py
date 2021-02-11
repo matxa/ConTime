@@ -125,7 +125,9 @@ def register():
                     return redirect('login')
                 else:
                     flash("Account already in use!", category='flash-error')
-                return redirect('register')
+            return redirect('register')
+        else:
+            return redirect('register')
 
         """Register company"""
         if company_form.validate_on_submit():
@@ -147,4 +149,7 @@ def register():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(
+        host='0.0.0.0',
+        debug=True
+    )

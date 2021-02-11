@@ -223,3 +223,10 @@ class Password(FlaskForm):
     confirm = PasswordField('confirm', validators=[
         DataRequired(), Length(min=8)],
         render_kw={"placeholder": "Confirm Password"},)
+
+
+class Email(FlaskForm):
+    """Email Form to request employee"""
+    email = StringField(
+        'email', validators=[DataRequired()],
+        render_kw={"placeholder": "Email"})

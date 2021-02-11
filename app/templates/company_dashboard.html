@@ -1,0 +1,60 @@
+{% extends 'company_layout.html' %}
+{% block dashboard_style %}
+    <style>
+        .item-one svg {
+            color: #FF0000; cursor: pointer; background: #f5f5f5;
+        }
+    </style>
+{% endblock dashboard_style %}
+{% block dashboard %}
+    <main class="main-dashboard">
+        <section class="pending-request">
+            <div class="pending-request-container">
+                <h2>Request employee <small style="color: #FF0000;" class="arrow">&#8681;</small></h2>
+                <div class="company-card request">
+                    <form action="" method="POST">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="{{ category }}">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        {{ form.hidden_tag() }}
+                        {{ form.email(class='input-box') }}
+                        <button class="request-btn" type="submit">Request</button>
+                    </form>
+                </div>
+        </section>
+        <section class="companies">
+            <div class="companes-container">
+                <h2>Employees ( {{ employees|length }} ) <small><svg style="color: #339933; width: 15px; height: 15px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="briefcase" class="svg-inline--fa fa-briefcase fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M320 336c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z"></path></svg></small></h2>
+                {% for employee in employees %}
+                    <div class="company-card-work">
+                        <div class="company-card-svg">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-friends" class="svg-inline--fa fa-user-friends fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32 80 82.1 80 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zM480 256c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4 24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48 0-61.9-50.1-112-112-112z"></path></svg>
+                        </div>
+                        <div class="info">
+                            <div class="company-card-info">
+                                <p><span class="manager-name">Employee</span> : {{ employee.first_name }} {{ employee.last_name }}</p>
+                                <p><span class="manager-email">Email</span> : {{ employee.email }}</p>
+                            </div>
+                            <div class="company-btns">
+                                <form action="{{ url_for('company.employee_calendars', employee_id=employee._id) }}" method="GET">
+                                    <input class="company-btn btn-two" type="submit" value="calendars">
+                                </form>
+                                <button class="company-btn btn-three">remove</button>
+                                <div class="yes-no">
+                                    <button class="btn-no">no</button>
+                                    <form action="{{ url_for('company.delete_employee', employee_id=employee._id) }}" method="POST">
+                                        <input class="btn-yes" type="submit" value="yes">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock dashboard %}

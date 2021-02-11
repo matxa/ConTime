@@ -8,7 +8,7 @@ from flask import (
     jsonify,
     request,
     flash)
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, logout_user
 from forms import Calendar, Password
 from utils import check_user_type
 import requests
@@ -96,6 +96,9 @@ def company_calendars(company_id):
     """Employee calendars given company_id"""
     if check_user_type(current_user.id) != 'employee':
         abort(401)
+
+    if company_id == 'DELETED':
+        return redirect(url_for('employee.employee_calendars'))
     """Current calendar"""
     current_calendar = requests.put(f"{url}/calendars/companies/\
 {company_id}/employees/{current_user.id}/current")
@@ -164,15 +167,22 @@ def company_calendars(company_id):
 @employee.route(
     '/employee_calendars',
     strict_slashes=False, methods=['GET'])
+@login_required
 def employee_calendars():
     """ALL calendars related to current user"""
+    if check_user_type(current_user.id) != 'employee':
+        abort(401)
     request_calendars = requests.get(
         f'{url}/calendars/employees/{current_user.id}')
     calendars = request_calendars.json()[1]['data']
     for calendar in calendars:
         request_company = requests.get(calendar['links'][1]['href'])
-        calendar['company_name'] = request_company.json()['company_name']
-        calendar['company_id'] = request_company.json()['_id']
+        if request_company.status_code == 404:
+            calendar['company_name'] = 'DELETED'
+            calendar['company_id'] = 'DELETED'
+        if request_company.status_code == 200:
+            calendar['company_name'] = request_company.json()['company_name']
+            calendar['company_id'] = request_company.json()['_id']
 
     return render_template('employee_calendars.html', calendars=calendars)
 
@@ -180,8 +190,11 @@ def employee_calendars():
 @employee.route(
     '/profile',
     strict_slashes=False, methods=['GET', 'POST'])
+@login_required
 def profile():
     """Profile"""
+    if check_user_type(current_user.id) != 'employee':
+        abort(401)
     form = Password()
 
     """Get current user from API"""
@@ -208,3 +221,23 @@ def profile():
 
     return render_template(
         'employee_profile.html', form=form, employee=employee.json())
+
+
+@employee.route(
+    '/delete_user',
+    strict_slashes=False, methods=['POST'])
+@login_required
+def delete_user():
+    """Delete user"""
+    if check_user_type(current_user.id) != 'employee':
+        abort(401)
+
+    if request.method == 'POST':
+        delete_user = requests.delete(f"{url}/employees/{current_user.id}")
+        if delete_user.status_code == 204:
+            logout_user()
+            flash(
+                "Sad to see you go :(",
+                category='flash-error')
+            return redirect(url_for('login'))
+        return redirect(url_for('employee.profile'))

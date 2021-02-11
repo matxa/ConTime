@@ -1,4 +1,4 @@
-{% extends 'employee_layout.html' %}
+{% extends 'company_layout.html' %}
 {% block company_calendar_style %}
     <style>
         .item-three svg {
@@ -12,9 +12,10 @@
             <div class="profile-container">
                 <div class="info-card">
                     <div class="card-info">
-                        <span><span class="credentials">First Name : </span>{{ employee.first_name }}</span>
-                        <span><span class="credentials">Last Name : </span>{{ employee.last_name }}</span>
-                        <span><span class="credentials">Email : </span>{{ employee.email }}</span>
+                        <span><span class="credentials">Company : </span>{{ company.company_name }}</span>
+                        <span><span class="credentials">Manager : </span>{{ company.first_name }} {{ company.last_name }}</span>
+                        <span><span class="credentials">Email : </span>{{ company.email }}</span>
+                        <span><span class="credentials">Description : </span>{{ company.description[:25] }}...</span>
                     </div>
                 </div>
             </div>
@@ -40,7 +41,7 @@
             <button id="login-btn">delete</button>
             <div class="confirm">
                 <button class="btn-no">no</button>
-                <form action="{{ url_for('employee.delete_user') }}" method="POST">
+                <form action="{{ url_for('company.delete_user') }}" method="POST">
                     <input class="btn-yes" type="submit" value="yes">
                 </form>
             </div>

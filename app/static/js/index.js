@@ -1,7 +1,22 @@
 const $ = window.$;
 
+if ($(window).width() < 751){
+    $('.menu').hide()
+    $('.menu-logout').hide()
+}
+else{
+    $('.menu').show()
+    $('.menu-logout').show()
+}
+
 /* Run script only after page is done loading */
 $(document).ready(() => {
+    if ($(window).width() < 751){
+        $('.menu-icon').show()
+    }
+    else{
+        $('.menu-icon').hide()
+    }
     $('.select-box-none').hide()
     if ($('.select-box').val() == 'employee'){
         $('.select-box-none').val() == 'employee'
@@ -27,7 +42,7 @@ $(document).ready(() => {
     });
 
     // Hide JOB OFFER CARDS
-    $('.company-card').hide()
+    // $('.company-card').hide()
     $('.arrow').html('&#8679;')
     $('.arrow').click(function() {
         $('.company-card').toggle();
@@ -51,9 +66,37 @@ $(document).ready(() => {
         $(this).closest('.company-card').find('.btn-three').show()
         $(this).closest('.company-card-work').find('.btn-three').show()
     });
+    $('.confirm').hide()
+    $('#login-btn').click(function(){
+        $(this).hide()
+        $('.confirm').show()
+        $('.btn-no').click(function(){
+            $('.confirm').hide()
+            $('#login-btn').show()
+        });
+
+    });
     // SET TIMER FOR FLASHED MESSAGES
     setTimeout(function() {
         $('.flash-error').hide()
         $('.flash-success').hide()
     }, 5000);
+    // HAMBURGER MENU
+    $(window).resize(function(){
+        if ($(window).width() < 751){
+            $('.menu-icon').show()
+            $('.menu').hide()
+            $('.menu-logout').hide()
+        }
+        else{
+            $('.menu-icon').hide()
+            $('.menu').show()
+            $('.menu-logout').show()
+        }
+    });
+
+    $('.menu-icon').click(function(){
+        $('.menu').toggle()
+        $('.menu-logout').toggle()
+    });
 });

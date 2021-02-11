@@ -1,12 +1,12 @@
-{% extends 'employee_layout.html' %}
-{% block employee_calendars_style %}
+{% extends 'company_layout.html' %}
+{% block company_calendar_style %}
     <style>
         .item-two svg {
             color: #FF0000; cursor: pointer; background: #f5f5f5;
         }
     </style>
-{% endblock employee_calendars_style %}
-{% block employee_calendars %}
+{% endblock company_calendar_style %}
+{% block company_calendar %}
     <main class="main-dashboard">
       <section class="past-calendars">
         <h2>All calendars ( {{ calendars|length }} )</h2>
@@ -20,7 +20,7 @@
                         <span>WEEK:</span><span class="week-start">{{ calendar.week }}</span>
                       </div>
                       <div class="info">
-                        <span>COMPANY:</span><a id="company_name" href="{{ url_for('employee.company_calendars', company_id=calendar.company_id) }}"><span class="week-start">{{ calendar.company_name }}</span></a>
+                        <span>EMPLOYEE:</span><a id="company_name" href="{{ url_for('company.employee_calendars', employee_id=calendar.employee_id) }}"><span class="week-start">{{ calendar.employee_name }}</span></a>
                       </div>
                       <div class="info">
                         <span>TOTAL HOURS:</span><span class="hour">{{ calendar.total_hours }}</span>
@@ -84,4 +84,4 @@
         {% endfor %}
       </section>
     </main>
-{% endblock employee_calendars %}
+{% endblock company_calendar %}
