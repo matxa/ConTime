@@ -8,8 +8,7 @@ Making it easier for (sub)contractors to manage employees' work history.
 
 ## Screenshots
 
-<img src="https://i.imgur.com/n5Avdh3.jpg" alt="contime_landing_page" width="200" height="400">
-<img src="https://i.imgur.com/rXWo7qj.jpg" alt="contime_login_page" width="200" height="400">
+<img src="https://i.imgur.com/n5Avdh3.jpg" alt="contime_landing_page" width="200" height="400"><img src="https://i.imgur.com/rXWo7qj.jpg" alt="contime_login_page" width="200" height="400">
 <img src="https://i.imgur.com/KEY2Cke.jpg" alt="contime_register_page" width="200" height="400">
 <img src="https://i.imgur.com/lzfAwx1.jpg" alt="contime_employee_dashboard" width="200" height="400">
 <img src="https://i.imgur.com/bB8Rnx1.jpg" alt="contime_current_calendar" width="200" height="400">
