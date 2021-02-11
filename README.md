@@ -21,7 +21,7 @@ Making it easier for (sub)contractors to manage employees' work history.
 ### ConTime API is the bridge between the backend and the frontend of the [ConTime Web Application](https://github.com/matxa/ConTime).
 
 ## [APP](https://github.com/matxa/ConTime/tree/main/app)
-### ConTime APP - front-end of web application
+### ConTime APP - frontend of web application.
 
 
 &#10240;<br>
