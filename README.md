@@ -27,6 +27,8 @@ Making it easier for (sub)contractors to manage employees' work history.
 ### [APP](https://github.com/matxa/ConTime/tree/main/app)
 ### ConTime APP - frontend of web application.
 
+### Learn more about this project at [Medium](https://1035.medium.com/contime-17543db6997f).
+
 
 &#10240;<br>
 <hr>
