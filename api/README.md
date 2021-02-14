@@ -181,7 +181,7 @@ CHANGE_PWD_SCHEMA = {
 - <mark style="background-color: #7bb3ba">&#10240; calendars/companies/< company_id >/employees/< employee_id >/current &#10240;</mark>
     - PUT &#10240; &#11138; &#10240; create current weekly calendar, if current calendar already exists UPDATE in accordance with the calendar's schema above.
 
-Visit API -> ## [api.contime.work](https://api.contime.work/)
+## Visit API -> [api.contime.work](https://api.contime.work/)
 &#10240;<br>
 <hr>
 &#10240;<br>
