@@ -207,3 +207,8 @@ def current_calendar(company_id, employee_id):
         new_calendar.save()
         new_calendar = calendar_to_json(new_calendar)
         return jsonify(new_calendar), 201
+
+@calendars.route('/days', strict_slashes=False, methods=['GET'])
+def days():
+    """Current day calendars"""
+    return jsonify({"days": time_date()}), 200
