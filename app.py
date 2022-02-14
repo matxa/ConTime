@@ -12,7 +12,7 @@ from forms import EmployeeRegistration
 from forms import CompanyResgistration
 import requests
 from utils import check_user_type
-from __init__ import API_URL
+from __init__ import API_URL, CONTIME_ENV
 
 
 """Flask App"""
@@ -147,4 +147,7 @@ def register():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    if CONTIME_ENV == "production":
+        app.run(debug=False, host="0.0.0.0", port=8080)
+    else:
+        app.run(debug=True, port=5000)
