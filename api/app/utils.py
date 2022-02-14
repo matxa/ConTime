@@ -10,11 +10,11 @@
    ▪️ calendar_to_json()
    ▪️ time_date()
 """
+from . import API_URL
 from flask import jsonify
 import requests
 from datetime import timedelta
 from dateutil.parser import parse
-from . import API_URL
 
 
 CHANGE_PWD_SCHEMA = {

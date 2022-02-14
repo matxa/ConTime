@@ -8,13 +8,10 @@
     ▪️ calendars/companies/<company_id>/employees/<employee_id>/current ⬇
                                                         Current week calendar
 """
-import bcrypt
 from flask import Blueprint, jsonify, request
-from .models import Company, Employee, Calendar
+from .models import Calendar
 from .utils import (
     code_message,
-    company_to_json,
-    employee_to_json,
     calendar_to_json,
     CHANGE_PWD_SCHEMA,
     time_date)
@@ -22,6 +19,7 @@ from bson import ObjectId
 from jsonschema import validate
 from mongoengine.errors import DoesNotExist
 from . import API_URL
+
 
 DAY_REF = {
     "type": "object",

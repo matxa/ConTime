@@ -8,7 +8,6 @@ from flask import Blueprint, jsonify, request
 from .models import Employee, Company
 from .utils import (
     code_message,
-    employee_links,
     employee_to_json,
     company_to_json,
     CHANGE_PWD_SCHEMA)
