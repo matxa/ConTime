@@ -13,6 +13,7 @@ from .utils import (
     CHANGE_PWD_SCHEMA)
 from bson import ObjectId
 from jsonschema import validate
+from . import API_URL
 
 
 COMPANY_SCHEMA = {
@@ -57,12 +58,12 @@ def all_companies():
                 "links": [
                     {
                         "rel": "self",
-                        "href": f"https://api.contime.work/companies",
+                        "href": f"{API_URL}/companies",
                         "action": "GET",
                     },
                     {
                         "rel": "self",
-                        "href": f"https://api.contime.work/companies",
+                        "href": f"{API_URL}/companies",
                         "action": "POST",
                         "schema": {
                             "first_name": {"type": "string"},

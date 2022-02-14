@@ -7,7 +7,7 @@ from app.company_endpoints import companies
 from app.employee_endpoints import employees
 from app.calendar_endpoint import calendars
 import bcrypt
-from flask import Flask, redirect, render_template, request
+from flask import Flask, request
 from flask_mongoengine import MongoEngine
 import markdown
 import markdown.extensions.fenced_code
@@ -15,8 +15,7 @@ from flask import jsonify
 from flask_cors import CORS
 from os import getenv
 from app.utils import code_message
-from app.models import Company, Employee, Calendar
-from bson import ObjectId
+from app.models import Company, Employee
 
 
 """Flask App"""

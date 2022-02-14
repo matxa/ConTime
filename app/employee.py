@@ -12,12 +12,14 @@ from flask_login import login_required, current_user, logout_user
 from forms import Calendar, Password
 from utils import check_user_type
 import requests
+import sys
 
 
 employee = Blueprint('employee', __name__)
 
 """API URL"""
 url = "https://api.contime.work"
+url = "http://127.0.0.1:5001/" # TEST
 
 
 @employee.route('/', strict_slashes=False)

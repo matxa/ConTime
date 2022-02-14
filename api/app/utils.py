@@ -11,10 +11,10 @@
    ▪️ time_date()
 """
 from flask import jsonify
-import os
 import requests
-from datetime import date, timedelta
+from datetime import timedelta
 from dateutil.parser import parse
+from . import API_URL
 
 
 CHANGE_PWD_SCHEMA = {
@@ -33,12 +33,12 @@ def company_links(id):
     links = [
         {
             "rel": "employees",
-            "href": f"https://api.contime.work/companies/{id}/employees",
+            "href": f"{API_URL}/companies/{id}/employees",
             "action": "GET"
         },
         {
             "rel": "employees",
-            "href": f"https://api.contime.work/companies/{id}/employees",
+            "href": f"{API_URL}/companies/{id}/employees",
             "action": "PUT",
             "query": {
                 "employee_id": {"type": "string"}
@@ -46,7 +46,7 @@ def company_links(id):
         },
         {
             "rel": "employees",
-            "href": f"https://api.contime.work/companies/{id}/employees",
+            "href": f"{API_URL}/companies/{id}/employees",
             "action": "DELETE",
             "query": {
                 "employee_id": {"type": "string"}
@@ -54,22 +54,22 @@ def company_links(id):
         },
         {
             "rel": "calendars",
-            "href": f"https://api.contime.work/calendars/companies/{id}",
+            "href": f"{API_URL}/calendars/companies/{id}",
             "action": "GET"
         },
         {
             "rel": "self",
-            "href": f"https://api.contime.work/companies/{id}",
+            "href": f"{API_URL}/companies/{id}",
             "action": "GET"
         },
         {
             "rel": "self",
-            "href": f"https://api.contime.work/companies/{id}",
+            "href": f"{API_URL}/companies/{id}",
             "action": "PUT"
         },
         {
             "rel": "self",
-            "href": f"https://api.contime.work/companies/{id}",
+            "href": f"{API_URL}/companies/{id}",
             "action": "DELETE"
         }
     ]
@@ -81,34 +81,34 @@ def employee_links(id):
     links = [
         {
             "rel": "companies",
-            "href": f"https://api.contime.work/employees/{id}/companies",
+            "href": f"{API_URL}/employees/{id}/companies",
             "action": "GET"
         },
         {
             "rel": "companies",
-            "href": f"https://api.contime.work/employees/{id}/companies",
+            "href": f"{API_URL}/employees/{id}/companies",
             "action": "PUT",
             "query": {"company_id": {"type": "string"}}
         },
         {
             "rel": "companies",
-            "href": f"https://api.contime.work/employees/{id}/companies",
+            "href": f"{API_URL}/employees/{id}/companies",
             "action": "DELETE",
             "query": {"company_id": {"type": "string"}}
         },
         {
             "rel": "calendars",
-            "href": f"https://api.contime.work/calendars/employees/{id}",
+            "href": f"{API_URL}/calendars/employees/{id}",
             "action": "GET"
         },
         {
             "rel": "self",
-            "href": f"https://api.contime.work/employees/{id}",
+            "href": f"{API_URL}/employees/{id}",
             "action": "GET"
         },
         {
             "rel": "self",
-            "href": f"https://api.contime.work/employees/{id}",
+            "href": f"{API_URL}/employees/{id}",
             "action": "PUT",
             "body": {
                 "password": {"type": "string"}
@@ -116,7 +116,7 @@ def employee_links(id):
         },
         {
             "rel": "self",
-            "href": f"https://api.contime.work/employees/{id}",
+            "href": f"{API_URL}/employees/{id}",
             "action": "DELETE"
         }
     ]
@@ -128,17 +128,17 @@ def calendar_links(id, employee_id, company_id):
     links = [
         {
             "rel": "employees",
-            "href": f"https://api.contime.work/employees/{employee_id}",
+            "href": f"{API_URL}/employees/{employee_id}",
             "action": "GET"
         },
         {
             "rel": "companies",
-            "href": f"https://api.contime.work/companies/{company_id}",
+            "href": f"{API_URL}/companies/{company_id}",
             "action": "GET"
         },
         {
             "rel": "self",
-            "href": f"https://api.contime.work/calendars/{id}",
+            "href": f"{API_URL}/calendars/{id}",
             "action": "GET"
         }
     ]

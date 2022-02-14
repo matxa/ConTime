@@ -21,6 +21,7 @@ from .utils import (
 from bson import ObjectId
 from jsonschema import validate
 from mongoengine.errors import DoesNotExist
+from . import API_URL
 
 DAY_REF = {
     "type": "object",
@@ -76,7 +77,7 @@ def all_calendars():
             "links": [
                 {
                     "rel": "self",
-                    "href": f"https://api.contime.work/calendars",
+                    "href": f"{API_URL}/calendars",
                     "action": "GET",
                 },
             ]

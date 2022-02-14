@@ -14,6 +14,7 @@ from .utils import (
     CHANGE_PWD_SCHEMA)
 from bson import ObjectId
 from jsonschema import validate
+from . import API_URL
 
 
 EMPLOYEE_SCHEMA = {
@@ -54,12 +55,12 @@ def all_employees():
                 "links": [
                     {
                         "rel": "self",
-                        "href": f"https://api.contime.work/employees",
+                        "href": f"{API_URL}/employees",
                         "action": "GET",
                     },
                     {
                         "rel": "self",
-                        "href": f"https://api.contime.work/employees",
+                        "href": f"{API_URL}/employees",
                         "action": "POST",
                         "schema": {
                             "first_name": {"type": "string"},
