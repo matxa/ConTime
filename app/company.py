@@ -5,20 +5,16 @@ from flask import (
     redirect,
     abort,
     render_template,
-    jsonify,
     request,
     flash)
 from flask_login import login_required, current_user, logout_user
-from forms import Calendar, Password, Email
+from forms import Password, Email
 from utils import check_user_type
 import requests
+from __init__ import API_URL
 
 
 company = Blueprint('company', __name__)
-
-
-"""API URL"""
-url = "https://api.contime.work"
 
 
 @company.route('/', strict_slashes=False, methods=['GET', 'POST'])
@@ -31,22 +27,22 @@ def dashboard():
     form = Email()
 
     """Get current user from API"""
-    company = requests.get(f"{url}/companies/{current_user.id}")
+    company = requests.get(f"{API_URL}/companies/{current_user.id}")
 
     """Employees working for company"""
     employees_work = requests.get(
-        f"{url}/companies/{current_user.id}/employees")
+        f"{API_URL}/companies/{current_user.id}/employees")
     employees = employees_work.json()[1:]
 
     if request.method == "POST":
         if form.validate_on_submit():
             _employee = requests.get(
-                f"{url}/employee?email={form.email.data}")
+                f"{API_URL}/employee?email={form.email.data}")
 
             if _employee.status_code == 200:
                 employee_id = _employee.json()['employee']['id']
                 add_employee = requests.put(
-                    f"{url}/companies/{current_user.id}/\
+                    f"{API_URL}/companies/{current_user.id}/\
 employees?employee_id={employee_id}")
                 if add_employee.status_code == 400:
                     flash(
@@ -80,11 +76,11 @@ def employee_calendars(employee_id):
     if employee_id == 'DELETED':
         return redirect(url_for('company.company_calendars'))
 
-    employee_calendars = requests.get(f"{url}/calendars/companies/\
+    employee_calendars = requests.get(f"{API_URL}/calendars/companies/\
 {current_user.id}/employees/{employee_id}")
 
     calendars = employee_calendars.json()[1]['data']
-    employee = requests.get(f"{url}/employees/{employee_id}")
+    employee = requests.get(f"{API_URL}/employees/{employee_id}")
 
     return render_template(
         'company_calendars.html', calendars=calendars,
@@ -99,7 +95,7 @@ def company_calendars():
         abort(401)
 
     request_calendars = requests.get(
-        f'{url}/calendars/companies/{current_user.id}')
+        f'{API_URL}/calendars/companies/{current_user.id}')
     calendars = request_calendars.json()[1]['data']
     for calendar in calendars:
         request_employee = requests.get(calendar['links'][0]['href'])
@@ -126,12 +122,12 @@ def profile():
     form = Password()
 
     """Get current user from API"""
-    company = requests.get(f"{url}/companies/{current_user.id}")
+    company = requests.get(f"{API_URL}/companies/{current_user.id}")
 
     if request.method == 'POST':
         if form.validate_on_submit():
             pwd = requests.put(
-                f"{url}/companies/{current_user.id}",
+                f"{API_URL}/companies/{current_user.id}",
                 json={'password': form.password.data})
             if pwd.status_code == 200:
                 flash(
@@ -161,7 +157,7 @@ def delete_employee(employee_id):
         abort(401)
 
     if request.method == 'POST':
-        employee_delete_url = f"{url}/companies/\
+        employee_delete_url = f"{API_URL}/companies/\
 {current_user.id}/employees?employee_id={employee_id}"
 
         delete_employee = requests.delete(employee_delete_url)
@@ -179,7 +175,7 @@ def delete_user():
         abort(401)
 
     if request.method == 'POST':
-        delete_user = requests.delete(f"{url}/companies/{current_user.id}")
+        delete_user = requests.delete(f"{API_URL}/companies/{current_user.id}")
         if delete_user.status_code == 204:
             logout_user()
             flash(

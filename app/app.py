@@ -1,10 +1,10 @@
 """FRONTEND APP"""
 from flask import (
     Flask, render_template, request,
-    jsonify, redirect, flash, session, url_for)
+    redirect, flash, url_for)
 from flask_login import (
     LoginManager, UserMixin, login_user,
-    login_required, logout_user, current_user)
+    logout_user, current_user)
 from company import company
 from employee import employee
 from forms import Login
@@ -12,6 +12,7 @@ from forms import EmployeeRegistration
 from forms import CompanyResgistration
 import requests
 from utils import check_user_type
+from __init__ import API_URL
 
 
 """Flask App"""
@@ -19,10 +20,6 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = '12345gberwdf4356754refsw'
 app.register_blueprint(company, url_prefix='/company')
 app.register_blueprint(employee, url_prefix='/employee')
-
-"""API URL"""
-url = "https://api.contime.work"
-url = "http://127.0.0.1:5001/" # TEST
 
 
 """USER LOGIN"""
@@ -72,7 +69,7 @@ def login():
             url_for(f'{check_user_type(current_user.id)}.dashboard'))
     form = Login()
     if request.method == 'POST':
-        req = requests.get(f'{url}/login?email=\
+        req = requests.get(f'{API_URL}/login?email=\
 {form.email.data}&password={form.password.data}&type=\
 {form.login_type.data}')
         if req.status_code == 404:
@@ -118,7 +115,7 @@ def register():
         if employee_form.validate_on_submit():
             if employee_form.login_type.data == 'employee':
                 post_employee = requests.post(
-                    f"{url}/employees", json=employee_form.schema())
+                    f"{API_URL}/employees", json=employee_form.schema())
                 if post_employee.status_code == 201:
                     flash(
                         "Account created successfully",
@@ -134,7 +131,7 @@ def register():
         if company_form.validate_on_submit():
             if employee_form.login_type.data == 'company':
                 post_company = requests.post(
-                    f"{url}/companies", json=company_form.schema())
+                    f"{API_URL}/companies", json=company_form.schema())
                 if post_company.status_code == 201:
                     flash(
                         "Account created successfully",

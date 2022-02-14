@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms import (
     StringField, PasswordField, SelectField,
-    SubmitField, FormField, FloatField
+    SubmitField, FloatField
 )
 
 

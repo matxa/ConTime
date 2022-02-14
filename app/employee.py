@@ -5,21 +5,16 @@ from flask import (
     redirect,
     abort,
     render_template,
-    jsonify,
     request,
     flash)
 from flask_login import login_required, current_user, logout_user
 from forms import Calendar, Password
 from utils import check_user_type
 import requests
-import sys
+from __init__ import API_URL
 
 
 employee = Blueprint('employee', __name__)
-
-"""API URL"""
-url = "https://api.contime.work"
-url = "http://127.0.0.1:5001/" # TEST
 
 
 @employee.route('/', strict_slashes=False)
@@ -29,18 +24,18 @@ def dashboard():
         abort(401)
 
     """Get current user from API"""
-    employee = requests.get(f"{url}/employees/{current_user.id}")
+    employee = requests.get(f"{API_URL}/employees/{current_user.id}")
 
     """Employee job offers"""
     pending_requests = employee.json()['pending_requests']
     company_offers = []
     for company_id in pending_requests:
-        company = requests.get(f"{url}/companies/{company_id}")
+        company = requests.get(f"{API_URL}/companies/{company_id}")
         company_offers.append(company.json())
 
     """companies employee work for"""
     companies_work = requests.get(
-        f"{url}/employees/{current_user.id}/companies")
+        f"{API_URL}/employees/{current_user.id}/companies")
     companies = companies_work.json()[1:]
 
     return render_template(
@@ -58,9 +53,9 @@ def job_offer(company_id, status):
         abort(401)
 
     if request.method == 'POST':
-        job_decline_url = f"{url}/employees/\
+        job_decline_url = f"{API_URL}/employees/\
 {current_user.id}/companies?company_id={company_id}&status=decline"
-        job_accept_url = f"{url}/employees/\
+        job_accept_url = f"{API_URL}/employees/\
 {current_user.id}/companies?company_id={company_id}&status=accept"
 
         if status == 'decline':
@@ -81,7 +76,7 @@ def delete_job(company_id):
         abort(401)
 
     if request.method == 'POST':
-        job_delete_url = f"{url}/employees/\
+        job_delete_url = f"{API_URL}/employees/\
 {current_user.id}/companies?company_id={company_id}"
 
         delete_job = requests.delete(job_delete_url)
@@ -101,11 +96,11 @@ def company_calendars(company_id):
     if company_id == 'DELETED':
         return redirect(url_for('employee.employee_calendars'))
     """Current calendar"""
-    current_calendar = requests.put(f"{url}/calendars/companies/\
+    current_calendar = requests.put(f"{API_URL}/calendars/companies/\
 {company_id}/employees/{current_user.id}/current")
 
     """All of employees calendar for company"""
-    company_calendars = requests.get(f"{url}/calendars/companies/\
+    company_calendars = requests.get(f"{API_URL}/calendars/companies/\
 {company_id}/employees/{current_user.id}")
 
     form = Calendar()
@@ -117,7 +112,7 @@ def company_calendars(company_id):
         print(form.schema())
         if form.validate_on_submit():
             update_current_calendar = requests.put(
-                f"{url}/calendars/companies/{company_id}/employees/\
+                f"{API_URL}/calendars/companies/{company_id}/employees/\
 {current_user.id}/current", json=form.schema())
 
         return redirect(
@@ -156,7 +151,7 @@ def company_calendars(company_id):
     calendars = company_calendars.json()[1]['data'][:-1]
     last_calendar = company_calendars.json()[1]['data'].pop()
 
-    company = requests.get(f'{url}/companies/{company_id}')
+    company = requests.get(f'{API_URL}/companies/{company_id}')
 
     return render_template(
         'employee_company_calendar.html',
@@ -174,7 +169,7 @@ def employee_calendars():
     if check_user_type(current_user.id) != 'employee':
         abort(401)
     request_calendars = requests.get(
-        f'{url}/calendars/employees/{current_user.id}')
+        f'{API_URL}/calendars/employees/{current_user.id}')
     calendars = request_calendars.json()[1]['data']
     for calendar in calendars:
         request_company = requests.get(calendar['links'][1]['href'])
@@ -199,12 +194,12 @@ def profile():
     form = Password()
 
     """Get current user from API"""
-    employee = requests.get(f"{url}/employees/{current_user.id}")
+    employee = requests.get(f"{API_URL}/employees/{current_user.id}")
 
     if request.method == 'POST':
         if form.validate_on_submit():
             pwd = requests.put(
-                f"{url}/employees/{current_user.id}",
+                f"{API_URL}/employees/{current_user.id}",
                 json={'password': form.password.data})
             if pwd.status_code == 200:
                 flash(
@@ -234,7 +229,7 @@ def delete_user():
         abort(401)
 
     if request.method == 'POST':
-        delete_user = requests.delete(f"{url}/employees/{current_user.id}")
+        delete_user = requests.delete(f"{API_URL}/employees/{current_user.id}")
         if delete_user.status_code == 204:
             logout_user()
             flash(
